@@ -1,0 +1,2081 @@
+<!DOCTYPE html>
+<html  >
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no">
+    <title>EMT交直流电源系统</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css" media="screen">
+    <link rel="stylesheet" href="css/pagination.css"/>
+    <link rel="stylesheet" href="css/verify.min.css" media="screen">
+    <link rel="stylesheet" href="css/keyboard.css" media="screen">
+    <style>
+        body{
+            font-size:14px;
+        }  
+    </style>
+</head>
+<body >
+    <header>
+        <ul>
+            <li><img src="" id="logos"><span class="logoTitle"></span></li>
+            <li id="loadIn">
+                <u class="systemName">xxxxxx系统</u>
+                <a about="configs"><img src="imgs/navBar6.png" ><br/><span>系统设置</span></a>
+                <a about="records" ><img src="imgs/navBar5.png" ><br/><span>查看日志</span></a>
+                <a about="diagnose"><img src="imgs/navBar4.png" ><br/><span>诊断</span></a>
+                <a about="alarms"><img src="imgs/navBar3.png" ><br/><span>告警</span></a>
+                <a about="operats"><img src="imgs/navBar2.png" ><br/><span>能效分析</span></a>
+                <a about="runs" class="active"><img src="imgs/navBar1.png" ><br/><span>运行</span></a>
+                <b class="back" style="margin-left:3px;"><img src="imgs/backs.png" alt=""/><br/><span>返回</span></b>
+                <b class="return" ><img src="imgs/main.png" alt=""/><br/><span>主页</span></b>
+            </li>
+        </ul>
+    </header>
+    <section>
+        <div id="main" style="color:white">
+            <iframe id="mapFrame" name="mapFrame" src="overview.html" style="border:none;width:100%;height:100%;overflow:hidden;"></iframe>
+        </div>
+        <!--工程配置-->
+        <div id="configs">
+            <ul>
+                <li class="configItem">
+                    <a about="menuConfig"><img src="imgs/config1.png" alt="imgs/config11.png"/><br/>菜单配置</a>
+                    <a about="factMods"><img src="imgs/config8.png" alt="imgs/config88.png"/><br/>设备协议</a>
+                    <a about="devConfig"><img src="imgs/config4.png" alt="imgs/config44.png"/><br/>设备归属</a>
+<!--                    <a about="devPoint"><img src="imgs/config2.png" alt="imgs/config22.png"/><br/>设备点表</a>-->
+                    <a about="datamodal"><img src="imgs/config3.png" alt="imgs/config33.png"/><br/>数据模型</a>
+                    <a about="itemConfig"><img src="imgs/config5.png" alt="imgs/config55.png"/><br/>用户分项</a>
+                    <a about="FPGConfig"><img src="imgs/config6.png" alt="imgs/config66.png"/><br/>峰平谷</a>
+                    <a about="mapConfig"><img src="imgs/config7.png" alt="imgs/config77.png"/><br/>电气图</a>
+                    <a about="paramConfig"><img src="imgs/config9.png" alt="imgs/config99.png"/><br/>参数配置</a>
+                </li>
+                <li class="configContent">
+                    <div class="menuConfig" v-show="Index==1">
+                        <p class="title">
+                            <span></span><b>菜单配置</b>
+                        </p>
+                        <ul>
+                            <li class="menus">
+                                <p><button class="mybtns modifyMenu">编辑</button><button class="mybtns isOn">使能</button></p>
+                                <ul class="menuList">
+                                    <li class="active"><span>交流系统</span><b>未启用</b></li>
+                                    <li class=""><span>直流系统</span><b>已启用</b></li>
+                                </ul>
+                            </li>
+                            <li class="menusContent">
+                                <ul >
+                                    <li>
+                                        <p class="title">
+                                            <span></span><b>子菜单配置</b>
+                                        </p>
+                                        <ul class="secondMenuList">
+
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <p class="title">
+                                            <span></span><b>预警诊断</b>
+                                        </p>
+                                        <ul class="diago">
+                                          
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>    
+                        </ul>
+                        <div class="box" id="modifyMenu">
+                            <p id="modifyMenuTop"><span>编辑菜单</span><b>&times;</b></p>
+                            <ul>
+                                <li>菜单名称：<input  type="text" placeholder="请输入菜单名称"></li>
+                                <li>菜单编号：<span></span></li>
+                                <li><p><button class="mytbnsSolid">关闭</button></p></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!--数据模型-->
+                    <div class="datamodal" v-show="Index==3">
+                        <p class="title">
+                            <span></span><b>数据模型</b> <u>设备型号：</u>
+                            <label class="checkOptBox">
+                            <select name=""  class="devTypes" id="devTypes">
+                                <option value="1">低压进线</option>
+                                <option value="2">低压出线</option>
+                                <option value="3">低压母联</option>
+                                <option value="4">低压电容</option>
+                                <option value="5">低压IPC03</option>
+                                <option value="6">低压反向进线</option>
+                                <option value="7">变压器</option>
+                                <option value="8">远程核容充电模块</option>
+                                <option value="9">远程核容有源逆变</option>
+                                <option value="10">远程核容PLC控制器</option>
+                                <option value="11">远程核容双向DCDC</option>
+                                <option value="12">交流输入</option>
+                                <option value="13">DCDC充电模块</option>
+                                <option value="14">蓄电池组</option>
+                                <option value="15">馈线绝缘监测仪</option>
+                                <option value="16">直流母线</option>
+                                <option value="17">母线绝缘监测仪</option>
+                                <option value="18">ACDC通信模块</option>
+                                <option value="19">ACDC充电模块</option>
+                                <option value="20">通信母线</option>
+                                <option value="21">馈线监测仪</option>
+                                <option value="22">UPS电源</option>
+                                <option value="23">馈线支路</option>
+                                <option value="24">逆变电源</option>
+                                <option value="25">DCDC通信模块</option>
+                                <option value="26">剩余电流集中接地点</option>
+                                <option value="27">剩余电流馈线支路</option>
+                                <option value="28">剩余电流长电缆</option>
+                                <option value="30">二路输入开关</option>
+                            </select></label>
+                        </p>
+                        <ul>
+                            <li class="modalMenu">
+                                <a class="active" about="devWindow">实时数据<b></b></a>
+                                <a class="" about="elecDiagram">电气图<b></b></a>
+                                <a class="" about="curveStored">曲线数据<b></b></a>
+                                <a class="" about="packeStorage">分组存储<b></b></a>
+                                <a class="" about="statusBar">状态描述<b></b></a>
+                                <a class="" about="ykyt">遥控遥调<b></b></a>
+                                <a class="" about="groupAlarm">组合分析<b></b></a>
+                                <a class="" about="diagnosis">预警诊断<b></b></a>
+                            </li>
+                            <li class="businessContent">
+                                <div id="devWindow">
+                                    <p><button class="mybtns">新增</button><button class="mybtns">删除</button><button class="mybtns">提交</button></p>
+                                    <p>配置项：<a class="active" type="1">遥测</a><a type="2">遥信</a></p>
+                                    <table>
+                                        <thead>
+                                        <tr>
+                                            <th>名称</th>
+                                            <th>点位</th>
+                                            <th>单位</th>
+                                            <th>显示顺序</th>
+                                            <th>区域</th>
+                                            <th>状态</th>
+                                        </tr>
+                                        </thead>
+                                    </table>
+                                    <div>
+                                        <table>
+                                            <tbody>
+
+                                            </tbody>
+                                        </table>
+                                        <table>
+                                            <tbody>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+
+                                </div>
+                                <div id="elecDiagram">
+                                    <p><button class="mybtns">新增</button><button class="mybtns">删除</button><button class="mybtns">提交</button></p>
+                                    <p>配置项：<a class="active" type="0">遥测遥信</a><a type="1">关联开关</a></p>
+                                    <table>
+                                        <thead>
+                                        <tr>
+
+                                            <th>名称</th>
+                                            <th>点位</th>
+                                            <th>单位</th>
+                                            <th>显示颜色</th>
+                                            <th>显示顺序</th>
+                                            <th>区域</th>
+                                            <th>状态</th>
+                                        </tr>
+                                        </thead>
+                                    </table>
+                                    <div>
+                                        <table>
+                                            <tbody>
+
+                                            </tbody>
+                                        </table>
+                                        <table>
+                                            <tbody>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div id="curveStored">
+                                    <p><button class="mybtns">新增</button><button class="mybtns">删除</button><button class="mybtns">提交</button>   注意：寄存器不能重复！</p>
+                                    <table>
+                                        <thead>
+                                        <tr>
+                                            <th>名称</th>
+                                            <th>分组</th>
+                                            <th>单位</th>
+                                            <th>显示顺序</th>
+                                            <th>变化存储</th>
+                                            <th>数据成员</th>
+                                            <th>状态</th>
+                                        </tr>
+                                        </thead>
+                                    </table>
+                                    <div>
+                                        <table>
+                                            <tbody>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div id="packeStorage">
+                                    <p><button class="mybtns">新增</button><button class="mybtns">删除</button><button class="mybtns">提交</button><button class="mybtns">分组曲线</button>   注意：分组不能重复，列名必须以'-'号隔开！<br/>
+                                        保存历史数据的寄存器：<span>无</span>
+                                    </p>
+                                    <p class="gbfb">配置项：<a class="active" type="1">共补</a><a type="2">分补</a></p>
+                                    <table>
+                                        <thead>
+                                        <tr>
+                                            <th>名称</th>
+                                            <th>分组</th>
+                                            <th>列名</th>
+                                            <th>数据成员</th>
+                                            <th>状态</th>
+                                        </tr>
+                                        </thead>
+                                    </table>
+                                    <div>
+                                        <table>
+                                            <tbody>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div>
+                                        <table>
+                                            <tbody>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="box" id="packLine">
+                                        <p id="packLineTop"><span>分组曲线存储</span><b>&times;</b></p>
+                                        <div>
+                                            <table>
+                                                <thead>
+                                                <th>名称</th>
+                                                <th>变化储存%</th>
+                                                <th>曲线</th>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                    <td><input type="text" value="搭噶傻大个"></td><td><label for="" class="checkOptBox">
+                                                        <select name="0"><option value="0">不存储</option> <option value="1">存储</option></select>
+                                                    </label></td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <p><button class="mytbnsSolid">提交</button><button class="mytbnsSolid">取消</button></p>
+                                    </div>
+                                </div>
+                                <div id="statusBar">
+                                    <p><button class="mybtns">新增</button><button class="mybtns">删除</button><button class="mybtns">提交</button> </p>
+                                    <table>
+                                        <thead>
+                                        <tr>
+                                            <th>名称</th>
+                                            <th>点位</th>
+                                            <th>处理</th>
+                                            <th>自定义 <button class="mytbnsSolid" style="margin-left:20px">新增</button></th>
+                                            <th>状态</th>
+                                        </tr>
+                                        </thead>
+                                    </table>
+                                    <div>
+                                        <table>
+                                            <tbody>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="box" id="creatStatu">
+                                        <p id="creatStatuTop"><span>新增自定义</span><b>&times;</b></p>
+                                        <ul>
+                                            <li>
+                                                序号：<input type="text" placeholder="只允许输入数字">
+                                            </li>
+                                            <li>
+                                                名称：<input type="text" placeholder="请输入名称">
+                                            <li>
+                                                <p><button class="mytbnsSolid">提交</button></p>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div id="ykyt">
+                                    <p><button class="mybtns">新增</button><button class="mybtns">编辑</button><button class="mybtns">删除</button><button class="mybtns">提交</button> </p>
+                                    <table>
+                                        <thead>
+                                        <tr>
+                                            <th>名称</th>
+                                            <th>类型</th>
+                                            <th>点位</th>
+                                            <th>区域</th>
+                                            <th>编号</th>
+                                            <th>按钮列表 <button class="mytbnsSolid">新增</button></th>
+                                            <th>状态</th>
+                                        </tr>
+                                        </thead>
+                                    </table>
+                                    <div>
+                                        <table>
+                                            <tbody>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="box" id="creatResult">
+                                        <p id="creatResultTop"><span>新增执行结果</span><b>&times;</b></p>
+                                        <ul>
+                                            <li>
+                                                期望结果：<input type="text" placeholder="请输入期望结果">
+                                            </li>
+                                            <li>
+                                                设&nbsp;&nbsp;置&nbsp;&nbsp;值：<input type="text" placeholder="请输入设置值">
+                                            </li>
+                                            <li>
+                                                名&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称：<input type="text" placeholder="请输入名称">
+                                            </li>
+                                            <li>
+                                                颜&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;色：<label class="checkOptBox"><select name="" ><option value="1">蓝色</option><option value="2">绿色</option><option value="3">橙色</option>
+                                                </select></label>
+                                            <li>
+                                            <li><p><button class="mytbnsSolid">提交</button></p></li> 
+                                            
+                                        </ul>
+                                    </div>
+                                    <div class="box" id="modYKYT">
+                                        <p id="modYKYTTop"><span>编辑</span><b>&times;</b></p>
+                                        <ul>
+                                            <li>
+                                                <b>点位：</b><span></span>
+                                            </li>
+
+                                            <li>
+                                                <b>名称：</b><input type="text" placeholder="请输入名称">
+                                            <li>
+                                                <b>命令类型：</b>
+                                                <label class="checkOptBox"><select name="" ><option value="1">遥控</option><option value="2">遥调</option></select></label>
+                                                <b>功能码：</b>
+                                                <label class="checkOptBox"><select name="" ><option value="0">未配置</option><option value="5">强置单线圈</option><option value="6">预置单寄存器</option><option value="16">预置多寄存器</option>
+                                                </select></label>
+                                            </li>
+                                            <li>
+                                                <b>控制地址：</b><input type="text"/><b>显示区域：</b><label class="checkOptBox"><select name="" >
+                                                    <option value="1">区域1</option>
+                                                    <option value="2">区域2</option>
+                                                    <option value="3">区域3</option>
+                                                    <option value="4">区域4</option>
+                                                    <option value="5">区域5</option>
+                                                    <option value="6">区域6</option>
+                                                    <option value="7">区域7</option>
+                                                    <option value="8">区域8</option>
+                
+                                                </select></label>
+                                                </li>
+                                            </li>
+                                            <li><b>变比：</b><input type="text"/><b>检查结果：</b>
+                                                <label class="checkOptBox"><select name="" >
+                                                    <option value="0">获取结果，15秒超时</option>
+                                                    <option value="1">不获取结果</option></select></label>
+                                                </li>
+                                            <li>
+                                                <b>延时读取：</b><label class="checkOptBox"><select name="" >
+                                                <option value="1">1</option><option value="2">2</option>
+                                                <option value="3">3</option><option value="4">4</option><option value="5">5</option></select></label>
+                                                <b>显示名称：</b><label class="checkOptBox"><select name="" >
+                                                    <option value="0">是</option><option value="1">否</option>
+                                                   </select></label>
+                                            </li>
+                                            <li><b>按钮列表：</b></li>
+                                            <li style="margin-top:0; height:180px;
+                                            overflow-y:auto;">
+                                                <table>
+                                                    <thead>
+                                                        <tr>
+                                                            <th>序号</th>
+                                                            <th>期望结果</th>
+                                                            <th>设置值</th>
+                                                            <th>颜色</th>
+                                                            <th>名称</th>
+                                                           
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+
+                                                    </tbody>
+                                                </table>
+                                            </li>
+            
+                                            <li>
+                                                <p><button class="mytbnsSolid">确认</button></p>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div id="groupAlarm">
+                                    <p><button class="mybtns">新增</button><button class="mybtns">删除</button><button class="mybtns">提交</button>   提示：一种组合项只能储存一条数据！</p>
+                                    <table>
+                                        <thead>
+                                        <tr>
+                                            <th>组合项</th>
+                                            <th>数据成员</th>
+                                            <th>状态</th>
+                                        </tr>
+                                        </thead>
+                                    </table>
+                                    <div>
+                                        <table>
+                                            <tbody>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div id="diagnosis">
+                                    <p><button class="mybtns">关联</button><button class="mybtns">提交</button></p>
+                                    <table>
+                                        <thead>
+                                        <tr>
+                                            <th>序号</th>
+                                            <th>分析项</th>
+                                            <th>启动</th>
+                                            <th>关联分析点位</th>
+                                            <th>状态</th>
+                                        </tr>
+                                        </thead>
+                                    </table>
+                                    <div>
+                                        <table>
+                                            <tbody>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="box" id="configedYCYX">
+                            <p id="configedYCYXTop"><span>新增</span><b>&times;</b></p>
+                            <ul>
+                                <li>
+                                    <ul>
+                                        <li><div> <input class="search"  type="text"   placeholder="请输入搜索名称" />
+                                            <button type="button" class="closed">x</button>
+                                        </div>
+                                        <!-- <button style="padding:3.5px 13px;margin-left:5px;" class="mytbnsSolid">搜索</button> -->
+                                    </li>
+                                        <!-- <li class="langueage"><a about="1" class="active">使用中文</a><a about="2">使用英文</a> -->
+                                        <!-- </li> -->
+                                    </ul>
+                                    <ul>
+                                        <li>
+                                            <ul class="ycyxs">
+                                                <li>
+                                                    <p><span>A相电压</span><img src="imgs/ok.png" alt=""/></p>
+                                                    <p><span>12</span> <b>遥测</b></p>
+                                                </li>
+                                            </ul>
+                                        </li>
+
+
+                                    </ul>
+                                </li>
+                                <li>
+                                    <img src="imgs/toRight2.png" alt=""><img src="imgs/toLeft2.png" alt=""></li>
+                                <li>
+                                    <p>数据预览：</p>
+                                    <table>
+                                        <thead>
+                                        <tr>
+                                            <th>名称</th>
+                                            <th>点位</th>
+                                            <th>类型</th>
+                                        </tr>
+                                        </thead>
+                                    </table>
+                                    <div class="checkedYCYX  test test-1">
+                                        <table>
+                                            <tbody>
+                                            <tr>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="packIn">
+                                        <p>分组：<input type="text" placeholder="请输入分组号(必填)"></p>
+                                        <p>名称：<input type="text" placeholder="请输入分组名称(选填)"></p>
+                                        <p>组合项：<label for="" class="checkOptBox"><select name="" id="combinedId"><option value="1">三相电流不平衡</option><option value="2">电流开关</option><option value="3">电压开关</option><option value="4">ATS零位</option><option value="5">负载率</option><option value="6">损耗率</option></select></label></p>
+                                    </div>
+                                    <p><button class="mytbnsSolid">确定</button> <button class="mytbnsSolid">取消</button></p>
+                                </li>
+                            </ul>
+
+                        </div>
+                        <div class="box" id="configedYCYX2">
+                            <p id="configedYCYX2Top"><span>新增</span><b>&times;</b></p>
+                            <ul>
+                                <li>
+                                    <ul>
+                                        <li>
+                                            <div> <input class="search"  type="text"   placeholder="请输入搜索名称" />
+                                                <button type="button" class="closed">x</button>
+                                            </div>
+                                            <!-- <button style="padding:3.5px 13px;margin-left:5px;" class="mytbnsSolid">搜索</button> -->
+                                        </li>
+                                        <!-- <li class="langueage"><a about="1" class="active">使用中文</a><a about="2">使用英文</a>
+                                        </li> -->
+                                    </ul>
+                                    <ul>
+                                        <li>
+                                            <ul class="ycyxs">
+                                                <li>
+                                                    <p><span>A相电压</span><img src="imgs/ok.png" alt=""/></p>
+                                                    <p><span>12</span> <b>遥测</b></p>
+                                                </li>
+                                            </ul>
+                                        </li>
+
+
+                                    </ul>
+                                </li>
+                                <li>
+                                    <p>数据预览：</p>
+                                    <table>
+                                        <thead>
+                                        <tr>
+                                            <th>名称</th>
+                                            <th>点位</th>
+                                            <th>类型</th>
+                                        </tr>
+                                        </thead>
+                                    </table>
+                                    <div class="checkedYCYX  test test-1">
+                                        <table>
+                                            <tbody>
+                                            <tr>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <p><button class="mytbnsSolid sure">确定</button> <button class="mytbnsSolid">取消</button></p>
+                                </li>
+                            </ul>
+
+                        </div>
+                    </div>
+                    <div class="devConfig" v-show="Index==4">
+                        <p class="title">
+                            <span></span><b>设备归属</b>
+                        </p>
+                        <ul>
+                            <li class="boxes">
+                                <p><button class="mybtns">新增</button><button class="mybtns">编辑</button><button class="mybtns">删除</button></p>
+                                <ul class="boxList">
+                                  
+                                </ul>
+                                <div class="box" id="creatBox">
+                                    <p id="creatBoxTop"><span>新建归属</span><b>&times;</b></p>
+                                    <ul>
+                                        <li>归属名称：<input type="text" placeholder="请输入归属名称"></li>
+                                        <li>归属编号：<input type="number" placeholder="请输入归属编号1-100"></li>
+                                        <li>归属类型：<label for="" class="checkOptBox"><select name="">
+                                            <option value="0">未配置</option><option value="1">交流系统</option><option value="2">直流系统</option><option value="3">通信电源</option><option value="4">逆变系统</option><option value="5">事故照明</option></select></label></li>
+                                        <li>厂&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;家：<label for="" class="checkOptBox"><select name="" ></select></label></li>
+                                        <li>型&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号：<label for="" class="checkOptBox"><select name="" ></select></label></li>
+                                        <li>归属序号：<input type="text" placeholder="请输入归属序号"></li>
+                                        <li><p><button class="mytbnsSolid">提交</button></p></li>
+                                    </ul>
+                                </div>
+                                <div class="box" id="modifyBox">
+                                    <p id="modifyBoxTop"><span>编辑归属</span><b>&times;</b></p>
+                                    <ul>
+                                        <li>归属名称：<input data-num="0" type="text" placeholder="请输入归属名称"></li>
+                                        <li>归属编号：<span></span></li>
+                                        <li>归属类型：<label for="" class="checkOptBox"><select name="" data-num="1">
+                                            <option value="0">未配置</option><option value="1">交流系统</option><option value="2">直流系统</option><option value="3">通信电源</option><option value="4">逆变系统</option><option value="5">事故照明</option></select></label></li>
+                                        <li>厂&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;家：<label for="" class="checkOptBox"><select data-num="2" name="" ></select></label></li>
+                                        <li>型&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号：<label for="" class="checkOptBox"><select data-num="3" name="" ></select></label></li>
+                                        <li>归属序号：<input type="text" data-num="4" placeholder="请输入归属序号"></li>
+                                        <li><p><button class="mytbnsSolid">关闭</button></p></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="mods">
+                                <p><b>设备列表：</b><button class="mytbnsSolid delDev">取消关联</button><button class="mytbnsSolid addDev">关联设备</button></p>
+                                <div>
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                            <th>序号</th>
+                                            <th>名称</th>
+                                            <th>地址</th>
+                                            <th>设备类型</th>
+                                            <th>设备厂商</th>
+                                            <th>设备型号</th>
+                                            <th>点表ID</th>
+                                        </tr>
+                                        </thead>
+                                    </table>
+                                    <div>
+                                        <table class="devMods">
+                                               
+                                            <tbody>
+                                            <tr>
+                                                
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="box" id="aboutDev">
+                                    <p id="aboutDevTop"><span>关联设备</span><b>&times;</b></p>
+                                    <table>
+
+                                    </table>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="itemConfig" v-show="Index==5">
+                        <p class="title">
+                            <span></span><b>用户分项</b>
+                        </p>
+                        <div>
+                            <ul id="user_name">
+                                <li><input type="text"/><button class="mytbnsSolid">删除</button><button class="mytbnsSolid">保存</button></li>
+                            </ul>
+                            <p><button class="new mytbnsSolid">新建</button></p>
+                            <div class="box" id="creatItem">
+                                <p id="creatItemTop"><span>新建用户分项</span><b>&times;</b></p>
+                                <ul class="creatItem">
+                                    <li>用户分项&nbsp;I&nbsp;D&nbsp;：<span></span></li>
+                                    <li>用户分项名称：<input type="text" placeholder="请输入用户分项名称"></li>
+                                </ul>
+                                <p><button class="mytbnsSolid">提交</button></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="FPGConfig" v-show="Index==6">
+                        <div>
+                            <p style="font-weight:Bold;font-size:1.3em;" class="title"><span></span>峰平谷时段</p>
+                            <p class="title"><span></span><b>年时间表</b><img src="imgs/add.png" style="margin-left:10px"></p>
+                            <table id="minehira-table">
+                                <thead>
+                                <tr>
+                                    <th>结束月</th>
+                                    <th>结束日</th>
+                                    <th>周一</th>
+                                    <th>周二</th>
+                                    <th>周三</th>
+                                    <th>周四</th>
+                                    <th>周五</th>
+                                    <th>周六</th>
+                                    <th>周日</th>
+                                    <th>节假日</th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+
+                                </tr>
+                                </tbody>
+                            </table>
+                            <p class="title"><span></span><b>日时间表</b> <img src="imgs/add.png" alt=""/><img src="imgs/delete.png" alt=""/></p>
+                            <div>
+                                <!--<input type="checkbox"/><span>夏工作日</span>-->
+                                <!--<input type="checkbox"/><span>冬工作日</span>-->
+                                <!--<input type="checkbox"/><span>节假日</span>-->
+                            </div>
+                            <!--日时间表选项-->
+                            <div id="daytimeList">
+                                <p><span class="right" style="font-size:2em;">&times;</span></p>
+                                <ul>
+                                    
+                                </ul>
+                            </div>
+                            <!--新建日时间表内容-->
+                            <div id="electrovalence">
+                                <p><span >创建日时间表</span>名称： <input type="text"/><span class="right" style="font-size:2em;">&times;</span></p>
+                                <ul class="fpg">
+                                </ul>
+                                <p><button class="mytbnsSolid">保存</button></p>
+                            </div>
+                            <!--修改日时间表内容-->
+                            <div id="change_ele">
+                                <p ><span class="">修改日时间表</span>名称: <input type="text"/><span class="right" style="font-size:2em;">&times;</span></p>
+                                <ul class="fpg">
+                                </ul>
+                                <p><button class="mytbnsSolid">保存</button></p>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="mapConfig" v-show="Index==7">
+                        <p class="title"><span></span><b>电气图</b></p>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>序号</th>
+                                    <th>名称</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>EMT交直流电源总系统图</td>
+                                    <td><a href="javascript:;" type="0">编辑</a></td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>交流电源系统图</td>
+                                    <td><a href="javascript:;" type="1">编辑</a></td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>直流电源系统图</td>
+                                    <td><a href="javascript:;" type="2">编辑</a></td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>通信电源系统图</td>
+                                    <td><a href="javascript:;" type="3">编辑</a></td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>逆变电源系统图</td>
+                                    <td><a href="javascript:;" type="4">编辑</a></td>
+                                </tr>
+                                <tr>
+                                    <td>6</td>
+                                    <td>事故电源系统图</td>
+                                    <td><a href="javascript:;" type="5">编辑</a></td>
+                                </tr>
+                                <tr>
+                                    <td>7</td>
+                                    <td>剩余电流电源系统图</td>
+                                    <td><a href="javascript:;" type="6">编辑</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="factMods" v-show="Index==8">
+                        <ul>
+                            <li>
+                                <p><button class="mybtns">新建</button><button class="mybtns">编辑</button><button class="mybtns">删除</button></p>
+                                <div>
+                                    <table class="groups">
+                                        <thead>
+                                        <tr>
+                                            <th>序号</th>
+                                            <th>厂家名称</th>
+                                            <th>厂家ID</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </li>
+                            <li>
+                                <p>
+                                    <button class="mybtns">新建</button>
+                                    <button class="mybtns">编辑</button>
+                                    <button class="mybtns">删除</button>
+                                    <button class="mybtns">关联点表</button>
+                                    <button class="mybtns">取消关联</button>
+                                </p>
+                                <!-- <table>
+                                   
+                                </table> -->
+                                <div>
+                                    <table class="facts">
+                                        <thead>
+                                            <tr>
+                                                <th>序号</th>
+                                                <th>型号名称</th>
+                                                <th>型号ID</th>
+                                                <th>点表名称</th>
+                                                <th>点表ID</th>
+                                            </tr>
+                                            </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </li>
+                        </ul>
+                        <div class="box" id="creatFac">
+                            <p id="creatFacTop"><span>新建厂家</span><b>&times;</b></p>
+                            <ul class="creatFac">
+                                <li>厂家名称：<input type="text" placeholder="请输入厂家名称"></li>
+                                <!--<li>English Name：<input type="text" value="0" maxlength="3">></li>-->
+                                <li>厂家&nbsp;I&nbsp;D&nbsp;：<input type="text" placeholder="请输入厂家ID"></li>
+                            </ul>
+                            <p><button class="mytbnsSolid">提交</button></p>
+                        </div>
+                        <div class="box" id="modifyFac">
+                            <p id="modifyFacTop"><span>编辑厂家</span><b>&times;</b></p>
+                            <ul class="modifyFac">
+                                <li>厂家名称：<input type="text" placeholder="请输入厂家名称"></li>
+                                <li>厂家&nbsp;I&nbsp;D&nbsp;：<span></span></li>
+                            </ul>
+                            <p><button class="mytbnsSolid">提交</button></p>
+                        </div>
+                        <div class="box" id="creatType">
+                            <p id="creatTypeTop"><span>新建型号</span><b>&times;</b></p>
+                            <ul class="creatType">
+                                <li>型号名称：<input type="text" placeholder="请输入型号名称"></li>
+                                <li>型号&nbsp;I&nbsp;D&nbsp;：<input type="text" placeholder="请输入型号ID"></li>
+                            </ul>
+                            <p><button class="mytbnsSolid">提交</button></p>
+                        </div>
+                        <div class="box" id="modifyType">
+                            <p id="modifyTypeTop"><span>编辑型号</span><b>&times;</b></p>
+                            <ul class="modifyType">
+                                <li>型号名称：<input type="text" placeholder="请输入型号名称"></li>
+                                <li>型号&nbsp;I&nbsp;D&nbsp;：<span></span></li>
+                            </ul>
+                            <p><button class="mytbnsSolid">提交</button></p>
+                        </div>
+                    </div>
+                    <div class="paramConfig" v-show="Index==9">
+                        <ul>
+                            <li><span>遥信遥测告警延时时间：</span><label class="checkOptBox"><select name="" >
+                                <option value="8">8</option><option value="15">15</option><option value="30">30</option><option value="60">60</option><option value="150">150</option><option value="300">300</option></select></label>秒</li>
+                            <li class="screenSet">
+                                <span>通信告警延时时间：</span><label class="checkOptBox"><select name="" value="5" data-id="0">
+                                    <option value="3">3</option><option value="5">5</option><option value="10">10</option><option value="15">15</option><option value="30">30</option>
+                                </select></label>秒
+                            </li>
+                        </ul>
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+        <!--系统设置-->
+        <div id="system">
+            <ul>
+                <li class="systemItem">
+                    <a class="" about="systemNum"><img src="imgs/configs2.png"/><br/>系统参数</a>
+                    <a about="systemDev"><img src="imgs/configs3.png" /><br/>设备配置</a>
+                    <a about="systemRCD" @click="loadRCD()"><img src="imgs/configs9.png" ><br/>RCD配置</a>
+                    <a about="systemAlarm"><img src="imgs/configs4.png" /><br/>告警预警</a>
+                    
+                    <a about="systemPower"><img src="imgs/configs2.png" /><br/>电源系统</a>
+                    <a about="systemToconfigs"><img src="imgs/configs6.png" /><br/>工程设置</a>
+                </li>
+                <li class="systemContent">
+                    <!-- 系统参数 -->
+                    <div class="systemNum">
+                        <ul>
+                            <li about="version" data-num="15" class="active"><span></span>版本信息</li>
+                            <li about="alarmVoice" data-num="6" class="" type="1"><span></span>基本参数</li>
+                            <li about="sysNetMsg" data-num="8"><span></span>网卡信息</li>
+                            <li about="sysModPwd" data-num="6" type="3"><span></span>系统密码</li>
+                            <li about="checkTime" data-num="5"><span></span>对时</li>
+                            <li about="export" data-num="100"><span></span>工程配置</li>
+                        </ul>
+                        <div>
+                            <!--版本信息-->
+                            <div class="version">
+                                <ul>
+                                    <li><span>序列号：</span><b></b></li>
+                                    <li><span>硬件版本：</span><b></b></li>
+                                    <li><span>厂家：</span><b></b></li>
+                                    <li><span>软件版本：</span><b></b></li>
+                                    <li><span>型号：</span><b></b></li>
+                                    <li><span>WEB版本：</span><b></b></li>
+                                    <li><span>操作系统：</span><b></b></li>
+                                    <li><span>61850版本：</span><b></b></li>
+                                </ul>
+                                <p>
+                                    <a class="sureBtn reSet">重启</a>
+                                </p>
+                            </div>
+                            <!--基本参数-->
+                            <div class="alarmVoice">
+                                <ul>
+                                    <li><span>告警延迟时间：</span><label class="checkOptBox"><select name="" >
+                                        <option value="8">8</option><option value="15">15</option><option value="30">30</option><option value="60">60</option><option value="150">150</option><option value="300">300</option></select></label>秒</li>
+                                    <li><span>内置蜂鸣器：</span><label class="checkOptBox"><select name="" >
+                                        <option value="0">静音</option>
+                                        <option value="1">鸣叫</option></select></label></li>
+                                    <li class="screenSet">
+                                        <span>屏幕保护时间：</span><label class="checkOptBox"><select name="" value="5" data-id="0">
+                                            <option value="3">3</option><option value="5">5</option><option value="10">10</option><option value="15">15</option><option value="30">30</option>
+                                        </select></label>分钟
+                                    </li>
+                                </ul>
+                            </div>
+                            <!--修改密码-->
+                            <div class="sysModPwd">
+                                <div>
+                                    <p><span>新密码：</span><input type="password" class="newPwd loadNum" ></p>
+                                    <p><span>再次输入：</span><input type="password" class="rePwd loadNum"></p>
+                                    <p><a class="sureBtn">确认</a></p>
+                                    <p><b>*</b><u>注：</u>0~9的六位数密码</p>
+                                </div>
+                                <div >
+
+                                    <!--<p><img src="imgs/sure.png" about="sure"> <img src="imgs/error.png" about="error"></p>-->
+                                </div>
+                            </div>
+
+                            <!--对时-->
+                            <div class="checkTime">
+
+                                <div>自动对时：<b>当前时间：<span id="times">2024-02-02 02:02:02</span></b></div>
+                                <p><input type="radio" name="times" data-type="0"><span>NTP对时</span> <br/><span>服务器地址</span><br/><input
+                                        type="text" value="127.0.0.1" disabled></p>
+                                <p><input type="radio" name="times" data-type="1"><span>IRIG-B对时</span><br/></p>
+                                <p><input type="radio" name="times" data-type="2"><span>云平台对时</span><br/></p>
+                                <div>设置时间：</div>
+                                <p><label  class="checkOptBox"><select class="checkYear" ></select></label>年  <label  class="checkOptBox"><select class="checkMonth"></select></label>月 <label  class="checkOptBox"><select class="checkDay"></select></label>日 </p>
+                                <p><label  class="checkOptBox"><select class="checkHour"></select></label>时 <label  class="checkOptBox"><select class="checkMin" ></select></label>分 <label  class="checkOptBox"><select class="checkSec"></select></label>秒 <a class="sureBtn" id="handCheckTime">确定修改</a></p>
+                            </div>
+                            <!--网卡信息-->
+                            <div class="sysNetMsg">
+                                <ul>
+                                    <li>
+                                        <p><s></s><span>网卡一</span></p>
+                                        <div>
+                                            <ul>
+                                                <li><span>IP：</span><input type="text" data-add="2"></li>
+                                                <li><span>网关：</span><input type="text" data-add="2"></li>
+                                                <li><span>子网掩码：</span><input type="text" data-add="2"></li>
+                                                <li><span>状态：</span><b>使用</b></li>
+                                            </ul>
+                                            <div>
+                                                <a class="sureBtn">修改</a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <div>
+                                    <p><s></s><span>DNS服务器地址</span></p>
+                                    <div>
+                                        <ul class="mods">
+                                            <li><span>首选DNS服务器：</span><input class="loadNum" type="text" data-add="2"></li>
+                                            <li><span>备选DNS服务器：</span><input class="loadNum" type="text" data-add="2"></li>
+                                        </ul>
+                                        <div>
+                                            <a class="sureBtn">修改</a>
+                                        </div>
+                                    </div>
+                                    <div class="alertMsg">
+                                        提示：网卡信息变更，点击右边“重启”按钮，立即生效！ <a class="sureBtn" style="background:Red;width:100px;">重启</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--文件工程配置-->
+                            <div class="export">
+                                <p><s></s><span>导入（文件导入后，重启生效！）</span></p>
+                                <div><span>选择导入的文件类型：</span>
+                                    <label class="fileType checkOptBox">
+                                        <select name="type">                       
+                                            <option value="3">系统参数配置</option>
+                                            <option value="4">协议点表配置</option>
+                                            <option value="5">交直流信息配置</option>
+                                        </select>
+                                    </label></div>
+                                <div class="alertText2">请选择文件<span>SystemDatabase.db</span>以完成导入</div>
+                                <div>
+                                    <span>选择文件导入：</span>
+                                    <label for="inputFile1">
+                                        <a class="inputBtn sureBtn">导入</a>
+                                    </label>
+                                    <a class="clearInputBtn sureBtn" style="float:right">清除导入文件</a>
+                                    <input type="file" id="inputFile1" accept=".db" style="display:none">
+
+                                </div>
+                                <p><s></s><span>导出</span></p>
+                                <div><span>选择导出的文件类型：</span>
+                                    <label class="fileType checkOptBox">
+                                        <select name="type">
+                                            <option value="3">系统参数配置</option>
+                                            <option value="4">协议点表配置</option>
+                                            <option value="5">交直流信息配置</option>
+                                        </select>
+                                    </label></div>
+                                <div><span>执行文件导出：</span><a class="sureBtn outputBtn">导出</a></div>
+                                <!--<p><s></s><span>协议点表</span></p>-->
+                                <!--<div><a class="sureBtn" target="_blank" href="../netWeb/index.html">进入</a></div>-->
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 设备配置 -->
+                    <div class="systemDev">
+                        <div>
+                            <p class="title"><span></span><b>设备归属</b> <button class="mytbnsSolid devDetail">设备详情</button></p>
+                            <div>
+                                <table>
+                                    <thead>
+                                    <tr>
+                                        <th>序号</th>
+                                        <th>名称</th>
+                                        <th>厂家</th>
+                                        <th>型号</th>
+                                        <th>编号</th>
+                                        <th>类型</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="systemDevMods">
+                            <p><b>归属名称:</b><span></span><b>编号:</b><span></span><b>类型:</b><span></span><b>厂家:</b><span></span><b>型号:</b><span></span><button class="mytbnsSolid">返回</button></p>
+                            <ul>
+                                <li class="includeMods">
+                                    <p class="title"><span></span><b>设备列表</b></p>
+                                    <ul class="allMod"></ul>
+                                </li>
+                                <li class="includeModInfo">
+                                    <ul>
+                                        <!--低压模块-->
+                                        <li id="low_model">
+                                            <p class="title"><span></span><b>基本信息</b></p>
+                                            <ul>
+                                                <li><b>设 备 名 称：</b><span></span></li>
+                                                <li><b>拨 码 地 址：</b><span></span></li>
+                                                <li style="display:none;"><b>通 信 状 态：</b><span></span></li>
+                                                <li><b>开 关 序 号：</b><input type="text" class="loadNum" value="" data-id="9"></li>
+                                                <li><b>设 备 厂 商：</b><span class="products"></span></li>
+                                                <li><b>设 备 型 号：</b><span class="models"></span></li>
+                                                <li><b>设 备 类 型：</b><span></span></li>
+                                                <li class="load_machine"><b>接 入 设 备：</b><label class="checkOptBox"><select name="" data-id="3"><option value="0">未配置</option><option value="1">进线</option><option value="2">出线</option><option value="7">负荷</option></select></label></li>
+                                                <li class="powerItems"><b>能 源 分 项：</b><label class="checkOptBox"><select name="" data-id="5"><option value="0">未配置</option></select></label></li>                                          
+                                                <li class="userItems"><b>用 户 分 项：</b><label class="checkOptBox"><select name="" data-id="4"><option value="0">未配置</option></select></label></li>
+                                                <li><b>额 定 电 流：</b><input type="text" value="" data-id="7">  A</li>                                             
+                                                <li><b>额 定 功 率：</b><input type="text" value="" data-id="6">  kW</li>                                                              
+                                                <li><b>模 块 容 量：</b><input type="text" value="" data-id="8">  kVA</li>    
+                                                <li class="baterryGroup"><b>电池组：</b><label class="checkOptBox"><select name="" data-id="10"><option value="1">一组</option><option value="2">二组</option></select></label></li>             
+                                            </ul>
+                                    
+                                            <div class="far_control">
+                                                <p class="title"><span></span>控制命令<button style="margin-left:5px;" class="mytbnsSolid">添加</button></p>
+                                                <div>
+                                                    <table>
+                                                        <thead>
+                                                        <tr>
+                                                            <th>名称</th>
+                                                            <th>编号</th>
+                                                            <th>类型</th>
+                                                            <th>操作</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        <!--<tr>-->
+                                                        <!--<td>1</td>-->
+                                                        <!--<td>11</td>-->
+                                                        <!--<td>111</td>-->
+                                                        <!--<td><button class="btn btn-small btn-danger">删除</button></td>-->
+                                                        <!--</tr>-->
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                               
+                                            </div>
+                                            <div id="addControl" class="box">
+                                                <p id="addControl_top">增加遥控遥调 <b>&times;</b></p>
+                                                <div>
+                                                    <table>
+                                                        <thead>
+                                                        <tr>
+                                                            <th>序号</th>
+                                                            <th>名称</th>
+                                                            <th>类型</th>
+                                                            <th>编号</th>
+                                                            <th>操作</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                            
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                              
+                                            </div>
+                                        </li>
+                                      
+                                                 
+                                     
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!--告警预警-->
+                    <div class="systemAlarm">
+                        <p class="title"><span></span><b>告警预警</b> <a class="mytbnsSolid" id="reset">重置</a></p>
+                        <div></div>
+                        <ul>
+                            <li class="agreements">
+                                <ul>
+                                    <li class="active"><img src="imgs/config8.png" alt=""/>11111</li>
+                                    <li><img src="imgs/config8.png" alt=""/>22222</li>
+                                </ul>
+                            </li>
+                            <li class="agreeContents">
+                                <div class="alarms test test-1" style="height:490px;overflow: auto;">
+                                    <table class="ycs">
+                                        <thead>
+                                            <tr>
+                                                
+                                                <th>测量单位</th>
+                                                <th>警报等级</th>
+                                                <th>警报阈值</th>
+                                                <th>状态</th>
+                                            </tr>
+                                            </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>电压</td>
+                                                <td><select name="" id="">
+                                                    <option value="0">未配置</option></select></td>
+                                                <td>
+                                                    <select name="" id="">
+                                                        <option value="0">浮点数</option></select>
+                                                    <span>上限：</span><input type="text"/>
+                                                    <span>上限：</span><input type="text"/>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </li>
+                        </ul>
+
+                    </div>
+                    <!-- RCD配置 -->
+                    <div class="systemRCD" id="systemRCD">
+                        <div v-show="index==1">
+                            <p class="title"><span></span><b>RCD配置</b><button class="mytbnsSolid Synchronization" @click="uploadConfigs()">同步配置</button><button class="mytbnsSolid ChannelConfig" @click="channelConfigs()">通道配置</button><button class="mytbnsSolid" id="deleteRCD" @click="deleteRCDdevSure()">删除</button><button class="mytbnsSolid" @click="isShowMod = 2">编辑</button><button class="mytbnsSolid" @click="creatRCDdev()">新增</button></p>
+                            <div class="RCDlists">
+                                <table>
+                                    <thead>
+                                    <tr>
+                                        <th>序号</th>
+                                        <th>名称</th>
+                                        <th>地址</th>
+                                        <th>类型</th>
+                                        <th>蜂鸣器</th>
+                                        <th>开出复位使能</th>
+                                        <th>总分闸</th>
+                                        <th>状态</th>
+                                        <th>同步配置</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr v-for="(item,key) in RCDlists" :class="{active:CheckedRCDid==key}"  :data-model="item.model" :data-buzzer="item.openBuzzer" :data-ctchk="item.openCtChk" :data-passnum="item.passNum" :about="item.rcdId" :data-addr="item.Oldaddr" :data-com="item.Oldcom" @click="loadSingleRCD(item,key)">
+                                            <td>{{key+1}}</td>
+                                            <td>{{item.name}}</td>
+                                            <td>{{"COM"+item.com+"-"+item.addr}}</td>
+                                            <td>{{item.passNum+"通道"}}</td>
+                                            <td>{{item.openBuzzer==0?"关闭":"打开"}}</td>
+                                            <td>{{item.openCtChk==0?"关闭":"打开"}}</td>
+                                            <td class="green" v-if="item.status==0">正常</td>
+                                            <td class="red" v-else="item.status==1">分闸</td>
+                                            <td class="green" v-if="item.isOn==1">正常</td>
+                                            <td class="red" v-else="item.isOn==0">异常</td>        
+                                            <td class="green" v-if="item.synCfg==1">已同步</td>
+                                            <td class="red" v-else="item.synCfg==0">未同步</td>                                  
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="box" id="creatRCD" v-show="isShowMod==1">
+                                <p id="creatRCDTop"><span>新建RCD设备</span><b @click="isShowMod=0">&times;</b></p>
+                                <ul class="creatRCD">
+                                    <li><b>设备ID：</b><span>{{CreatRCDobj.rcdId}}</span></li>
+                                    <li><b>设备名称：</b><input type="text" class="loadWord" placeholder="请输入RCD名称"></li>
+                                    <li><b>COM 口：</b><label class="checkOptBox"><select name="" id="" ><option value="0">未配置</option><option value="1">COM1</option><option value="2">COM2</option><option value="3">COM3</option><option value="4">COM4</option><option value="5">COM5</option></select></label></li>
+                                    <li><b>设备地址：</b><input type="text" class="loadNum"  placeholder="请输Addr"></li>
+                                    <li><b>通道数量：</b><label class="checkOptBox"><select name="" id="" ><option value="8">8通道</option><option value="16">16通道</option></select></label></li>
+                                    <li><b>RCD型号：</b><label class="checkOptBox"><select name="" id="" ><option value="0">未配置</option><option value="1">RCDⅡ</option></select></label></li>
+                                </ul>
+                                <p><button class="mytbnsSolid" @click="creatRCDsubmit()">提交</button></p>
+                            </div>
+                            <div class="box" id="modifyRCD" v-show="isShowMod==2 && RCDlists.length>0">
+                                <p id="modifyRCDTop"><span>修改RCD设备</span><b @click="isShowMod=0">&times;</b></p>
+                                <ul class="modifyRCD">
+                                    <li><b>设备ID：</b><span>{{CheckedRCD.rcdId}}</span></li>
+                                    <li><b>设备名称：</b><input type="text" class="loadWord" :data-id="2" @blur="modifyRCD($event)" v-model="CheckedRCD.name" placeholder="请输入RCD名称"></li>
+                                    <li><b>COM 口：</b><label class="checkOptBox"><select class="mons" name="" v-model="CheckedRCD.com" :data-val="CheckedRCD.com" :data-id="0" @change="modifyRCD($event)"><option value="0">未配置</option><option value="1">COM1</option><option value="2">COM2</option><option value="3">COM3</option><option value="4">COM4</option><option value="5">COM5</option></select></label></li>
+                                    <li><b>设备地址：</b><input type="text" class="loadNum"  v-model="CheckedRCD.addr" placeholder="请输Addr" :data-id="1" @blur="modifyRCD($event)"></li>
+                                    <li><b>通道数量：</b><label class="checkOptBox"><select class="mons" name="" v-model="CheckedRCD.passNum" :data-id="3" @change="modifyRCD($event)"><option value="8" >8通道</option><option value="16">16通道</option></select></label></li>
+                                    <li><b>RCD型号：</b><label class="checkOptBox"><select class="mons" name="" v-model="CheckedRCD.model" :data-id="7" @change="modifyRCD($event)"><option value="0" >未配置</option><option value="1">RCDⅡ</option></select></label></li>
+                                    <li><b>蜂鸣器：</b><label class="checkOptBox"><select class="mons" name="" v-model="CheckedRCD.openBuzzer" :data-id="4" @change="modifyRCD($event)"><option value="0" >关闭</option><option value="1">打开</option></select></label></li>
+                                    <li><b>开出复位使能：</b><label class="checkOptBox"><select class="mons" name="" v-model="CheckedRCD.openCtChk" :data-id="5" @change="modifyRCD($event)"><option value="0" >关闭</option><option value="1">打开</option></select></label></li>
+                                </ul>
+                                <p><button class="mytbnsSolid" @click="isShowMod=0">关闭</button></p>
+                            </div>
+                        </div>
+                        <div v-show="index==2">
+                            <p class="title"><span></span><b>{{CheckedRCD.name+",COM"+CheckedRCD.com+"-"+CheckedRCD.addr+","+CheckedRCD.passNum+"通道"}}</b>  <button class="mytbnsSolid return1" @click="index=1">返回</button><button class="mytbnsSolid" @click="isShowMod=3">编辑</button><button class="mytbnsSolid" @click="aboutZero()">共零</button><button class="mytbnsSolid" @click="removeAbout()">取消共零</button></p>
+                            <div class="Channellists">
+                                <table>
+                                    <thead>
+                                    <tr>
+                                        <th>序号</th>
+                                        <th>柜号</th>
+                                        <th>开关编号</th>
+                                        <th>回路名称</th>
+                                        <th>通道使能</th>
+                                        <th>录波使能</th>
+                                        <th>联动开出</th>
+                                        <th>动作延时(ms)</th>
+                                        <th>告警阈值(mA)</th>
+                                        <th>变比</th>
+                                        <th>共零</th>                                  
+                                    </tr>
+                                    </thead>
+                                    <tbody> 
+                                        <tr v-for="(item,key) in Channellists" :class="{active:CheckedChannelid==key}" :data-out="item.actDo" :data-sta="item.useStatus" :data-enable="item.recordEnable" :about="item.passSeq" @click="loadSingleRCDChannel(item,key)">
+                                            <td>{{key+1}}</td>
+                                            <td>{{item.boxName}}</td>
+                                            <td>{{item.onoffName}}</td>
+                                            <td>{{item.rcdAddr}}</td>
+                                            <td>{{(item.passEnable==0)?"不使能":"使能"}}</td>
+                                            <td>{{(item.recordEnable==0)?"关闭":"打开"}}</td>
+                                            <td>{{(item.actDo>0)?"开出"+item.actDo:"未配置"}}</td>
+                                            <td>{{item.actDelay}}</td>
+                                            <td>{{item.almLimit}}</td>
+                                            <td>{{parseFloat(item.passCT).toFixed(3)}}</td>
+                                            <td>{{item.zeroSeq}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="box" id="modifyChannel" v-show="isShowMod==3 && Channellists.length>0">
+                                <p id="modifyChannelTop"><span>修改RCD通道</span><b @click="isShowMod=0">&times;</b></p>
+                                <ul class="modifyChannel">
+                                    <li><b>通道ID ：</b><span>{{CheckedChannel.passSeq}}</span></li>
+                                    <li><b>柜号：</b><input type="text" class="loadWord" :data-id="2" placeholder="请输入柜号" v-model="CheckedChannel.boxName" @blur="modifyRCDchannel($event)"></li>
+                                    <li><b>回路名称：</b><input type="text" class="loadWord" :data-id="3" placeholder="请输入回路名称" v-model="CheckedChannel.rcdAddr"  @blur="modifyRCDchannel($event)"></li>
+                                    <li><b>开关编号：</b><input type="text" class="loadWord" :data-id="17" placeholder="请输入开关编号" v-model="CheckedChannel.onoffName"  @blur="modifyRCDchannel($event)"></li>
+                                    <li><b>通道使能：</b><label class="checkOptBox"><select class="mons2" name="" v-model="CheckedChannel.passEnable" :data-id="4" @change="modifyRCDchannel($event)"><option value="0">不使能</option><option value="1">使能</option></select></label></li>
+                                    <li><b>录波使能：</b><label class="checkOptBox"><select class="mons2" name="" v-model="CheckedChannel.recordEnable" :data-id="7" @change="modifyRCDchannel($event)"><option value="0">关闭</option><option value="1" v-if="CheckedChannel.zeroSeq==0">打开</option></select></label></li>
+                                    <li><b>联动开出：</b><label class="checkOptBox"><select class="mons2" name="" v-model="CheckedChannel.actDo" :data-id="8" @change="modifyRCDchannel($event)"><option value="0">未配置</option><option value="1">开出1</option><option value="2">开出2</option><option value="3">开出3</option><option value="4">开出4</option></select></label></li>
+                                    <li>
+                                        <b>设备类型：</b><label class="checkOptBox"><select class="mons2" name="" v-model="CheckedChannel.devType" :data-id="16" @change="modifyRCDchannel($event)"><option value="0">未配置</option><option value="26">RCD集中接地点</option><option value="27">RCD馈线支路</option><option value="28">RCD长电缆</option></select></label>
+                                    </li>
+                                    <li><b>动作延时：</b><input type="text" class="loadNum"  :data-id="9" placeholder="请输入动作延时" v-model="CheckedChannel.actDelay"   @blur="modifyRCDchannel($event)"></li>
+                                    <li><b>告警阈值：</b><input type="text" class="loadNum"  :data-id="6" placeholder="请输入告警阈值" v-model="CheckedChannel.almLimit"  @blur="modifyRCDchannel($event)"></li>
+                                    <li><b>变比：</b><input type="text" class="loadNum"  :data-id="5" placeholder="请输入变比" v-model="CheckedChannel.passCT"  @blur="modifyRCDchannel($event)"></li>
+                                    <li><b>共零：</b><span >{{CheckedChannel.zeroSeq}}</span></li>                                                           
+                                </ul>
+                                <p><button class="mytbnsSolid" @click="isShowMod=0">关闭</button></p>
+                            </div>
+                            <div class="box" id="channelAboutZero" v-show="isShowMod==4">
+                                <p id="channelAboutZeroTop"><span>关联共零</span><b @click="isShowMod=0">&times;</b></p>
+                                <div>
+                                    <p style="padding-left:10px;">当前设备：{{CheckedChannel.rcdAddr}}</p>
+                                    <ul class="ycyxs">
+                                        <li v-for="(item,key) in NozeroList" :class="{active:CheckedZeroAboutNum==key}" @click="changeAbout(item,key)">
+                                            <p>{{"名称："+item.rcdAddr}}</p>
+                                            <p>{{"设备ID："+item.rcdId}}</p>
+                                            <p>{{"通道号："+item.passSeq}}</p>
+                                        </li>                                               
+                                    </ul>
+                                </div>
+                                <p><button class="mytbnsSolid" @click="submitAbout()">确定关联</button></p>
+                            </div>
+                        </div>
+                        <div v-show="index==3">
+                            <p class="title"><span></span><b>{{CheckedRCD.name+",COM"+CheckedRCD.com+"-"+CheckedRCD.addr+","}}</b><b>蜂鸣器：{{(CheckedRCD.openBuzzer==1)?'打开':'关闭'}}</b><b>,开出复位使能：{{(CheckedRCD.openCtChk==1)?'打开':'关闭'}}</b>  <button class="mytbnsSolid return2" @click="index=1">返回</button><button class="mytbnsSolid submitConfig" @click="uploadSubmit()">提交配置</button></p>
+                            <div class="uploadChannel">
+                                <table>
+                                    <thead>
+                                    <tr>
+                                        <th>通道号</th>
+                                        <th>数据来源</th>
+                                        <th>通道使能</th>
+                                        <th>录波使能</th>
+                                        <th>联动开出</th>
+                                        <th>动作延时(ms)</th>
+                                        <th>告警阈值(mA)</th>
+                                        <th>共零使能</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody >      
+                                        <tr v-for="(item,key) in upDatedConfig" :about="item.passSeq" :class="{red:item.passEnable!=item.passEnable_d || item.recordEnable!=item.recordEnable_d ||item.actDo!=item.actDo_d || item.actDelay!=item.actDelay_d ||item.almLimit!=item.almLimit_d||item.zeroEnb!=item.zeroEnb_d}">
+                                            <td >{{item.passSeq}}</td>
+                                            <td v-if="key % 2 == 0">配置</td>
+                                            <td v-else="key % 2 == 1">设备</td>
+                                            <td v-if="key % 2 == 0">{{item.passEnable==0?"不使能":"使能"}}</td>
+                                            <td v-else="key % 2 == 1">{{item.passEnable_d==0?"不使能":"使能"}}</td>
+                                            <td v-if="key % 2 == 0">{{(item.recordEnable==0)?"关闭":"打开"}}</td>
+                                            <td v-else="key % 2 == 1">{{(item.recordEnable_d==0)?"关闭":"打开"}}</td>
+                                            <td v-if="key % 2 == 0">{{(item.actDo>0)?"开出"+item.actDo:"未配置"}}</td>
+                                            <td v-else="key % 2 == 1">{{(item.actDo_d>0)?"开出"+item.actDo_d:"未配置"}}</td>
+                                            <td v-if="key % 2 == 0">{{item.actDelay}}</td>    
+                                            <td v-else="key % 2 == 1">{{item.actDelay_d}}</td>                             
+                                            <td v-if="key % 2 == 0">{{item.almLimit}}</td>
+                                            <td v-else="key % 2 == 1">{{item.almLimit_d}}</td>
+                                            <td v-if="key % 2 == 0">{{item.zeroEnb==0?"不使能":"使能"}}</td>   
+                                            <td v-else="key % 2 == 1">{{item.zeroEnb_d==0?"不使能":"使能"}}</td>                                      
+                                        </tr>                                                              
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 电源系统 -->
+                    <div class="systemPower">
+                        <ul>
+                            <li about="systemPower5" data-num="12" class="active"><span></span>交流系统</li>
+                            <li about="systemPower1" data-num="" ><span></span>直流系统</li>
+                            <li about="systemPower2" data-num="7" ><span></span>UPS系统</li>
+                            <li about="systemPower3" data-num="8"><span></span>INV系统</li>
+                            <li about="systemPower4" data-num=""><span></span>通信系统</li>
+                        </ul>
+                        <div>
+                             <!--交流系统-->
+                             <div class="systemPower5">
+                                <ul>
+                                    
+                                </ul>
+                            </div>
+                            <!--直流系统-->
+                            <div class="systemPower1">
+                                <div>
+                                    <a data-num="4" class="active">母线<b></b></a>
+                                    <a data-num="5" >蓄电池<b></b></a>
+                                    <a data-num="6" >充电模块<b></b></a>
+                                </div>
+                                <ul>
+                                    
+                                </ul>
+                            </div>
+                            <!--UPS系统-->
+                            <div class="systemPower2">
+                                <ul>
+                                   
+                                </ul>
+                            </div>
+                             <!--INV系统-->
+                             <div class="systemPower3">
+                                <ul>
+                                   
+                                </ul>
+                            </div>
+                             <!--通信系统-->
+                             <div class="systemPower4">
+                                <div>
+                                    <a data-num="9" class="active">母线<b></b></a>
+                                    <a data-num="10" >蓄电池<b></b></a>
+                                    <a data-num="11" >充电模块<b></b></a>
+                                </div>
+                                <ul>
+                                 
+                                </ul>
+                            </div>
+                              <!--剩余电流系统-->
+                              <div class="systemPower6">
+                                <ul>
+                                    
+                                </ul>
+                            </div>
+                       
+                        </div>
+                    </div>
+                    <div class="systemToconfigs">
+                        <p class="title"><span></span><b>工程设置</b> </p>
+                        <p><button class="mytbnsSolid">进入</button></p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <iframe id="frames" class="frames" name="frames" src="operating.html" style="border:none;width:100%;height:100%;overflow:hidden;display:none;"></iframe>
+        <div class="range">
+            <div id="d1">
+                <p id="pgv">进度：0%</p>
+                <progress id="pg" max="100" value="0"></progress>
+            </div>
+        </div>
+        <!--输入数字密码界面-->
+        <div id="identifyCode" type="1">
+            <p>输入密码</p>
+
+            <div>
+                <p>请输入六位的数字密码</p>
+                <p>验证本次操作执行权限</p>
+                <p><input type="password" id="systemPwd" class="loadNum"></p>
+                <p><img src="imgs/sure.png" about="sure"> <img src="imgs/error.png" about="error"></p>
+            </div>
+            <div id="loadPwd">
+                <ul>
+
+                </ul>
+            </div>
+        </div>
+        <!--数字键盘-->
+        <div id="configPwd">
+            <p id="configPwdTop"><span><img src="imgs/close.png" alt=""/></span></p>
+            <ul >
+                <li><span about="1">1</span></li>
+                <li><span about="2">2</span></li>
+                <li><span about="3">3</span></li>
+                <li><span about="4">4</span></li>
+                <li><span about="5">5</span></li>
+                <li><span about="6">6</span></li>
+                <li><span about="7">7</span></li>
+                <li><span about="8">8</span></li>
+                <li><span about="9">9</span></li>
+                <li><span about="0">0</span></li>
+                <li><span about="20">.</span></li>
+                <li><span about="back"></span></li>
+            </ul>
+        </div>
+        <div class="cover input_alert">
+            <div class="popContainer">
+                <header>
+                    <span>提示</span>
+                    <!--                <b class="close">+</b>-->
+                </header>
+                <main style="width:338px;text-align: center;">
+                    <div class="" style="padding-top: 35px;padding-bottom: 0;display: block">
+                        <p class="text" style="padding-bottom: 20px;font-size: 16px;">正在导入SCL文件</p>
+                        <div class="processBox01">
+                            <div class="processBox201"><span class="processBar01"></span></div>
+                            <span class="processNum01">50%</span>
+                        </div>
+                    </div>
+                </main>
+                <footer></footer>
+            </div>
+        </div>
+        <div class="cover clear_inputBtn_alert">
+            <div class="popContainer">
+                <header>
+                    <span>提示</span>
+                    <b class="close">+</b>
+                </header>
+                <main style="width:338px;text-align: center;padding-top: 49px">
+                    <p>确定要删除所有已经导入但未生效的文件吗？</p>
+                </main>
+                <footer style="padding-top:10px">
+                    <div class="sureBtn btn2">取消</div>
+                    <div class="sureBtn success">确定</div>
+                </footer>
+            </div>
+        </div>
+        <div class="cover restart_alert">
+            <div class="popContainer">
+                <header>
+                    <span>提示</span>
+                    <b class="close">+</b>
+                </header>
+                <main style="width:338px;text-align: center;padding-top: 49px">
+                    <p>确定要执行该操作吗？</p>
+                </main>
+                <footer>
+                    <a class="sureBtn">取消</a>
+                    <a class="sureBtn">确定</a>
+                </footer>
+            </div>
+        </div>
+        <div class="cover Redraw" style="background:none;"></div>
+        <!--重启最终提示-->
+        <div class="cover restart_all_alert">
+            <div class="popContainer">
+                <header>
+                    <span>提示</span>
+                </header>
+                <main style="width:338px;text-align: center;padding-top: 49px">
+                    <p>操作已执行！倒计时<span class="greenFont">5</span> s，请稍后重新登录</p>
+                </main>
+                <footer>
+                    <!--<div class="btn btn2 close">取消</div>
+                    <div class="btn success close">确定</div>-->
+                </footer>
+            </div>
+        </div>
+        <div class="covers">
+            <img src="imgs/loading.gif" alt=""/>
+            <p>报告生成中，请稍后...</p>
+        </div>
+        <!--添加遥信遥测弹出框-->
+        <div id="creatYCYX" class="alertBox">
+            <p id="creatYCYXTop"><b>添加</b><span>&times;</span></p>
+            <p><span id="creatName">上报模块：本地应用</span><span>上报设备：</span><label class="checkOptBox"><select name="" id="checkDev"></select></label><button class="btn  btn-info">确定</button></p>
+            <div>
+                <ul class="ycyxs">
+                    <li></li>
+                    <li></li>
+                </ul>
+            </div>
+        </div>
+        <div id="addDev" class="alertBox">
+            <p id="addDevTop"><b>关联设备</b><span>&times;</span></p>
+            <p><span >上报模块：本地应用</span><button class="btn  btn-info">确定</button></p>
+            <div>
+                <ul class="ycyxs">
+                    <li></li>
+                    <li></li>
+                </ul>
+            </div>
+        </div>
+        <div class="alert alert-info" role="alert">
+            <strong>数据传输正常，指令执行成功</strong>
+            <p style="margin-top:10px;"><a class="sureBtn">确认</a></p>
+        </div>
+        <div id="sures" class="alertBox">
+            <p id="suresTop"><span>&times;</span></p>
+            <p>确定执行本次操作吗？</p>
+            <p><button class="btn btn-success">确定</button><button class="btn btn-danger ">取消</button></p>
+        </div>
+        <ul id="keyboard">
+            <li class="symbol"><span class="off">`</span><span class="on">~</span></li>
+            <li class="symbol"><span class="off">1</span><span class="on">!</span></li>
+            <li class="symbol"><span class="off">2</span><span class="on">@</span></li>
+            <li class="symbol"><span class="off">3</span><span class="on">#</span></li>
+            <li class="symbol"><span class="off">4</span><span class="on">$</span></li>
+            <li class="symbol"><span class="off">5</span><span class="on">%</span></li>
+            <li class="symbol"><span class="off">6</span><span class="on">^</span></li>
+            <li class="symbol"><span class="off">7</span><span class="on">&amp;</span></li>
+            <li class="symbol"><span class="off">8</span><span class="on">*</span></li>
+            <li class="symbol"><span class="off">9</span><span class="on">(</span></li>
+            <li class="symbol"><span class="off">0</span><span class="on">)</span></li>
+            <li class="symbol"><span class="off">-</span><span class="on">_</span></li>
+            <li class="symbol"><span class="off">=</span><span class="on">+</span></li>
+            <li class="delete lastitem">Delete</li>
+            <li class="tab">Tab</li>
+            <li class="letter">q</li>
+            <li class="letter">w</li>
+            <li class="letter">e</li>
+            <li class="letter">r</li>
+            <li class="letter">t</li>
+            <li class="letter">y</li>
+            <li class="letter">u</li>
+            <li class="letter">i</li>
+            <li class="letter">o</li>
+            <li class="letter">p</li>
+            <li class="symbol"><span class="off">[</span><span class="on">{</span></li>
+            <li class="symbol"><span class="off">]</span><span class="on">}</span></li>
+            <li class="symbol lastitem"><span class="off">\</span><span class="on">|</span></li>
+            <li class="capslock">Caps lock</li>
+            <li class="letter">a</li>
+            <li class="letter">s</li>
+            <li class="letter">d</li>
+            <li class="letter">f</li>
+            <li class="letter">g</li>
+            <li class="letter">h</li>
+            <li class="letter">j</li>
+            <li class="letter">k</li>
+            <li class="letter">l</li>
+            <li class="symbol"><span class="off">;</span><span class="on">:</span></li>
+            <li class="symbol"><span class="off">'</span><span class="on">&quot;</span></li>
+            <li class="return lastitem">return</li>
+            <li class="left-shift">Shift</li>
+            <li class="letter">z</li>
+            <li class="letter">x</li>
+            <li class="letter">c</li>
+            <li class="letter">v</li>
+            <li class="letter">b</li>
+            <li class="letter">n</li>
+            <li class="letter">m</li>
+            <li class="symbol"><span class="off">,</span><span class="on">&lt;</span></li>
+            <li class="symbol"><span class="off">.</span><span class="on">&gt;</span></li>
+            <li class="symbol"><span class="off">/</span><span class="on">?</span></li>
+            <li class="right-shift lastitem">Shift</li>
+            <li class="space lastitem">&nbsp;</li>
+        </ul>
+        <ul class="checkOpts">
+
+        </ul>
+    </section>
+    <footer>
+        <p>IOT - EMT - RCD 应 用 系 统 正 在 启 动 <span><b></b></span></p>
+        <!-- <p><img src="imgs/sure.png" alt=""/></p> -->
+    </footer>
+    <script src="js/jquery-3.1.1.js"></script>
+    <script src="js/vue.min.js"></script>
+    <script src="js/md5.js"></script>
+    <script src="js/tieon_ccc_lib_2020_v30.js"></script>
+    <script src="js/ajax_ccc_lib_2021_v30.js"></script>
+    <script src="js/orders.js"></script>
+
+   
+    <script src="js/jquery.nicescroll.js"></script>
+    <script src="js/jquery.pagination.js"></script>
+    <script src="js/echarts.js" defer="true"></script>
+    <script src="js/verify.min.js" defer="true"></script>
+    <script src="js/keyboard.js"></script>
+</body>
+<script >
+    $('.mapConfig a').on('click',function () {
+        let type = $(this).attr('type');
+        localStorage.setItem('CADmenu',type);//电气图编号
+        window.open("testTool/configMap/");
+    });
+    $(".fpg>li").remove();
+    let str="";
+    for(let i=0;i<24;i++){
+        let time=i;
+        if(time<10){
+            time="0"+time;
+        }
+        str+='<li>'+time+'点：<select name="" ><option value="0">59</option><option value="1">45</option><option value="2">30</option><option value="3">15</option><option value="4">00</option></select><select name="" ><option value="1">谷</option><option value="2">平</option><option value="3">峰</option></select></li>';
+    }
+    $(".fpg").append(str);
+    let app = new Vue({
+        el:"#system",
+        data:{  
+            index:1,//菜单显示
+            model:0,//工作模式
+            RCDlists:[],//RCD设备列表
+            CheckedRCDid:0,//选中的RCD设备下标
+            CheckedRCD:{},//选中的RCD设备对象
+            isShowMod:0,//显示新增编辑弹框
+            CreatRCDobj:{//新建RCD的对象属性
+                type : 1,
+                rcdId :0,
+                name : '',
+                com : 0,
+                addr : 0,
+                passNum : 8,
+                model : 0,
+                userData : 0,
+                addNum:0
+            },
+            newNum:0,//新建RCD的ID,
+            Channellists:{},//通道配置列表
+            CheckedChannelid:0,//选中的通道配置下标
+            CheckedChannel:{},//选中的通道配置
+            upDatedConfig:[],//同步配置列表
+            CheckedZeroAboutNum:0,//选中的共零通道下标
+            CheckedZeroAbout:{},//选中的共零通道对象
+            NozeroList:{},//未共零的通道列表
+
+        },
+        mounted:function(){
+           this.loadRCD();
+           window.loadChannelList = this.loadChannelList;
+           window.modifyRCD=this.modifyRCD;
+           window.modifyRCDchannel = this.modifyRCDchannel;
+           window.loadRCDList = this.loadRCDList;
+           window.deleteRCDdev = this.deleteRCDdev;
+        },
+        methods:{
+            loadRCD(){
+                this.index=1;
+                this.loadRCDList();
+                this.isShowMod = 0;
+            },
+        //    //获取单个参数配置
+        //     getOrderListMsgSingle(type){
+        //         let o = new Object();
+        //         o.id = parseInt(type);
+        //         o.userData = parseInt(type);
+        //         let m_json = JSON.stringify(o);
+        //         console.log(o);
+        //         ccc_lib_reqDataByCmd("",USER_SYSPARA_GETBYID,m_json,this.reOrderListMsgSingle);
+        //     },
+        //     reOrderListMsgSingle(id,info,des){
+        //         console.log(des);
+        //         this.model = des.content;
+        //         // alert(this.model);
+        //         $(".systemRCD>div:nth-child(1)>p>input[about="+des.content+"]").prop("checked",true).siblings("input").prop("checked",false);
+        //     },
+            //获取RCD设备列表
+            loadRCDList(){
+                let o = new Object();
+                o.type=1;
+                o.id = 0;
+                o.userData = 0;
+                console.log(o);
+                let m_json = JSON.stringify(o);
+                ccc_lib_reqDataByCmd("",USER_RCD_DEVLIST_GETBYID,m_json,this.reRCDList);
+            },
+            reRCDList(id,info,des){
+                console.log(des);
+                this.RCDlists = des.data;
+                this.RCDlists.forEach(function(item){
+                    item.addNum = item.com * 65536 + item.addr;
+                    item.Oldaddr = item.addr;
+                    item.Oldcom = item.com;
+                })
+                if(des.data.length<=0){
+                    this.CheckedRCDid = 0;
+                    this.CheckedRCD = {};
+                } 
+                if(!this.CheckedRCDid && des.data.length>0){
+                    this.CheckedRCD =  des.data[0];
+                }else if(this.CheckedRCDid && des.data.length>0){
+                    let that=this;
+                    this.RCDlists.forEach(function(item,key){
+                        if(that.CheckedRCDid==key){
+                            that.CheckedRCD=item;
+                        }
+                    }) 
+                }
+            },
+            //选中某一条RCD设备
+            loadSingleRCD(item,key){
+                this.CheckedRCDid = key;
+                this.CheckedRCD = item;
+            },
+            //新增RCD设备
+            creatRCDdev(){
+                let arr=[];
+                let newNum;
+                this.RCDlists.forEach(function(item){
+                    let num=item.rcdId;
+                    if(num){
+                        arr.push(parseInt(num));
+                    }
+                })
+
+                for(let i=1;i<21;i++){
+                    if(!arr.includes(i)){
+                        newNum = i;
+                        break;
+                    }else{
+                        continue;
+                    }
+                }
+                this.CreatRCDobj.rcdId = newNum;
+                if(newNum>=1 && newNum<=20){
+                    this.isShowMod = 1;
+                    $("#creatRCD .creatRCD>li:nth-child(1)>span").html(newNum);
+                    $("#creatRCD .creatRCD>li:nth-child(4)>input").val(0);
+                    // $("#creatRCD").show();
+                    
+                }else{
+                    loadAlerts("设备ID超限，无法新建！");
+                }
+            },
+            //新建RCD设备提交
+            creatRCDsubmit(){    
+                this.CreatRCDobj.com= parseInt($("#creatRCD>ul>li:nth-child(3) select").val());       
+                this.CreatRCDobj.addr= parseInt($("#creatRCD>ul>li:nth-child(4) input").val());       
+                this.CreatRCDobj.name= $("#creatRCD>ul>li:nth-child(2) input").val();       
+                this.CreatRCDobj.model= parseInt($("#creatRCD>ul>li:nth-child(6) select").val());       
+                this.CreatRCDobj.passNum= parseInt($("#creatRCD>ul>li:nth-child(5) select").val());     
+                let addNum = parseInt(this.CreatRCDobj.com) * 65536 + parseInt(this.CreatRCDobj.addr);  
+                let arrNum=[];
+                this.RCDlists.forEach(function(item){
+                    arrNum.push(item.addNum);
+                });
+                if(arrNum.includes(addNum)){//如果有重复
+                    loadAlerts("IP地址不能重复，请重新配置！");
+                }else{
+                    let json = JSON.stringify(this.CreatRCDobj);
+                    ccc_lib_reqDataByCmd("",RCD_PATTERN_CONSTRUCT,json,this.creatRCDReturn);//新建RCD设备提交
+                }
+               
+            },
+            creatRCDReturn(id,info,des){
+                loadAlerts(des.desc);
+                this.isShowMod = 0;
+                this.loadRCDList();
+                $("#configPwd,#keyboard").hide();
+                this.CreatRCDobj = {//新建RCD的对象属性
+                    type : 1,
+                    rcdId :0,
+                    name : '',
+                    com : 0,
+                    addr : 0,
+                    passNum : 8,
+                    model : 0,
+                    userData : 0
+                }
+            },
+            //点击删除RCD设备
+            deleteRCDdevSure(){     
+                $(".restart_alert").show().attr("about",5);
+                $(".restart_alert footer").show();         
+                 
+            },
+            deleteRCDdev(){
+                if(this.CheckedRCD.rcdId){
+                    let obj={};
+                    obj.type=100;
+                    obj.rcdId = parseInt(this.CheckedRCD.rcdId); 
+                    obj.userData = 0;
+                    let json = JSON.stringify(obj);
+                    console.log(json);
+                    ccc_lib_reqDataByCmd("",RCD_PATTERN_CONSTRUCT,json,this.DeleteRCDReturn);//删除RCD设备提交
+                }  
+            },
+            DeleteRCDReturn(id,info,des){
+                console.log(des);
+                loadAlerts(des.desc);
+                if(des.result==0){
+                    if(this.CheckedRCDid==0){//如果是第一个
+                        this.CheckedRCDid=0;
+                    }else{//不是第一个
+                        let that=this;
+                        this.RCDlists.forEach(function(item,i){
+                            if(that.CheckedRCDid == i){
+                                that.CheckedRCDid = i-1;
+                                that.CheckedRCD = that.RCDlists[i-1];                              
+                            }    
+                        })
+                    }
+                }
+                this.loadRCDList();
+            },
+            modifyRCD(event){//修改RCD设备属性
+                console.log(event);
+                let attrid;
+                let val;
+                try{
+                    attrid=$(event).dataset.id;
+                }catch(err){
+                    attrid = event.currentTarget.getAttribute('data-id');
+                }
+                try{
+                    val=$(event).dataset.setval;
+                }catch(err){
+                    val = event.currentTarget.value;
+                }
+                console.log(attrid);
+                console.log(val);
+                let addNum=0;
+                let isRight = true;
+                if(attrid==0){
+                    addNum = parseInt(val)* 65536 + parseInt(this.CheckedRCD.addr);  
+                }else if(attrid==1){
+                    addNum = parseInt(this.CheckedRCD.com)* 65536 + parseInt(val);  
+                }
+                // else if(attrid==16){
+                //     if(this.CheckedRCD.zeroSeq>0){
+                //         loadAlerts("请先取消共零然后修改设备类型！");
+                //         isRight = false;
+                //         return false;
+                //     }
+                // }
+                let arrNum=[];
+                this.RCDlists.forEach(function(item){
+                    arrNum.push(item.addNum);
+                });
+               
+                if(arrNum.includes(addNum)){//如果有重复
+                    loadAlerts("IP地址不能重复，请重新配置！");
+                    this.CheckedRCD.addr = $(".RCDlists table>tbody>tr.active").attr("data-addr");
+                    this.CheckedRCD.com = $(".RCDlists table>tbody>tr.active").attr("data-com");
+                    isRight = false;
+                    return false;
+                }
+                if(isRight){
+                    let ob = new Object();
+                    ob.class = 8;
+                    ob.objId= "";
+                    ob.subId = parseInt(this.CheckedRCD.rcdId);
+                    ob.attrId = parseInt(attrid);
+                    ob.content = val;
+                    ob.userData = 0;
+                    let json = JSON.stringify(ob);
+                    console.log(ob);
+                    ccc_lib_reqDataByCmd("",USER_OBJECT_ATTR_MODBYID,json,this.modifyRCDReturn);//修改RCD设备
+                }    
+            },           
+            modifyRCDReturn(id,info,des){
+                loadAlerts(des.desc);
+                this.loadRCDList();
+                $("#configPwd,#keyboard").hide();
+            },
+            //点击通道配置
+            channelConfigs(){
+                if(this.CheckedRCD.rcdId){
+                    this.CheckedChannelid = 0;
+                    this.index=2;
+                    this.loadChannelList(1);
+                }
+            },
+            //获取某个RCD通道列表
+            loadChannelList(type){
+                let o = new Object();
+                o.type = 2;
+                o.id = parseInt(this.CheckedRCD.rcdId);
+                o.userData = parseInt(type);
+                console.log(o);
+                let m_json = JSON.stringify(o);
+                ccc_lib_reqDataByCmd("",USER_RCD_DEVLIST_GETBYID,m_json,this.reChannelList);
+            },
+            //选中某个通道
+            loadSingleRCDChannel(item,key){
+                this.CheckedChannelid = key;
+                this.CheckedChannel = item;
+                this.CheckedChannel.passCT = parseFloat(this.CheckedChannel.passCT).toFixed(3);
+            },
+            reChannelList(id,info,des){
+                console.log(des);
+                // $(".Channellists>table>tbody>tr").remove();
+                // $(".uploadChannel>table>tbody>tr").remove();
+                if(des.result==0 && des.data.length>0){
+                    this.Channellists = des.data;
+                    if(des.userData==1 && des.data.length>0){
+                        if(!this.CheckedChannelid){ 
+                            this.CheckedChannel = des.data[0]; 
+                        }else{
+                            this.CheckedChannel = des.data[this.CheckedChannelid]; 
+
+                        }
+                        this.CheckedChannel.passCT = parseFloat(this.CheckedChannel.passCT).toFixed(3);   
+                    }else if(des.userData==2){
+                        let oldArr = des.data;
+                        this.upDatedConfig =[];
+                        // this.upDatedConfig[0]=des.data;
+                        // this.upDatedConfig[1]=des.data;
+                        let that =this;
+                        let newArr=[];
+                        oldArr.forEach(function(item){
+                            newArr.push(item);
+                            newArr.push(item);
+                        })
+                        this.upDatedConfig = newArr;
+                    }                  
+                }
+            },
+            //修改RCD通道配置
+            modifyRCDchannel(event){
+                let RCDid=this.CheckedRCD.rcdId;
+                let ids=this.CheckedChannel.passSeq;  
+                let attrid=event.currentTarget.getAttribute('data-id');
+                let val=event.currentTarget.value;
+                let ob = new Object();
+                ob.class = 9;
+                ob.objId= RCDid+"";
+                ob.subId = parseInt(ids);
+                ob.attrId = parseInt(attrid);
+                ob.content = val;
+                ob.userData = 0;
+                let json = JSON.stringify(ob);
+                console.log(ob);
+                ccc_lib_reqDataByCmd("",USER_OBJECT_ATTR_MODBYID,json,this.modifyChannelReturn);//修改RCD通道
+            },
+            modifyChannelReturn(id,info,des){
+                loadAlerts(des.desc);
+                this.loadRCDList();
+                this.loadChannelList(1);
+                $("#configPwd,#keyboard").hide();
+            },
+            //点击同步配置按钮
+            uploadConfigs(){
+                if(this.CheckedRCD.rcdId){
+                    this.index=3;
+                    this.loadChannelList(2);
+                }
+            },
+            //点击同步配置-提交配置
+            uploadSubmit(){
+                let o = new Object();
+                o.type = 1;
+                o.com = parseInt(this.CheckedRCD.com);
+                o.addr = parseInt(this.CheckedRCD.addr);
+                o.rcdId = parseInt(this.CheckedRCD.rcdId);
+                o.userData = 0;
+                console.log(o);
+                let m_json = JSON.stringify(o);
+                ccc_lib_reqDataByCmd("",RCD_CONF_SUBMIT,m_json,this.reSubmit);
+            },
+            reSubmit(id,info,des){
+                loadAlerts(des.desc);
+            },
+            //点击关联共零
+            aboutZero(){
+                if(this.CheckedChannel.devType>0){
+                    this.isShowMod=4;
+
+                    let o = new Object();
+                    o.type = 101;
+                    o.id = parseInt(this.CheckedChannel.devType);//选中通道的设备类型
+                    o.userData = 0;
+                    console.log(o);
+                    let m_json = JSON.stringify(o);
+                    ccc_lib_reqDataByCmd("",USER_RCD_DEVLIST_GETBYID,m_json,this.reNoAboutZeroList);//获取未关联的共零通道
+                }else{
+                    loadAlerts("请先配置设备类型！");
+                }
+            },
+            reNoAboutZeroList(id,info,des){
+                console.log(des);
+                this.NozeroList = des.data;
+                let that = this;
+                this.NozeroList.forEach(function(item,key){
+                    if(item.rcdId == that.CheckedChannel.rcdId && item.passSeq == that.CheckedChannel.passSeq){
+                        that.NozeroList.splice(key,1);
+                    }
+                })
+                if(des.data.length>0){
+                    this.CheckedZeroAboutNum = 0;
+                    this.CheckedZeroAbout = des.data[0];
+                }else{
+                    this.CheckedZeroAbout = [];
+                }
+               
+            },
+            changeAbout(item,key){
+                this.CheckedZeroAboutNum = key;
+                this.CheckedZeroAbout = item;
+            },
+            //确定关联共零
+            submitAbout(){
+                if(!this.CheckedZeroAbout.rcdId || !this.CheckedZeroAbout.passSeq){
+                    this.isShowMod=0;
+                    return false;
+                }
+                let o = new Object();
+                o.type = 2;
+                o.rcdId = parseInt(this.CheckedChannel.rcdId);
+                o.passSeq = parseInt(this.CheckedChannel.passSeq);
+                o.zeroSeq = parseInt(this.CheckedChannel.zeroSeq);
+                o.rcdId1 = parseInt(this.CheckedZeroAbout.rcdId);
+                o.passSeq1 = parseInt(this.CheckedZeroAbout.passSeq);
+                o.userData = 0;
+                console.log(o);
+                let m_json = JSON.stringify(o);
+                ccc_lib_reqDataByCmd("",RCD_CONF_SUBMIT,m_json,this.reSubmitAbout);
+            },
+            reSubmitAbout(id,info,des){
+                loadAlerts(des.desc);
+                this.isShowMod = 0;
+                this.loadChannelList(1);
+            },
+            //取消共零
+            removeAbout(){
+                if(this.CheckedChannel.zeroSeq){
+                    let o = new Object();
+                    o.type = 3;
+                    o.rcdId = parseInt(this.CheckedChannel.rcdId);
+                    o.passSeq = parseInt(this.CheckedChannel.passSeq);
+                    o.zeroSeq = parseInt(this.CheckedChannel.zeroSeq);
+                    o.userData = 0;
+                    console.log(o);
+                    let m_json = JSON.stringify(o);
+                    ccc_lib_reqDataByCmd("",RCD_CONF_SUBMIT,m_json,this.reSubmitAbout);
+                }
+            }
+        }
+    })
+</script>
+
+</html>

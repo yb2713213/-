@@ -1,0 +1,294 @@
+@import "_compatible";
+$bottom-height:38px;
+$orange-color: #FFA200;
+body {
+  font-size: 14px;
+  letter-spacing: 2px;
+  font-family: Microsoft YaHei, '微软雅黑', Tahoma, Helvetica, Arial, "\5b8b\4f53", sans-serif;
+}
+hr {
+  margin: 0;
+}
+ul, ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+li{
+  list-style: none;
+}
+i{
+  font-style: normal;
+}
+p, h1 {
+  margin: 0;
+}
+label {
+  margin-bottom: 0px;
+}
+
+td{
+  text-align: center;
+}
+.clear_box {
+  &:after,
+  &:before {
+    content: "";
+    display: block;
+    clear: both;
+  }
+}
+#maps{
+  
+  width:100%;
+  height:545px;
+  >ul{
+    height:100%;
+    overflow:hidden;
+    >li:nth-child(1){
+      background: #282A39;
+      width:95px;
+      border-right:5px solid black;
+      float: left;
+
+      height: 100%;
+      >a{
+        width:100%;
+        height:70px;
+        line-height:18px;
+        text-decoration: none;
+        display: inline-block;
+        text-align: center;
+        color:white;
+        cursor:pointer;
+        letter-spacing: 1px;
+        font-size: 13px;
+        font-weight: 800;
+        >i{
+          display: block;
+          margin: 0 auto;
+          margin-top:5px;
+          width:33px;
+          height: 33px;
+          background-size: contain;
+        }
+        &:nth-of-type(1) i{
+          background-image: url("../imgs/map1.png");
+        }
+        &:nth-of-type(2) i{
+          background-image: url("../imgs/map2.png");
+        }
+        &:nth-of-type(3) i{
+          background-image: url("../imgs/map3.png");
+        }
+        &:nth-of-type(4) i{
+          background-image: url("../imgs/map4.png");
+        }
+        &:nth-of-type(5) i{
+          background-image: url("../imgs/map5.png");
+        }
+        &:nth-of-type(6) i{
+          background-image: url("../imgs/map6.png");
+        }
+      }
+      >a.active,>a:active{
+        background: rgba(94, 94, 94, 0.61);
+        text-shadow: 2px 4px 3px black;
+        // color:#2C80FF;
+        // &:nth-of-type(1) i{
+        //   background-image: url("../imgs/map11.png");
+        // }
+        // &:nth-of-type(2) i{
+        //   background-image: url("../imgs/map22.png");
+        // }
+        // &:nth-of-type(3) i{
+        //   background-image: url("../imgs/map33.png");
+        // }
+        // &:nth-of-type(4) i{
+        //   background-image: url("../imgs/map44.png");
+        // }
+        // &:nth-of-type(5) i{
+        //   background-image: url("../imgs/map55.png");
+        // }
+      }
+      >a:hover{
+        text-decoration: none;
+      }
+      .times{
+        color: #fff;
+        font-size: 12px;
+        position: absolute;
+        bottom: 5px;
+        width: 95px;
+        text-align: center;
+        letter-spacing: 0px;
+        line-height: 21px;
+        left: 0;
+      }
+    }
+    >li:nth-child(2){
+      position: relative;
+      letter-spacing: 0px;
+      float: left;
+      width:calc(100% - 105px);
+      //background: #282A39;
+      height:calc(100% - 43px);
+      overflow: auto;
+      #mainMap{
+        position: relative;
+        background: #282A39;
+        height:100%;
+      }
+    }
+  }
+  .sonMap{
+    position: relative;
+    letter-spacing: 0px;
+    height: 502px;
+    //margin: 0 10px;
+    background: #282A39;
+    overflow: auto;
+    .stn{
+      position: fixed;
+      top: 16px;
+      right: 56px;
+      font-size: 12px;
+      color: white;
+      border-radius: 4px;
+      width: 86px;
+      height: 33px;
+      line-height: 33px;
+      text-align: center;
+      z-index: 1;
+      cursor: pointer;
+      background: #3c4ebb;
+      box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.35);
+      letter-spacing: 2px;
+      font-weight:800;
+    }
+    #myCanvas{
+      position: relative;
+    }
+  }
+  .bottom{
+    letter-spacing: 1px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: $bottom-height;
+    line-height: $bottom-height;
+    width: 1024px;
+    color:$orange-color ;
+    font-weight: 800;
+    //background-color: rgba(255, 255, 255, 0.2);
+    background-color: #282A39;
+    border-top: 5px solid black;
+    overflow: hidden;
+    font-size: 12px;
+
+    .alarmBox{
+      position: relative;
+      float: left;
+      width: 83%;
+      height: $bottom-height;
+      overflow: hidden;
+    }
+    .times{
+      color: #fff;
+      float: right;
+      width: 16%;
+      text-align: center;
+      border-left: 2px solid #4C4C50;
+      font-weight: 400;
+      height: $bottom-height;
+      letter-spacing: 1px;
+    }
+    ul{
+      position: absolute;
+      left: 0;
+      top: 0;
+      height:$bottom-height;
+      display: inline-block;
+      li{
+        float: left;
+        padding-left: 25px;
+        padding-right: 25px;
+        line-height: $bottom-height;
+        height: $bottom-height;
+        text-align: center;
+        p{
+          display: inline-block;
+          line-height: $bottom-height;
+          width: 100%;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+      }
+    }
+  }
+}
+.alertsBoxDC {
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  position: absolute;
+  top: 0px;
+  white-space: nowrap;
+  /*left: 50px;*/
+}
+
+.alertsBoxDC p {
+  margin: 4px 0;
+}
+.valerText p{
+  white-space: nowrap;
+}
+.alertsBoxDC p::before {
+  content: "";
+  background-color: #009f50;
+  display: inline-block;
+  height: 12px;
+  width: 12px;
+  border-radius: 50%;
+  vertical-align: middle;
+  margin-right: 5px;
+  margin-top: -1px;
+}
+
+.alertsBoxDC p.alertInfo::before {
+  background-color: #d60700;
+}
+.elemBox[num]{
+  cursor: pointer;
+}
+/*滚动条*/
+.scroll-bar::-webkit-scrollbar {
+  /*滚动条整体样式*/
+  width: 5px; /*高宽分别对应横竖滚动条的尺寸*/
+  height: 5px;
+}
+
+.scroll-bar::-webkit-scrollbar-thumb {
+  /*滚动条里面小方块*/
+  border-radius: 10px;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+  background:#878989;
+  /*background-image: -webkit-linear-gradient(
+          45deg,
+          rgba(255, 255, 255, 0.8) 25%,
+          transparent 25%,
+          transparent 50%,
+          rgba(255, 255, 255, 0.8) 50%,
+          rgba(255, 255, 255, 0.8) 75%,
+          transparent 75%,
+          transparent
+  );*/
+}
+
+.scroll-bar::-webkit-scrollbar-track {
+  /*滚动条里面轨道*/
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  background: #535353;
+}

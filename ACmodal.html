@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html >
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+    <title></title>
+   
+    <link rel="stylesheet" href="css/bootstrap.min.css" media="screen">
+  
+    <link rel="stylesheet" href="css/pagination.css"/>
+    <link rel="stylesheet" href="css/common.css"/>
+    <link rel="stylesheet" href="css/ACmodal.min.css"/>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            list-style: none;
+        }
+        html{
+            /* min-height:1000px; */
+        }
+        body{
+            margin:0;
+            width:100%;
+            /* min-height:1000px; */
+        }
+    </style>
+</head>
+<body>
+<section>
+    <ul>
+        <li class="boxMods">
+            <ul>
+            </ul>
+        </li>
+        <li id="allModContent">
+           <!-- 低压进线 低压出线 低压母联 低压反向能耗进线 -->
+            <div class="modalInline modals">
+                <ul>
+                    <li>
+                        <div>
+                            <p class="title"><span></span><b>遥测</b></p>
+                            <div class="ycs">
+                                <p>
+                                    <b>A: </b>
+                                    <u><span>0</span><span>0</span><span>0</span><span>0</span><span>.</span><span>0</span><b>V</b></u>                                                                     
+                                    <u><span>0</span><span>0</span><span>0</span><span>0</span><span>.</span><span>0</span><b>A</b></u>
+                                    <u><span>0</span><span>0</span><span>0</span><span>.</span><span>0</span><span>0</span><b>℃</b></u>
+                                </p>
+                                <p>
+                                    <b>B: </b>
+                                    <u><span>0</span><span>0</span><span>0</span><span>0</span><span>.</span><span>0</span><b>V</b></u>                                                                     
+                                    <u><span>0</span><span>0</span><span>0</span><span>0</span><span>.</span><span>0</span><b>A</b></u>
+                                    <u><span>0</span><span>0</span><span>0</span><span>.</span><span>0</span><span>0</span><b>℃</b></u>
+                                </p>
+                                <p>
+                                    <b>C: </b>
+                                    <u><span>0</span><span>0</span><span>0</span><span>0</span><span>.</span><span>0</span><b>V</b></u>                                                                     
+                                    <u><span>0</span><span>0</span><span>0</span><span>0</span><span>.</span><span>0</span><b>A</b></u>
+                                    <u><span>0</span><span>0</span><span>0</span><span>.</span><span>0</span><span>0</span><b>℃</b></u>
+                                </p>
+                                <p><s>漏电流：</s><b>0.00</b><s>A</s> <s>电度：</s><b>0.00</b><s>kWh</s></p>
+                            </div>
+                        </div>
+                        <div class="">
+                             <div class="my_date">
+                                <ul>
+                                    <li><img src="imgs/left.png" class="minus"><input class="cho_date"  value="" type="datetime" disabled><img src="imgs/right.png" class="plus" ></li>
+                                    <li>
+                                        <div class="choose_date" >
+                                            <a type="1" class="active">日</a>
+                                            <a type="3">月</a>
+                                            <!-- <a type="4">年</a> -->
+                                        </div>
+                                    </li>
+                                </ul>
+                                <a class="mytbnsSolid">导出数据</a>
+                            </div>
+                            <p class="fourLine" about="1">
+                                <a class="active">电压</a>
+                                <a class="">电流</a>
+                                <a class="">温度</a>
+                            </p>
+                            <div class="lineContent"></div>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <p class="title"><span></span><b>遥信</b></p>
+                            <div class="yxs">
+                                <p><b>F1分闸进线开关：</b><span class="red">合</span></p>
+                                <p><b>F2分闸进线开关：</b><span class="green">分</span></p>
+                                <p><b>F3分闸进线状态：</b><span class="green"></span></p>
+                            </div>
+                        </div>
+                        <div >
+                            <p class="title"><span></span><b>运行分析</b></p>
+                            <div class="runs">                              
+                            </div>
+                        </div>
+                        <div >
+                            <p class="title"><span></span><b>遥控</b></p>
+                            <div class="yks">
+                                <p>
+                                    <b>遥控名称：</b>
+                                    <a class="green ykBtn">分闸</a>
+                                    <a class="red ykBtn">合闸</a>
+                                </p>
+                                
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <!-- 低压ipc -->
+            <div class="modalIPC modals">
+                <ul>
+                    <li class="IPCycs">
+                        <p class="title"><span></span><b>遥测</b></p>
+                        <div class="ycs">
+                            <div>
+                                <b>母线电压</b>
+                                <div class="content1">
+                                    <p> <b>A: </b><span>0</span><span>0</span><span>0</span><span>0</span><span>.</span><span>0</span><b>V</b></p>
+                                    <p> <b>B: </b><span>0</span><span>0</span><span>0</span><span>0</span><span>.</span><span>0</span><b>V</b></p>
+                                    <p> <b>C: </b><span>0</span><span>0</span><span>0</span><span>0</span><span>.</span><span>0</span><b>V</b></p>
+                                </div>
+                            </div>
+                            <div>
+                               <b>1#进线电压</b>
+                               <div class="content2">
+                                   <p> <b>A: </b><span>0</span><span>0</span><span>0</span><span>0</span><span>.</span><span>0</span><b>V</b></p>
+                                   <p> <b>B: </b><span>0</span><span>0</span><span>0</span><span>0</span><span>.</span><span>0</span><b>V</b></p>
+                                   <p> <b>C: </b><span>0</span><span>0</span><span>0</span><span>0</span><span>.</span><span>0</span><b>V</b></p>
+                               </div>
+                            </div>
+                            <div>
+                                <b>2#进线电压</b>
+                                <div class="content3">
+                                    <p> <b>A: </b><span>0</span><span>0</span><span>0</span><span>0</span><span>.</span><span>0</span><b>V</b></p>
+                                    <p> <b>B: </b><span>0</span><span>0</span><span>0</span><span>0</span><span>.</span><span>0</span><b>V</b></p>
+                                    <p> <b>C: </b><span>0</span><span>0</span><span>0</span><span>0</span><span>.</span><span>0</span><b>V</b></p>
+                                </div>
+                            </div>
+                        </div>
+                       
+                      
+                    </li>
+                    <li >
+                        <p class="title"><span></span><b>遥控</b></p>
+                        <ul class="IPCyks">
+                            <li>
+                                <div>
+                                    <b>运行模式选择：</b>
+                                    <p><span class="active">本地模式</span><span>远程模式</span></p>
+                                </div>
+                                <div>
+                                    <b>操作：</b>
+                                    <p><span class="active">信号复位</span><span>电度清零</span></p>
+                                </div>
+                            </li>                        
+                            <li>
+                                <div>
+                                    <b>切换模式选择：</b>
+                                     <p><span class="active">固定电源1</span><span>固定电源2</span><span>固定电源3</span><span>固定电源4</span></p>
+                                </div>
+                            </li>
+                            <li>
+                                <div></div>
+                            </li>
+                           
+                        </ul>
+                    </li>
+                    <li class="IPCyxs">
+                        <p class="title"><span></span><b>遥信</b></p>
+                        <div class="yxs">
+                            <ul>
+                                <li><b>装置故障：</b><span>无</span></li>
+                                <li><b>装置故障：</b><span>无</span></li>
+                                <li><b>装置故障：</b><span>无</span></li>
+                                <li><b>装置故障：</b><span>无</span></li>
+                            </ul>
+                           
+                        </div>
+                    </li>
+                    <li class="IPCyts">
+                        <p class="title"><span></span><b>遥调</b><a class="mybtns">修改</a></p>
+                        <ul>
+                            <li><b>过的电流二次定值：</b><input type="text" value="255.33"/><span>V</span></li>
+                            <li><b>过电流二次定值：</b><input type="text" value="255.33"/><span>A</span></li>
+    
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!-- 低压电容 -->
+            <div class="modalCap modals">
+                <ul>
+                    <li >
+                        <p class="title"><span></span><b>遥测</b></p>
+                        <div><b></b><u>电压（V）</u><u>电流（A）</u><u>功率因数</u><u>总功率因数</u></div>
+                        <div class="ycs">
+                            <p><b>A相：</b>
+                                <u><span>1</span><span>1</span><span>1</span><span>1</span><span>.</span><span>0</span></u>
+                                <u><span>1</span><span>1</span><span>1</span><span>1</span><span>.</span><span>0</span></u>
+                                <u><span>1</span><span>.</span><span>0</span><span>0</span></u>
+                                <u><span>1</span><span>.</span><span>0</span><span>0</span></u>
+                            </p>
+                            <p><b>B相：</b>
+                                <u><span>1</span><span>1</span><span>1</span><span>1</span><span>.</span><span>0</span></u>
+                                <u><span>1</span><span>1</span><span>1</span><span>1</span><span>.</span><span>0</span></u>
+                                <u><span>1</span><span>.</span><span>0</span><span>0</span></u>
+                                <u class="yks">
+                                    <b >投切模式：</b>
+                                    <s class="green">自动</s><s>手动</s>
+                                </u>
+                            </p>
+                            <p><b>C相：</b>
+                                <u><span>1</span><span>1</span><span>1</span><span>1</span><span>.</span><span>0</span></u>
+                                <u><span>1</span><span>1</span><span>1</span><span>1</span><span>.</span><span>0</span></u>
+                                <u><span>1</span><span>.</span><span>0</span><span>0</span></u>
+                            </p>
+                        </div>
+                      
+                    </li>
+                    <li>
+                        <p class="title"><span></span><b>电容器信息</b></p>
+                        <ul class="capMods">
+                            <li class="gb">
+                                <ul>
+                                    <li><img src="imgs/drq.png" alt=""> <p>1号</p></li>
+                                    <li>
+                                        <p><span>容量：</span><b>10X</b></p>
+                                        <p><span>温度：</span><b>20℃</b></p>
+                                        <p><span>A 相：</span><b>投入100</b></p>
+                                        <p><span>B 相：</span><b>投入100</b></p>
+                                        <p><span>C 相：</span><b>投入100</b></p>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="fb">
+                                <ul>
+                                    <li><img src="imgs/drq.png" alt=""> <p>2号</p></li>
+                                    <li>
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th></th>
+                                                    <th>容量</th>
+                                                    <th>温度</th>
+                                                    <th>状态</th>
+                                                    <th>次数</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>A相：</td>
+                                                    <td>10kvar</td>
+                                                    <td>20</td>
+                                                    <td>投入</td>
+                                                    <td>5</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                        
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!-- 直流蓄电池组 -->
+            <div class="modalDCBattery modals">
+               <div class="totalInfo">
+                <div>
+                    <p class="title"><span></span><b>总况</b> <a class="SingleBatToInfo">单体电池详情</a></p>
+                    <ul>
+                        <li class="leftCap">
+                            <div class="cons">
+                                <b class="less"><s></s></b>
+                            </div>
+                            <p>剩余容量 <b>0</b> %</p>
+                        </li>
+                        <li>
+                            <ul class="batInfos">
+                                <li><b>蓄电池组电压：</b><span>200 V</span></li>
+                                <li><b>标称容量：</b><span>200 Ah</span></li>
+                                <li><b>蓄电池节数：</b><span>52 节</span></li>
+                                <li><b>蓄电池组电源：</b><span>200 A</span></li>
+                                <li><b>剩余容量百分比：</b><span>50 %</span></li>
+                                <li><b>单体电池标称电压：</b><span>2 V</span></li>
+                                <li><b>蓄电池组状态：</b><span>均充</span></li>
+                                <li><b>平均温度：</b><span>52 ℃</span></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="my_date">
+                        <ul>
+                            <li><img src="imgs/left.png" class="minus"><input class="cho_date"  value="" type="datetime" disabled><img src="imgs/right.png" class="plus" ></li>
+                            <li>
+                                <div class="choose_date" >
+                                    <a type="1" class="active">日</a>
+                                    <a type="3">月</a>
+                                    <!-- <a type="4">年</a> -->
+                                </div>
+                            </li>
+                        </ul>
+                        <a class="mytbnsSolid">导出数据</a>
+
+                    </div>
+                    <p class="fourLine" about="1">
+                        <a class="active">电压</a>
+                        <a class="">电流</a>
+                        <a class="">温度</a>
+                    </p>
+                    <div class="DCBatterylineContent"></div>
+                </div>
+               </div>
+               <div class="singleBattery">
+                   <p>
+                       <a about=".listModal" class="active">列表模式<u></u></a><a about=".barModal">柱图模式<u></u></a><a about=".lineModal">曲线模式<u></u></a> <b class="BacktoBatInfo">返回</b>
+                   </p>
+                   <div class="singleBatContent">
+                        <div class="listModal">
+                            <ul>
+                                <li>
+                                    <ul>
+                                        <li><img src="imgs/battery.png" alt=""> <p>1号</p></li>
+                                        <li>
+                                            <p><span>电池：</span><b>20V</b></p>
+                                            <p><span>内阻：</span><b>20mΩ</b></p>
+                                            <p><span>温度：</span><b>20℃</b></p>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <ul>
+                                        <li><img src="imgs/battery.png" alt=""> <p>1号</p></li>
+                                        <li>
+                                            <p><span>电池：</span><b>20V</b></p>
+                                            <p><span>内阻：</span><b>20mΩ</b></p>
+                                            <p><span>温度：</span><b>20℃</b></p>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <ul>
+                                        <li><img src="imgs/battery.png" alt=""> <p>1号</p></li>
+                                        <li>
+                                            <p><span>电池：</span><b>20V</b></p>
+                                            <p><span>内阻：</span><b>20mΩ</b></p>
+                                            <p><span>温度：</span><b>20℃</b></p>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <ul>
+                                        <li><img src="imgs/battery.png" alt=""> <p>1号</p></li>
+                                        <li>
+                                            <p><span>电池：</span><b>20V</b></p>
+                                            <p><span>内阻：</span><b>20mΩ</b></p>
+                                            <p><span>温度：</span><b>20℃</b></p>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <ul>
+                                        <li><img src="imgs/battery.png" alt=""> <p>1号</p></li>
+                                        <li>
+                                            <p><span>电池：</span><b>20V</b></p>
+                                            <p><span>内阻：</span><b>20mΩ</b></p>
+                                            <p><span>温度：</span><b>20℃</b></p>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <ul>
+                                        <li><img src="imgs/battery.png" alt=""> <p>1号</p></li>
+                                        <li>
+                                            <p><span>电池：</span><b>20V</b></p>
+                                            <p><span>内阻：</span><b>20mΩ</b></p>
+                                            <p><span>温度：</span><b>20℃</b></p>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="barModal">
+                            <p class="BatType"><b></b> <a about="3">温度</a><a about="2">电阻</a><a class="active" about="1">电压</a></p>
+                            <div class="barModalContent">
+
+                            </div>
+                        </div>
+                        <div class="lineModal">
+                            <p class="BatType"><b></b> <a about="3">温度</a><a about="2">电阻</a><a class="active" about="1">电压</a></p>
+                            <div class="lineModalContent">
+                                
+                            </div>
+                        </div>
+                   </div>
+               </div>
+            </div>
+            <!-- 交流输入 -->
+            <div class="modalDCInput modals">
+                <ul>
+                    <li>
+                        <div>
+                            <ul>
+                                <li>
+                                    <p class="title"><span></span><b>I路交流数据</b></p> 
+                                    <div class="ycs1">
+                                        <p><b>A相：</b>
+                                            <u><span>1</span><span>1</span><span>1</span><span>1</span><span>.</span><span>0</span> V</u>
+                                        </p>
+                                        <p><b>B相：</b>
+                                            <u><span>1</span><span>1</span><span>1</span><span>1</span><span>.</span><span>0</span> V</u>
+                                        </p>
+                                        <p><b>C相：</b>
+                                            <u><span>1</span><span>1</span><span>1</span><span>1</span><span>.</span><span>0</span> V</u>                                 
+                                        </p>
+                                        <div><s>状态：</s><b>工作</b></div>
+                                    </div>
+                                   
+                                </li>
+                                <li>
+                                    <p class="title"><span></span><b>II路交流数据</b></p> 
+                                    <div class="ycs2">
+                                        <p><b>A相：</b>
+                                            <u><span>1</span><span>1</span><span>1</span><span>1</span><span>.</span><span>0</span> V</u>
+                                        </p>
+                                        <p><b>B相：</b>
+                                            <u><span>1</span><span>1</span><span>1</span><span>1</span><span>.</span><span>0</span> V</u>
+                                        </p>
+                                        <p><b>C相：</b>
+                                            <u><span>1</span><span>1</span><span>1</span><span>1</span><span>.</span><span>0</span> V</u>                                 
+                                        </p>
+                                        <div><s>状态：</s><b>工作</b></div>
+                                    </div>
+                                  
+                                </li>
+                            </ul>
+                        </div>    
+                        <div>
+                            <div class="my_date">
+                                <ul>
+                                    <li><img src="imgs/left.png" class="minus"><input class="cho_date"  value="" type="datetime" disabled><img src="imgs/right.png" class="plus" ></li>
+                                    <li>
+                                        <div class="choose_date" >
+                                            <a type="1" class="active">日</a>
+                                            <a type="3">月</a>
+                                            <!-- <a type="4">年</a> -->
+                                        </div>
+                                    </li>
+                                </ul>
+                                <a class="mytbnsSolid">导出数据</a>
+    
+                            </div>
+                            <p class="fourLine" about="1">
+                                <a class="active">电压</a>
+                                <a class="">电流</a>
+                                <a class="">温度</a>
+                            </p>
+                            <div class="DCInpulineContent"></div>
+                        </div>
+                    </li>
+                    <li>
+                        <p class="title"><span></span><b>遥信</b></p> 
+                        <div class="yxs">
+                            <p><b>F1分闸进线开关：</b><span class="red">合</span></p>
+                            <p><b>F2分闸进线开关：</b><span class="green">分</span></p>
+                            <p><b>F3分闸进线状态：</b><span class="green"></span></p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+             <!-- 二路输入开关 -->
+             <div class="modalInputSwitch modals">
+                <ul>
+                    <li>
+                        <div>
+                            <ul>
+                                <li>
+                                    <p class="title"><span></span><b>I路电源输入</b></p> 
+                                    <div class="ycs1">
+                                        <p><b>A相：</b>
+                                            <u><span>1</span><span>1</span><span>1</span><span>1</span><span>.</span><span>0</span> V</u>
+                                        </p>
+                                        <p><b>B相：</b>
+                                            <u><span>1</span><span>1</span><span>1</span><span>1</span><span>.</span><span>0</span> V</u>
+                                        </p>
+                                        <p><b>C相：</b>
+                                            <u><span>1</span><span>1</span><span>1</span><span>1</span><span>.</span><span>0</span> V</u>                                 
+                                        </p>
+                                        <div><s>状态：</s><b>工作</b></div>
+                                    </div>
+                                   
+                                </li>
+                                <li>
+                                    <p class="title"><span></span><b>II路电源输入</b></p> 
+                                    <div class="ycs2">
+                                        <p><b>A相：</b>
+                                            <u><span>1</span><span>1</span><span>1</span><span>1</span><span>.</span><span>0</span> V</u>
+                                        </p>
+                                        <p><b>B相：</b>
+                                            <u><span>1</span><span>1</span><span>1</span><span>1</span><span>.</span><span>0</span> V</u>
+                                        </p>
+                                        <p><b>C相：</b>
+                                            <u><span>1</span><span>1</span><span>1</span><span>1</span><span>.</span><span>0</span> V</u>                                 
+                                        </p>
+                                        <div><s>状态：</s><b>工作</b></div>
+                                    </div>
+                                  
+                                </li>
+                            </ul>
+                        </div>    
+                        <div>
+                            <div class="my_date">
+                                <ul>
+                                    <li><img src="imgs/left.png" class="minus"><input class="cho_date"  value="" type="datetime" disabled><img src="imgs/right.png" class="plus" ></li>
+                                    <li>
+                                        <div class="choose_date" >
+                                            <a type="1" class="active">日</a>
+                                            <a type="3">月</a>
+                                            <!-- <a type="4">年</a> -->
+                                        </div>
+                                    </li>
+                                </ul>
+                                <a class="mytbnsSolid">导出数据</a>
+    
+                            </div>
+                            <p class="fourLine" about="1">
+                                <a class="active">电压</a>
+                                <a class="">电流</a>
+                                <a class="">温度</a>
+                            </p>
+                            <div class="InputSwitchContent"></div>
+                        </div>
+                    </li>
+                    <li>
+                        <p class="title"><span></span><b>遥信</b></p> 
+                        <div class="yxs">
+                            
+                        </div>
+                        
+                        <p class="title"><span></span><b>工作方式</b></p>
+                        <div class="yks">
+                           
+                        </div>
+                        
+                    </li>
+                </ul>
+            </div>
+            <!-- 直流母线 母线绝缘监测-->
+            <div class="modalDCBus modals">
+                <div>
+                    <p class="title"><span></span><b>遥测</b></p>
+                    <div class="ycs">
+                        <p>
+                            <u><b>合母电压：</b><span>1</span><span>1</span><span>1</span><span>1</span><span>.</span><span>0</span><s>V</s></u>
+                            <u><b>控母电压：</b><span>1</span><span>1</span><span>1</span><span>1</span><span>.</span><span>0</span><s>V</s></u>   
+                            <u><b>负载电流：</b><span>1</span><span>1</span><span>1</span><span>1</span><span>.</span><span>0</span><s>V</s></u>   
+                        </p>
+                    
+                        <p>
+                            <u><b>合母正对地：</b><span>1</span><span>1</span><span>1</span><span>1</span><span>.</span><span>0</span><s>V</s></u>
+                            <u><b>控母正对地：</b><span>1</span><span>1</span><span>1</span><span>1</span><span>.</span><span>0</span><s>V</s></u>
+                            <u><b>母线负对地：</b><span>1</span><span>1</span><span>1</span><span>1</span><span>.</span><span>0</span><s>kΩ</s></u>
+                            <u><b>母线正对地：</b><span>1</span><span>1</span><span>1</span><span>1</span><span>.</span><span>0</span><s>kΩ</s></u>
+                            <u><b>母线负对地：</b><span>1</span><span>1</span><span>1</span><span>1</span><span>.</span><span>0</span><s>V</s></u>
+                        </p>
+                    </div>
+                    
+                
+                </div>
+                <ul>
+                    <li>
+                        <div class="my_date">
+                            <ul>
+                                <li><img src="imgs/left.png" class="minus"><input class="cho_date"  value="" type="datetime" disabled><img src="imgs/right.png" class="plus" ></li>
+                                <li>
+                                    <div class="choose_date" >
+                                        <a type="1" class="active">日</a>
+                                        <a type="3">月</a>
+                                        <!-- <a type="4">年</a> -->
+                                    </div>
+                                </li>
+                            </ul>
+                            <a class="mytbnsSolid">导出数据</a>
+
+                        </div>
+                        <p class="fourLine" about="1">
+                            <a class="active">电压</a>
+                            <a class="">电流</a>
+                            <a class="">温度</a>
+                        </p>
+                        <div class="DCBuslineContent"></div>
+                    </li>
+                    <li>
+                        <p class="title"><span></span><b>遥信</b></p>
+                        <div class="yxs">
+                            <p><b>F1分闸进线开关：</b><span class="red">合</span></p>
+                            <p><b>F2分闸进线开关：</b><span class="green">分</span></p>
+                            <p><b>F3分闸进线状态：</b><span class="green"></span></p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <!-- 直流充电模块 -->
+            <div class="modalDCcharger modals">
+                <ul>
+                    <li>
+                        <div class="ycs">
+                            <p class="title"><span></span><b>充电机总输出</b></p>
+                            <div><b>充电机输出电压：</b><b>充电机输出电流：</b></div>
+                            <p>
+                                <u><span>1</span><span>1</span><span>1</span><span>1</span><span>.</span><span>0</span><s>V</s></u>
+                                <u><span>1</span><span>1</span><span>1</span><span>1</span><span>.</span><span>0</span><s>A</s></u>                                
+                            </p>
+                        </div>
+                        <div class="mods">
+                            <p class="title"><span></span><b>充电机信息</b></p>
+                            <ul class="DCchargerMods">
+                                <li >
+                                    <ul>
+                                        <li><img src="imgs/drq.png" alt=""> <p>1号</p></li>
+                                        <li>
+                                            <p><span>电压：</span><b>220.25V</b></p>
+                                            <p><span>电流：</span><b>20A</b></p>
+                                            <p><span>温度：</span><b>20℃</b></p>
+                                            <p><span>运行时间：</span><b>50h</b></p>
+                                            <p><span>限流：</span><b>20%</b></p>
+                                            <p><span>状态：</span><b>开机</b></p>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li >
+                                    <ul>
+                                        <li><img src="imgs/drq.png" alt=""> <p>1号</p></li>
+                                        <li>
+                                            <p><span>电压：</span><b>220.25V</b></p>
+                                            <p><span>电流：</span><b>20A</b></p>
+                                            <p><span>温度：</span><b>20℃</b></p>
+                                            <p><span>运行时间：</span><b>50h</b></p>
+                                            <p><span>限流：</span><b>20%</b></p>
+                                            <p><span>状态：</span><b>开机</b></p>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li >
+                                    <ul>
+                                        <li><img src="imgs/drq.png" alt=""> <p>1号</p></li>
+                                        <li>
+                                            <p><span>电压：</span><b>220.25V</b></p>
+                                            <p><span>电流：</span><b>20A</b></p>
+                                            <p><span>温度：</span><b>20℃</b></p>
+                                            <p><span>运行时间：</span><b>50h</b></p>
+                                            <p><span>限流：</span><b>20%</b></p>
+                                            <p><span>状态：</span><b>开机</b></p>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li >
+                                    <ul>
+                                        <li><img src="imgs/drq.png" alt=""> <p>1号</p></li>
+                                        <li>
+                                            <p><span>电压：</span><b>220.25V</b></p>
+                                            <p><span>电流：</span><b>20A</b></p>
+                                            <p><span>温度：</span><b>20℃</b></p>
+                                            <p><span>运行时间：</span><b>50h</b></p>
+                                            <p><span>限流：</span><b>20%</b></p>
+                                            <p><span>状态：</span><b>开机</b></p>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <p class="title"><span></span><b>模块运行时长统计</b></p>
+                            <div class="runs">
+                              
+                            </div>
+                        </div>
+                        <div>
+                            <div class="my_date">
+                                <ul>
+                                    <li><img src="imgs/left.png" class="minus"><input class="cho_date"  value="" type="datetime" disabled><img src="imgs/right.png" class="plus" ></li>
+                                    <li>
+                                        <div class="choose_date" >
+                                            <a type="1" class="active">日</a>
+                                            <a type="3">月</a>
+                                            <!-- <a type="4">年</a> -->
+                                        </div>
+                                    </li>
+                                </ul>
+                                <a class="mytbnsSolid">导出数据</a>
+    
+                            </div>
+                            <p class="fourLine2" about="1">
+                                <a class="active">电压</a>
+                                <a class="">电流</a>
+                                <a class="">温度</a>
+                            </p>
+                            <div class="DCChargerlineContent"></div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <!-- 馈线绝缘监测仪 -->
+            <div class="modalDCfeeder modals">
+                <ul>
+                    <li>
+                        <p class="title"><span></span><b>馈线支路详情</b></p>
+                        <div class="modContents">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>序号</th>
+                                        <th>支路名称</th>
+                                        <th>正对地电阻(kΩ)</th>
+                                        <th>负对地电阻(kΩ)</th>
+                                        <th>漏电流(mA)</th>
+                                        <th>绝缘异常</th>
+                                        <th>开关分合闸状态</th>
+                                        <th>开关跳闸状态</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                   
+                                </tbody>
+                            </table>
+                        </div>
+                        <!--分页插件-->
+                         <div class="M-box3"></div>
+                    </li>
+                </ul>
+            </div>
+             <!-- 逆变电源 ups电源-->
+             <div class="modalINVpower modals">
+                <ul>
+                    <li>
+                        <div>
+                            <p class="title"><span></span><b>遥测</b></p>
+                          <div class="ycsContent">
+                              <ul>
+                                  <li><b>交流输入电压：</b><div><span>0</span><span>0</span><span>0</span><span>0</span><span>.</span><span>0</span><b>V</b></div></li>
+                                  <li><b>输入电压：</b><div><span>0</span><span>0</span><span>0</span><span>0</span><span>.</span><span>0</span><b>V</b></div></li>
+                                  <li><b>负载百分比：</b><div><span>0</span><span>0</span><span>0</span><span>0</span><span>.</span><span>0</span><b>%</b></div></li>
+                                  <li><b>直流输入电压：</b><div><span>0</span><span>0</span><span>0</span><span>0</span><span>.</span><span>0</span><b>V</b></div></li>
+                                  <li style="width:33.33%"><b>输入电流：</b><div><span>0</span><span>0</span><span>0</span><span>0</span><span>.</span><span>0</span><b>A</b></div></li>
+                              </ul>
+                              <ul>
+                                  <li><b>交流输入频率：</b><span>50</span><i>Hz</i></li>
+                                  <li><b>输出频率：</b><span>50</span><i>Hz</i></li>
+                                  <li><b>机内温度：</b><span>200</span><i>℃</i></li>
+                              </ul>
+                              <ul>
+                                <li><b>交流输入电压：</b><div><span>0</span><span>0</span><span>0</span><span>0</span><span>.</span><span>0</span><b>V</b></div></li>
+                                <li><b>输出电压：</b><div><span>0</span><span>0</span><span>0</span><span>0</span><span>.</span><span>0</span><b>V</b></div></li>
+                                <li><b>交流输入频率：<s>50</s> Hz</b></li>
+                                <li><b>直流输入电压：</b><div><span>0</span><span>0</span><span>0</span><span>0</span><span>.</span><span>0</span><b>V</b></div></li>
+                                <li><b>输出电流：</b><div><span>0</span><span>0</span><span>0</span><span>0</span><span>.</span><span>0</span><b>V</b></div></li>
+                                <li><b>旁路输入频率：<s>50</s> Hz</b></li>
+                                <li><b>旁路输入电压：</b><div><span>0</span><span>0</span><span>0</span><span>0</span><span>.</span><span>0</span><b>V</b></div></li>
+                                <li><b>负载百分比：</b><div><span>0</span><span>0</span><span>0</span><span>0</span><span>.</span><span>0</span><b>V</b></div></li>
+                                <li><b>输出频率：<s>50</s> Hz</b></li>
+                              </ul>
+                          </div>
+                        </div>
+                        <div class="lines">
+                            <div class="my_date" style="margin-top: 12px">
+                                <ul>
+                                    <li><img src="imgs/left.png" class="minus" id="minus01"><input class="cho_date" id="cho_date01" value="" type="datetime" disabled><img src="imgs/right.png" class="plus" id="plus01"></li>
+                                    <li>
+                                        <div class="choose_date" id="choose_date01">
+                                            <a type="1" class="active">日</a>
+                                            <a type="3">月</a>
+                                            <!-- <a type="4">年</a> -->
+                                        </div>
+                                    </li>
+                                </ul>
+                                <a class="mytbnsSolid">导出数据</a>
+                            </div>
+                            <p class="fourLine" about="1">
+                                <a class="active">输出电压</a>
+                                <a class="">输出电流</a>
+                                <a class="">负载百分比</a>
+                                <a class="">机内温度</a>
+                            </p>
+                            <div class="INVPowerlineContent"></div>
+                        </div>
+                    </li>
+                    <li>
+                        <div >
+                            <p class="title"><span></span><b>遥信</b></p>
+                            <div class="yxs">
+                                <p><b>XXX断路器分闸：</b><span class="green">分</span></p>
+                                <p><b>XXX断路器跳闸：</b><span class="red"></span></p>
+                                <p><b>XXX绝缘下降异常：</b><span class="red"></span></p>
+                            </div>
+                        </div>
+                        <div>
+                            <p class="title"><span></span><b>运行分析</b></p>
+                            <div class="runs" style="height:210px;">
+                                
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <!-- DCDC通信模块 馈线支路 -->
+            <div class="modalINVfeeder modals">
+                <ul>
+                    <li>
+                        <div class="ycs">
+                            <p class="title"><span></span><b>遥测</b></p>
+                            <div class="ycsContent">
+                                <ul>
+                                    <li><b>电压：</b><div><span>0</span><span>0</span><span>0</span><span>.</span><span>0</span><b>V</b></div></li>
+                                    <li style="width: 33.33%"><b>电流：</b><div><span>0</span><span>0</span><span>0</span><span>0</span><span>.</span><span>0</span><b>A</b></div></li>
+                                    <li><b>温度：</b><div><span>0</span><span>0</span><span>0</span><span>.</span><span>0</span><b>℃</b></div></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="lines">
+                            <div class="my_date" style="margin-top: 12px">
+                                <ul>
+                                    <li><img src="imgs/left.png" class="minus" id="minus02"><input class="cho_date" id="cho_date02" value="" type="datetime" disabled><img src="imgs/right.png" class="plus" id="plus02"></li>
+                                    <li>
+                                        <div class="choose_date" id="choose_date02">
+                                            <a type="1" class="active">日</a>
+                                            <a type="3">月</a>
+                                            <!-- <a type="4">年</a> -->
+                                        </div>
+                                    </li>
+                                </ul>
+                                <a class="mytbnsSolid">导出数据</a>
+                            </div>
+                            <p class="fourLine" about="1">
+                                <a class="active">电压</a>
+                                <a class="">电流</a>
+                                <a class="">功率</a>
+                                <a class="">温度</a>
+                                <a class="">剩余电流</a>
+                            </p>
+                            <div class="INVfeederContent"></div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="">
+                            <p class="title"><span></span><b>遥信</b></p>
+                            <div class="yxs" style="height:165px;">
+                                <p><b>XXX断路器分闸：</b><span class="green">分</span></p>
+                                <p><b>XXX断路器跳闸：</b><span class="red"></span></p>
+                                <p><b>XXX绝缘下降异常：</b><span class="red"></span></p>
+                            </div>
+                        </div>
+                        <div class="">
+                            <p class="title"><span></span><b>运行分析</b></p>
+                            <div class="runs">
+                                <p><b>XXX断路器分闸：</b><span class="green">分</span></p>
+                                <p><b>XXX断路器跳闸：</b><span class="red"></span></p>
+                                <p><b>XXX绝缘下降异常：</b><span class="red"></span></p>
+                            </div>
+                        </div>
+                        <div class="">
+                            <p class="title"><span></span><b>遥控</b></p>
+                            <div class="yks">
+                                <p>
+                                    <b>遥控名称：</b>
+                                    <a class="green ykBtn">分闸</a>
+                                    <a class="red ykBtn">合闸</a>
+                                </p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <!-- 馈线检测仪 -->
+            <div class="modalDetector modals">
+                <ul>
+                    <li>
+                        <p class="title"><span></span><b>遥测</b></p>
+                        <div class="modContents">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>序号</th>
+                                        <th>支路名称</th>
+                                        <th>电压(V)</th>
+                                        <th>电流(A)</th>
+                                        <th>开关分合闸状态</th>
+                                        <th>开关跳闸状态</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                   
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="M-box3"></div>
+                    </li>
+                
+                </ul>
+            </div>
+            <!-- 通信母线 -->
+            <div class="modalComBus modals">
+                <ul>
+                    <li>
+                        <div class="ycs">
+                            <p class="title"><span></span><b>遥测</b></p>
+                          <div class="ycsContent">
+                              <ul>
+                                  <li><b>通信母线电压：</b><div><span>0</span><span>0</span><span>0</span><span>0</span><span>.</span><span>0</span><b>V</b></div></li>
+                                  <li><b>通信母线电流</b><div><span>0</span><span>0</span><span>0</span><span>0</span><span>.</span><span>0</span><b>V</b></div></li>
+                        
+                              </ul>
+
+                          </div>
+                        </div>
+                        <div class="lines">
+                            <div class="my_date" style="margin-top: 12px">
+                                <ul>
+                                    <li><img src="imgs/left.png" class="minus" id="minus01"><input class="cho_date" id="cho_date01" value="" type="datetime" disabled><img src="imgs/right.png" class="plus" id="plus01"></li>
+                                    <li>
+                                        <div class="choose_date" id="choose_date01">
+                                            <a type="1" class="active">日</a>
+                                            <a type="3">月</a>
+                                            <!-- <a type="4">年</a> -->
+                                        </div>
+                                    </li>
+                                </ul>
+                                <a class="mytbnsSolid">导出数据</a>
+                            </div>
+                            <p class="fourLine" about="1">
+                                <a class="active">输出电压</a>
+                                <a class="">输出电流</a>
+                                <a class="">负载百分比</a>
+                                <a class="">机内温度</a>
+                            </p>
+                            <div class="ComBuslineContent"></div>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <p class="title"><span></span><b>遥信</b></p>
+                            <div class="yxs">
+                                <p><b>F1分闸进线开关：</b><span class="red">合</span></p>
+                                <p><b>F2分闸进线开关：</b><span class="green">分</span></p>
+                                <p><b>F3分闸进线状态：</b><span class="green"></span></p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <!-- 集中接地点 -->
+            <div class="modalCenGroundpoint modals">
+                <ul>
+                    <li>
+                        <ul class="models">
+                          
+                        </ul>
+                    </li>
+                    <li>
+                        <ul>
+                            <li>
+                                <div>
+                                    <div class="my_date">
+                                        <ul>
+                                            <li><img src="imgs/left.png" class="minus"><input class="cho_date"  value="" type="datetime" disabled><img src="imgs/right.png" class="plus" ></li>
+                                            <li>
+                                                <div class="choose_date" >
+                                                    <a type="1" class="active">日</a>
+                                                    <a type="3">月</a>
+                                                    <!-- <a type="4">年</a> -->
+                                                </div>
+                                            </li>
+                                        </ul>
+                                        <a class="afterCunBtn">导出数据</a>
+                                    </div>
+                                    <div class="lineCenPointContent"></div>
+                                </div>
+                               
+                            </li>
+                            <li>
+                                <div>
+                                    <p class="title"><span></span><b>运行分析</b></p>
+                                    <div class="runs">
+                                        <p><b>系统剩余电流最大值：</b><u>0</u>mA</p>
+                                        <p><b>系统剩余电流越限次数：</b><u>0</u>次</p>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!-- 馈线支路/长电缆 -->
+            <div class="modalBranch modals">
+                <ul>
+                    <li>
+                        <div class="modal1">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>柜号</th>
+                                        <th>开关编号</th>
+                                        <th>回路名称</th>
+                                        <th>CT值<br>(mA)</th>
+                                        <th>剩余电流值(mA)</th>
+                                        <th>补偿值<br>(mA)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                 
+                                </tbody>
+                            </table>
+                        </div>                       
+                    </li>
+                    <li>
+                        <div class="zeroSeqContent">
+                            <p class="names"></p>
+                            <p>1、回路剩余电流最大值：<b>0</b> mA</p>
+                            <p>2、回路剩余电流越限次数：<b>0</b> 次</p>
+                            <p class="status">3、开关状态：<b>分</b></p>
+                            <p class="content"><s> * </s></p>
+                            <p><button class="mytbnsSolid loadLineBtn">查看历史曲线</button></p>
+                        </div>
+                        <div>
+                            <div class="my_date">
+                                <ul>
+                                    <li><img src="imgs/left.png" class="minus"><input class="cho_date"  value="" type="datetime" disabled><img src="imgs/right.png" class="plus" ></li>
+                                    <li>
+                                        <div class="choose_date" >
+                                            <a type="1" class="active">日</a>
+                                            <a type="3">月</a>
+                                            <!-- <a type="4">年</a> -->
+                                        </div>
+                                    </li>
+                                </ul>                               
+                            </div>
+                            <div class="longLineContent"></div>
+                            <p><a class="afterCunBtn">导出数据</a></p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <!-- 故障录波 -->
+            <div class="modalFaultRecord modals">
+                <ul>
+                    <li>
+                        <div class="modal1">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>序号</th>
+                                        <th>柜号</th>
+                                        <th>回路名称</th>
+                                        <th>产生时间</th>
+                                        <th>毫秒</th>
+                                        <th>导出</th>                           
+                                    </tr>
+                                </thead>
+                                <tbody>
+                               
+                                </tbody>
+                            </table>
+                        </div>
+                       <div class="pages"><a class="first changePage">首页</a><a class="prev changePage">上一页</a><a class="next changePage">下一页</a><a class="last changePage">尾页</a><a class="allSelected">全选</a><a class="noSellected">取消选择</a><a class="delte">删除</a><a class="derive">导出</a> <button class="mytbnsSolid loadLineBtn">查看波形</button></div>
+                    </li>
+                </ul>            
+            </div>
+        </li>
+    </ul>
+    <div class="watchBoll">
+        <div class="names">
+            <ul>
+                <li class="bollContent"><span>时间：<b>2022-06-21 15:40:32</b></span><span>时长：<b>120分钟</b></span><span>柜号：<b>xxxxxxx</b></span><span>回路名称：<b>xxxxxxx</b></span></li>
+                <li>
+                    <span>步长：</span><select name="" id="stepLong"><option value="20">20</option><option value="40">40</option><option value="60">60</option><option value="120">120</option></select>
+                    <img src="imgs/toPrev.png" id="toPrev"><span>向左</span><span>向右</span><img src="imgs/toNext.png" id="toNext">
+                </li>
+            </ul>
+        </div>
+        <div class="recordBolContent"></div>
+    </div>
+    <div id="waiting">
+        <p><span class="right">&times;</span></p>
+        <div class="content">
+            <div class="">
+                <p>是否确定执行命令？</p>
+                <p><button class="btn btn-success">确定</button><button class="btn btn-danger">取消</button></p>
+            </div>
+            <div class="confirm">
+                <div><p>请输入安全密码：</p><input type="text" placeholder="请输入密码" onfocus="this.type='password'"><span class="wrong_pwd">密码错误!</span></div>
+                <p><button class="btn btn-success">确定</button></p>
+
+            </div>
+            <div class="sure">
+                <p>命令正在发送......</p>
+                <div><span class="white"></span></div>
+            </div>
+            <div class="result">
+                <p>命令正在发送！</p>
+                <div><span></span></div>
+                <p><button class="btn btn-success">确定</button></p>
+            </div>
+            <div class="putin">
+                <div style="margin-top:50px;"><input type="text" placeholder="请输入遥调值"></div>
+                <p><button class="btn btn-success">确定</button></p>
+            </div>
+        </div>
+        <!-- <div class="tot_table"></div> -->
+    </div>
+     <!--数字键盘-->
+     <div id="configPwd2">
+        <p id="configPwdTop2"><span><img src="imgs/close.png" alt=""/></span></p>
+        <ul >
+            <li><span about="1">1</span></li>
+            <li><span about="2">2</span></li>
+            <li><span about="3">3</span></li>
+            <li><span about="4">4</span></li>
+            <li><span about="5">5</span></li>
+            <li><span about="6">6</span></li>
+            <li><span about="7">7</span></li>
+            <li><span about="8">8</span></li>
+            <li><span about="9">9</span></li>
+            <li><span about="0">0</span></li>
+            <li><span about="20">.</span></li>
+            <li><span about="back"></span></li>
+        </ul>
+    </div>
+</section>
+<script src="js/jquery-3.1.1.js" defer="true"></script>
+<script src="js/md5.js"></script>
+<script src="js/tieon_ccc_lib_2020_v30.js"></script>
+<script src="js/orders.js"></script>
+<script src="js/jquery.pagination.js" defer="true"></script>
+<script src="js/ACmodal.js" defer="true"></script>  
+</body>
+</html>

@@ -1,0 +1,1160 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+    <title></title>
+    <script src="js/jquery-3.1.1.js"></script>
+    <script src="js/echarts.js"></script>
+    <script src="js/jquery.jqprint-0.3.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/pagination.css"/>
+    <!-- <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=1wiy2RTTReu863wNXQu6p2GmVRR1FAST"></script> -->
+    <!--<script type="text/javascript" src="../net_js/Global.js" charset="utf-8"></script>-->
+    <script>
+        var ran=Math.random();
+        document.write('<link rel="stylesheet" href="css/common.css?ran='+ran+'" ><\/link>');
+        document.write('<link rel="stylesheet" href="css/diagnose.css?ran='+ran+'" ><\/link>');
+        document.write('<script src="js/orders.js?ran='+ran+'" charset="utf-8"><\/script>');
+        // document.write('<script src="js/md5.js?ran='+ran+'" charset="utf-8"><\/script>');
+    </script>
+    <!--<script type="text/javascript" src="../net_js/tieon_ccc_lib_2019_v25.js" charset="utf-8"></script>-->
+    <style>
+        html{
+           height:545px;
+       }
+       ul,li{
+           list-style: none;
+       }
+       ul{
+           margin:0;
+       }
+       section{
+        height:545px;
+        background:#000000;
+       }
+       /* body{opacity: 0; transition: opacity 0.2s}body.active{opacity: 1} */
+    </style>
+</head>
+<body>
+<section>
+    <ul>
+        <li class="menus">
+         
+        </li>
+        <li>
+            <ul class="content">
+                <li>
+                    <ul>
+                        <li>                           
+                            <ul class="content1">
+
+                            </ul>
+                        </li>
+                        <li>                        
+                            <div class="content1Line"></div>
+                        </li>
+                    </ul>
+                </li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+            <p><a class="prev">上一页</a><a class="next">下一页</a></p>
+            <div class="print">
+                <div class="titles">
+                    <div class="times">
+                        <div>设置时间：</div>
+                        <p><label  class="checkOptBox"><select class="checkYear" ></select></label><label  class="checkOptBox"><select class="checkMonth"></select></label>至<label  class="checkOptBox"><select class="checkDay"></select></label></p>
+                    </div>
+                    <p><img src="imgs/diag5.png" alt=""><a class="generateReport">生成运行报告</a></p>
+                    <p class="downLoad"><img src="imgs/diag5.png" alt=""><a class="downLoadReport" type="1">点击下载报告</a></p>   
+                    <p class="exportToU"><img src="imgs/diag5.png" alt=""><a class="downLoadReport" type="2">点击导出U盘</a></p>   
+                    <!-- <p><a onclick="printMe()">2222</a></p>           -->
+                </div>
+                <div class="containt" >
+                    <!-- <span class="prints" onclick="printMe()">打印</span> -->
+                    <div id="containt" class="containt2">
+                        <style>
+                            table{
+                                border:1px solid black;
+                                border-collapse: collapse;
+                            }
+                            td,th{
+                                border:1px solid black;
+                            }
+                            .model {
+                            width: 600px;
+                            min-height: 760px;
+                            clear: both;
+                            margin: 0 auto;
+                            padding: 20px;
+                            position: relative;
+                            border: 1px solid #e2e2e2;
+                            border-bottom: 0;
+                            background-color: #fff;
+                            page-break-before: always;
+                            page-break-after: always;
+                            }
+
+                            .model h1 {
+                            font-size: 24px;
+                            }
+
+                            .model h2 {
+                            font-size: 21px;
+                            }
+
+                            .model h3 {
+                            font-size: 18px;
+                            }
+
+                            .model h4 {
+                            font-size: 15px;
+                            }
+
+                            .model .chart {
+                                margin: 0 auto;
+                                height:250px;
+                            }
+                            .model div{
+                                min-height:10px;
+                            }
+                            .model .chart > div {
+                            margin: 0 auto !important;
+                            }
+
+                            .report_p1 p:nth-child(1) {
+                            font-weight: 700;
+                            }
+
+                            .report_p1 td {
+                            border: none;
+                            }
+
+                            .report_p1 td:nth-child(2) {
+                            text-align: left;
+                            }
+
+                            .report_p1 > h1 {
+                            text-align: center;
+                            margin-top: 140px;
+                            font-size: 40px;
+                            font-weight: 700;
+                            margin-bottom: 80px;
+                            }
+
+                            .report_p1 > .message {
+                            margin: 0 auto;
+                            width: 400px;
+                            padding: 0;
+                            border: 1px solid #ccc;
+                            background-color: #eee;
+                            clear: both;
+                            }
+
+                            .report_p1 > .message tr td:nth-child(1) {
+                            padding: 10px 15px;
+                            width: 85px;
+                            }
+
+                            .report_p1 > img {
+                            position: absolute;
+                            bottom: 2px;
+                            width: 100%;
+                            left: -1px;
+                            }
+
+                            .report_p2 h3, .report_p2 h4 {
+                            margin: 5px 0;
+                            }
+
+                            .report_p2 table {
+                            width: 100%;
+                            }
+
+                            .report_p2 table td, .report_p2 table th {
+                            padding: 3px;
+                            }
+
+                            .report_p2 > p {
+                            text-indent: 20px;
+                            line-height: 26px;
+                            margin: 5px 0;
+                            }
+
+                            .report_p2 #chart1 {
+                            height: 450px;
+                            margin: 20px auto;
+                            /*background: #eee;*/
+                            }
+
+                            .report_p3 h3, .report_p3 h4 {
+                            margin: 10px 0;
+                            }
+
+                            .report_p3 p {
+                            text-indent: 20px;
+                            line-height: 26px;
+                            margin: 5px 0;
+                            }
+
+                            .report_p3 .chart {
+                            height: 300px;
+                            }
+
+                            .report_p3 table {
+                            width: 100%;
+                            }
+
+                            .report_p3 table td, .report_p3 table th {
+                            padding: 2px;
+                            border-top: 1px solid black;
+                            width: 19%;
+                            box-sizing: border-box;
+                            text-align: center;
+                            font-size: 0.8em;
+                            }
+
+                            .report_p3 table td:nth-child(1), .report_p3 table th:nth-child(1) {
+                            width: 10%;
+                            }
+
+                            .report_p4 h3, .report_p4 h4, .report_p4 h5 {
+                            margin: 10px 0;
+                            }
+
+                            .report_p4 #chart3, .report_p4 #chart4 {
+                            height: 260px;
+                            }
+
+                            .report_p4 p {
+                            text-indent: 20px;
+                            line-height: 26px;
+                            margin: 5px 0;
+                            }
+
+                            .report_p5 h3, .report_p5 h4 {
+                            margin: 10px 0;
+                            }
+
+                            .report_p5 table {
+                            width: 100%;
+                            }
+
+                            .report_p5 table td, .report_p5 table th {
+                            padding: 3px;
+                            width: 15%;
+                            box-sizing: border-box;
+                            text-align: center;
+                            font-size: 0.8em;
+                            }
+
+                            .report_p5 table th:nth-child(1), .report_p5 table td:nth-child(1) {
+                            width: 10%;
+                            }
+
+                            .report_p5 table th:nth-child(2), .report_p5 table td:nth-child(2) {
+                            width: 30%;
+                            }
+
+                            .report_p5 table th {
+                            border-top: 0;
+                            }
+
+                            .report_p5 p {
+                            text-indent: 20px;
+                            line-height: 26px;
+                            margin: 10px 0;
+                            }
+
+                            .report_p6 h3, .report_p6 h4, .report_p7 h3, .report_p7 h4, .report_p8 h3, .report_p8 h4 {
+                            margin: 10px 0;
+                            }
+
+                            .report_p6 table, .report_p7 table, .report_p8 table {
+                            width: 100%;
+                            }
+
+                            .report_p6 table td, .report_p6 table th, .report_p7 table td, .report_p7 table th, .report_p8 table td, .report_p8 table th {
+                            padding: 3px;
+                            width: 15%;
+                            box-sizing: border-box;
+                            text-align: center;
+                            font-size: 0.8em;
+                            }
+
+                            .report_p6 table th:nth-child(1), .report_p6 table td:nth-child(1), .report_p7 table th:nth-child(1), .report_p7 table td:nth-child(1), .report_p8 table th:nth-child(1), .report_p8 table td:nth-child(1) {
+                            width: 10%;
+                            }
+
+                            .report_p6 table th:nth-child(2), .report_p6 table td:nth-child(2), .report_p7 table th:nth-child(2), .report_p7 table td:nth-child(2), .report_p8 table th:nth-child(2), .report_p8 table td:nth-child(2) {
+                            width: 30%;
+                            }
+
+                            .report_p6 p, .report_p7 p, .report_p8 p {
+                            text-indent: 20px;
+                            line-height: 26px;
+                            margin: 5px 0;
+                            }
+
+                            .model:last-child {
+                            margin-bottom: 0;
+                            }
+
+                            @media print {
+                            body {
+                                -webkit-print-color-adjust: exact;
+                                -moz-print-color-adjust: exact;
+                                -ms-print-color-adjust: exact;
+                            }
+                        }
+                        </style>
+                        <!-- AC交流系统 -->
+                        <div id="system1">
+                            <div class="model report_p1">
+                                <p >电力运维 让用电更省心</p>
+                                <h1 >用电分析报告</h1>
+                                <table class="message">
+                                    <tr>
+                                        <td >站点名称：</td>
+                                        <td class="reportAddr">深圳泰昂集团总部</td>
+                                    </tr>
+                                    <tr>
+                                        <td>报告日期：</td>
+                                        <td class="reportDate">2022年01月01日至2022年12月31日</td>
+                                    </tr>
+                                </table>
+                                <img src="imgs/report_p1bg.png" >
+                            </div>
+                            <div class="model report_p2">
+                                <h1 style="text-align:center">交流电源系统</h1>
+                                <h3 >一、概况</h3>
+                                <table >
+                                    <thead>
+                                        <tr>
+                                            <th >序号</th>
+                                            <th >设备</th>
+                                            <th >额定值</th>
+                                        </tr>
+                                    </thead>
+                                  <tbody>
+                                      <tr>
+                                          <td>1</td>
+                                          <td>1#变压器</td>
+                                          <td>315kVA</td>
+                                      </tr>
+                                      <tr>
+                                        <td>2</td>
+                                        <td>2#变压器</td>
+                                        <td>515kVA</td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>3#变压器</td>
+                                        <td>45324kVA</td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                                <h3>二、系统运行分析</h3>
+                                <h4>2.1、站用电能分析</h4>
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th rowspan="2">序号</th>
+                                            <th rowspan="2">设备</th>
+                                            <th colspan="2">电能</th>
+                                            <th rowspan="2">日平均耗电量</th>
+                                            <th colspan="2">碳排放</th>
+                                        </tr>
+                                        <tr>                       
+                                            <th>总计(kWh)</th>
+                                            <th>同比(%)</th>
+                                            <th>总计(t)</th>
+                                            <th>同比(%)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>1#主变</td>
+                                            <td>1800</td>
+                                            <td>-0.88</td>
+                                            <td>600</td>
+                                            <td>0.4</td>
+                                            <td>+0.88</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <!-- <div id="chart1" class="chart"></div> -->
+                            </div>
+                            <div class="model report_p3"  >
+                                <h4>2.2、馈线支路电能分析</h4>
+                                <div class="chart" id="chart2"></div>
+                                <h4>2.3、进线负荷分析</h4>
+                                <div>
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th rowspan="2">序号</th>
+                                                <th rowspan="2">设备</th>
+                                                <th colspan="2">过负荷</th>
+                                                <th colspan="2">负荷不平衡</th>
+                                            </tr>
+                                            <tr>
+                                               
+                                                <th>最大值(A)</th>
+                                                <th>总时长(min)</th>
+                                                <th>最大值(%)</th>
+                                                <th>总次数(次)</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <th>1</th>
+                                            <td>10KV变压器</td>
+                                            <td>180.39</td>
+                                            <td>180.39</td>
+                                            <td>20.34</td>
+                                            <td>100.3</td>
+                                        </tr>
+                                        <tr>
+                                            <th>2</th>
+                                            <td>10KV变压器2</td>
+                                            <td>1255</td>
+                                            <td>1255</td>
+                                            <td>100.34</td>
+                                            <td>750.3</td>
+                                        </tr>
+                                        <tr>
+                                            <th>3</th>
+                                            <td>10KV变压器3</td>
+                                            <td>180.39</td>
+                                            <td>180.39</td>
+                                            <td>20.34</td>
+                                            <td>100.3</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div>
+                                    <p>本监测周期内，最大负荷180.39kW, 发生于2021-05-10 17:35, 最小负荷-12.13kW， 发生于2021-05-02 12:10， 平均负荷72.01kW。</p>
+                                </div>
+                            </div>
+                            <div class="model report_p4"  >
+                                <h4>2.4变压器功率因数分析</h4>
+                                <div class="chart" id="chart3"></div>
+                                <div>
+                                    <p>本监测周期内，最大负荷180.39kW, 发生于2021-05-10 17:35, 最小负荷-12.13kW， 发生于2021-05-02 12:10， 平均负荷72.01kW。</p>
+                                    <p>本监测周期内，最大功率因数1.00， 发生于2021-05-01 00:00， 最小功率因数-1.00， 发生于2021-05-13 10:40， 平均功率因数0.94。</p>
+                                </div>
+                               
+                            </div>
+                            <div class="model report_p5"  >
+                                <h3>三、事件统计</h3>
+                                <h4>3.1、遥测</h4>
+                                <div>
+                                    <table>
+                                        <thead>
+                                        <tr>
+                                            <th>序号</th>
+                                            <th>回路</th>
+                                            <th>越限类型</th>
+                                            <th>参数类型</th>
+                                            <th>阈值</th>
+                                            <th>累计次数</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>光伏发电</td>
+                                            <td>高限报警</td>
+                                            <td>20.34</td>
+                                            <td>100.3</td>
+                                            <td>100.3</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>光伏发电</td>
+                                            <td>高限报警</td>
+                                            <td>100.34</td>
+                                            <td>750.3</td>
+                                            <td>750.3</td>
+                                        </tr>
+                                        
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="model report_p6"  >
+                                <h4>3.2、遥信</h4>
+                                <div>
+                                    <table>
+                                        <thead>
+                                        <tr>
+                                            <th>序号</th>
+                                            <th>回路</th>                                    
+                                            <th>参数类型</th>                      
+                                            <th>累计次数</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>光伏发电</td>
+                                            <td>高限报警</td>                         
+                                            <td>4</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>光伏发电</td>
+                                            <td>高限报警</td>                                          
+                                            <td>7</td>
+                                         
+                                        </tr>
+                                        
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>                    
+                        </div>
+                        <!-- DC直流系统 -->
+                        <div id="system2">
+                            <div class="model report_p22">
+                                <h1 style="text-align:center">直流电源系统</h1>
+                                <h3 >一、概况</h3>
+                                <table >
+                                    <thead>
+                                        <tr>
+                                            <th >序号</th>
+                                            <th >设备</th>
+                                            <th >额定值</th>
+                                        </tr>
+                                    </thead>
+                                  <tbody>
+                                      <tr>
+                                          <td>1</td>
+                                          <td>1#变压器</td>
+                                          <td>315kVA</td>
+                                      </tr>
+                                      <tr>
+                                        <td>2</td>
+                                        <td>2#变压器</td>
+                                        <td>515kVA</td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>3#变压器</td>
+                                        <td>45324kVA</td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                                <h3>二、系统运行分析</h3>
+                                <h4>2.1、母线绝缘异常分析</h4>
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th >序号</th>
+                                            <th >设备</th>
+                                            <th>绝缘下降异常次数</th>
+                                        </tr>                                  
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                          
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div></div>
+                                <!-- <div id="chart1" class="chart"></div> -->
+                            </div>
+                            <div class="model report_p23"  >
+                                <h4>2.2、交流输入异常分析</h4>
+                                <div class="chart" id="chart4"></div>
+                                <div>
+
+                                </div>
+                              
+                            </div>
+                            <div class="model report_p24"  >
+                                <h4>2.3、母线电压异常分析</h4>
+                                <div class="chart" id="chart5"></div>
+                                <div>
+
+                                </div>
+                         
+                               
+                            </div>
+
+                            <div class="model report_p26"  >
+                                <h4>2.5、蓄电池单体电压异常分析</h4>
+                              
+                                <div>
+                            
+                                </div>
+                                <h4>2.6、蓄电池单体内阻异常分析</h4>
+                                <div ></div>
+                                  
+                            </div>
+                            <div class="model report_p27"  >
+                                <h3>三、事件统计</h3>
+                                <h4>3.1、遥测</h4>
+                                <div>
+                                    <table>
+                                        <thead>
+                                        <tr>
+                                            <th>序号</th>
+                                            <th>回路</th>
+                                            <th>越限类型</th>
+                                            <th>参数类型</th>
+                                            <th>阈值</th>
+                                            <th>累计次数</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>光伏发电</td>
+                                            <td>高限报警</td>
+                                            <td>20.34</td>
+                                            <td>100.3</td>
+                                            <td>100.3</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>光伏发电</td>
+                                            <td>高限报警</td>
+                                            <td>100.34</td>
+                                            <td>750.3</td>
+                                            <td>750.3</td>
+                                        </tr>
+                                        
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="model report_p28"  >
+                                <h4>3.2、遥信</h4>
+                                <div>
+                                    <table>
+                                        <thead>
+                                        <tr>
+                                            <th>序号</th>
+                                            <th>回路</th>                                    
+                                            <th>参数类型</th>                      
+                                            <th>累计次数</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>光伏发电</td>
+                                            <td>高限报警</td>                         
+                                            <td>4</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>光伏发电</td>
+                                            <td>高限报警</td>                                          
+                                            <td>7</td>
+                                         
+                                        </tr>
+                                        
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                           
+                        </div>
+                        <!-- INV电源系统 -->
+                        <div id="system3">
+                            <div class="model report_p32">
+                                <h1 style="text-align:center">INV电源系统</h1>
+                                <h3 >一、概况</h3>
+                                <table >
+                                    <thead>
+                                        <tr>
+                                            <th >序号</th>
+                                            <th >设备</th>
+                                            <th >额定值</th>
+                                        </tr>
+                                    </thead>
+                                  <tbody>
+                                    
+                                  </tbody>
+                                </table>
+                             
+                                <!-- <div id="chart1" class="chart"></div> -->
+                            </div>
+                            <div class="model report_p33"  >
+                                <h3>二、系统运行分析</h3>
+                                <h4>2.1、INV运行分析</h4>
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th rowspan="2">序号</th>
+                                            <th rowspan="2">设备</th>
+                                            <th colspan="2">负载率越限</th>
+                                            <th colspan="2">超温</th>                                                               
+                                        </tr>      
+                                        <tr>
+                                            <th>最大值(%)</th>
+                                            <th>总时长(min)</th>
+                                            <th>最大值(℃)</th>
+                                            <th>总次数(次)</th>
+                                        </tr>                            
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                          
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div></div>
+                                
+                                <h4>2.2 #1INV输入电压异常分析</h4>
+                                <div class="chart" id="chart6"></div>
+                                <div>
+
+                                </div>
+                              
+                            </div>
+                            <div class="model report_p34"  >
+                                <h4>2.3、#2INV输入电压异常分析</h4>
+                                <div class="chart" id="chart7"></div>
+                                <div>
+
+                                </div>
+                         
+                               
+                            </div>
+                            <div class="model report_p37"  >
+                                <h3>三、事件统计</h3>
+                                <h4>3.1、遥测</h4>
+                                <div>
+                                    <table>
+                                        <thead>
+                                        <tr>
+                                            <th>序号</th>
+                                            <th>回路</th>
+                                            <th>越限类型</th>
+                                            <th>参数类型</th>
+                                            <th>阈值</th>
+                                            <th>累计次数</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>光伏发电</td>
+                                            <td>高限报警</td>
+                                            <td>20.34</td>
+                                            <td>100.3</td>
+                                            <td>100.3</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>光伏发电</td>
+                                            <td>高限报警</td>
+                                            <td>100.34</td>
+                                            <td>750.3</td>
+                                            <td>750.3</td>
+                                        </tr>
+                                        
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="model report_p38"  >
+                                <h4>3.2、遥信</h4>
+                                <div>
+                                    <table>
+                                        <thead>
+                                        <tr>
+                                            <th>序号</th>
+                                            <th>回路</th>                                    
+                                            <th>参数类型</th>                      
+                                            <th>累计次数</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>光伏发电</td>
+                                            <td>高限报警</td>                         
+                                            <td>4</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>光伏发电</td>
+                                            <td>高限报警</td>                                          
+                                            <td>7</td>
+                                         
+                                        </tr>
+                                        
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                           
+                        </div>
+                         <!-- UPS电源系统 -->
+                        <div id="system4">
+                            <div class="model report_p42">
+                                <h1 style="text-align:center">UPS电源系统</h1>
+                                <h3 >一、概况</h3>
+                                <table >
+                                    <thead>
+                                        <tr>
+                                            <th >序号</th>
+                                            <th >设备</th>
+                                            <th >额定值</th>
+                                        </tr>
+                                    </thead>
+                                  <tbody>
+                                    
+                                  </tbody>
+                                </table>
+                             
+                                <!-- <div id="chart1" class="chart"></div> -->
+                            </div>
+                            <div class="model report_p43"  >
+                                <h3>二、系统运行分析</h3>
+                                <h4>2.1、UPS运行分析</h4>
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th rowspan="2">序号</th>
+                                            <th rowspan="2">设备</th>
+                                            <th colspan="2">负载率越限</th>
+                                            <th colspan="2">超温</th>                                                               
+                                        </tr>      
+                                        <tr>
+                                            <th>最大值(%)</th>
+                                            <th>总时长(min)</th>
+                                            <th>最大值(℃)</th>
+                                            <th>总次数(次)</th>
+                                        </tr>                            
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                          
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div></div>
+                                
+                                <h4>2.2 #1UPS输入电压异常分析</h4>
+                                <div class="chart" id="chart8"></div>
+                                <div>
+
+                                </div>
+                              
+                            </div>
+                            <div class="model report_p44"  >
+                                <h4>2.3、#2UPS输入电压异常分析</h4>
+                                <div class="chart" id="chart9"></div>
+                                <div>
+
+                                </div>
+                         
+                               
+                            </div>
+                            <div class="model report_p47"  >
+                                <h3>三、事件统计</h3>
+                                <h4>3.1、遥测</h4>
+                                <div>
+                                    <table>
+                                        <thead>
+                                        <tr>
+                                            <th>序号</th>
+                                            <th>回路</th>
+                                            <th>越限类型</th>
+                                            <th>参数类型</th>
+                                            <th>阈值</th>
+                                            <th>累计次数</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>光伏发电</td>
+                                            <td>高限报警</td>
+                                            <td>20.34</td>
+                                            <td>100.3</td>
+                                            <td>100.3</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>光伏发电</td>
+                                            <td>高限报警</td>
+                                            <td>100.34</td>
+                                            <td>750.3</td>
+                                            <td>750.3</td>
+                                        </tr>
+                                        
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="model report_p48"  >
+                                <h4>3.2、遥信</h4>
+                                <div>
+                                    <table>
+                                        <thead>
+                                        <tr>
+                                            <th>序号</th>
+                                            <th>回路</th>                                    
+                                            <th>参数类型</th>                      
+                                            <th>累计次数</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>光伏发电</td>
+                                            <td>高限报警</td>                         
+                                            <td>4</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>光伏发电</td>
+                                            <td>高限报警</td>                                          
+                                            <td>7</td>
+                                        </tr>         
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 通信电源系统 -->
+                        <div id="system5">
+                            <div class="model report_p52">
+                                <h1 style="text-align:center">通信电源系统</h1>
+                                <h3 >一、概况</h3>
+                                <table >
+                                    <thead>
+                                        <tr>
+                                            <th >序号</th>
+                                            <th >设备</th>
+                                            <th >额定值</th>
+                                        </tr>
+                                    </thead>
+                                  <tbody>
+                                    
+                                  </tbody>
+                                </table>
+                             
+                                <!-- <div id="chart1" class="chart"></div> -->
+                            </div>
+                            <div class="model report_p53"  >
+                                <h3>二、系统运行分析</h3>
+                                <h4>2.1 交流输入异常分析</h4>
+                                <div id="chart10" class="chart"></div>
+                                <div></div>                                
+                                <h4>2.2 通讯母线电压异常分析</h4>
+                                <div class="chart" id="chart11"></div>
+                                <div></div>                              
+                            </div>
+                            <div class="model report_p55"  >
+                                <h4>2.4 蓄电池单体电压异常分析</h4>           
+                                <div></div>
+                                <h4>2.5 蓄电池单体内阻异常分析</h4>           
+                                <div></div>
+                            </div>
+                            <div class="model report_p57"  >
+                                <h3>三、事件统计</h3>
+                                <h4>3.1、遥测</h4>
+                                <div>
+                                    <table>
+                                        <thead>
+                                        <tr>
+                                            <th>序号</th>
+                                            <th>回路</th>
+                                            <th>越限类型</th>
+                                            <th>参数类型</th>
+                                            <th>阈值</th>
+                                            <th>累计次数</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>光伏发电</td>
+                                            <td>高限报警</td>
+                                            <td>20.34</td>
+                                            <td>100.3</td>
+                                            <td>100.3</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>光伏发电</td>
+                                            <td>高限报警</td>
+                                            <td>100.34</td>
+                                            <td>750.3</td>
+                                            <td>750.3</td>
+                                        </tr>
+                                        
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="model report_p58"  >
+                                <h4>3.2、遥信</h4>
+                                <div>
+                                    <table>
+                                        <thead>
+                                        <tr>
+                                            <th>序号</th>
+                                            <th>回路</th>                                    
+                                            <th>参数类型</th>                      
+                                            <th>累计次数</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>光伏发电</td>
+                                            <td>高限报警</td>                         
+                                            <td>4</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>光伏发电</td>
+                                            <td>高限报警</td>                                          
+                                            <td>7</td>
+                                         
+                                        </tr>
+                                        
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 剩余电流系统 -->
+                        <div id="system6">
+                            <div class="model report_p62">
+                                <h1 style="text-align:center">剩余电流系统</h1>
+                                <h3 >一、系统运行分析</h3>
+                                <h4>1.1 系统运行分析</h4>
+                                <table >
+                                    <thead>
+                                        <tr>
+                                            <th rowspan="2">序号</th>
+                                            <th rowspan="2">回路</th>                                       
+                                            <th colspan="2">剩余电流过流</th>
+                                        </tr>
+                                        <tr>
+                                            <th>最大值(mA)</th>
+                                            <th>总次数(次)</th>
+                                        </tr>
+                                    </thead>
+                                  <tbody>
+                                    
+                                  </tbody>
+                                </table>
+                                <div></div>   
+                            </div>
+                            <div class="model report_p63"  >
+                                <h3>二、事件统计</h3>
+                                <h4>2.1、遥测</h4>
+                                <div>
+                                    <table>
+                                        <thead>
+                                        <tr>
+                                            <th>序号</th>
+                                            <th>回路</th>
+                                            <th>越限类型</th>
+                                            <th>参数类型</th>
+                                            <th>阈值</th>
+                                            <th>累计次数</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                   
+                                        
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="model report_p64"  >
+                                <h4>2.2、遥信</h4>
+                                <div>
+                                    <table>
+                                        <thead>
+                                        <tr>
+                                            <th>序号</th>
+                                            <th>回路</th>                                    
+                                            <th>参数类型</th>                      
+                                            <th>累计次数</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                    
+                                        
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 所有的通信消息 -->
+                        <div id="system7">
+                            <div class="model report_p71"  >
+                                <h1 style="text-align:center">电源系统通信事件</h1>
+                                <h4>1.1、通讯</h4>
+                                <div>
+                                    <table class="ccc">
+                                        <thead>
+                                        <tr>
+                                            <th>序号</th>                        
+                                            <th>告警类型</th>  
+                                            <th>设备</th>                         
+                                            <th>开始时间</th>
+                                            <th>恢复时间</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+      
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>  
+        </li>
+    </ul>
+    <ul class="checkOpts">
+
+    </ul>
+</section>
+</body>
+<!--<script src="js/jquery.pagination.js"></script>-->
+<script src="js/jquery.nicescroll.js"></script>
+<script type="text/javascript" src="js/jspdf.min.js"></script>
+<script type="text/javascript" src="js/html2canvas.min.js"></script>
+
+<script type="text/javascript" src="js/toPdf.js"></script>
+<script type="text/javascript" src="js/jquery.jqprint-0.3.js"></script>
+<script type="text/javascript" src="js/print.js"></script>
+
+
+<script>
+    var ran=Math.random();
+    document.write('<script src="js/diagnose.js?ran='+ran+'" charset="utf-8"><\/script>');
+</script>
+<script>
+    function printMe(){
+        $("#containt").jqprint({
+            debug: false,
+            importCSS: false,
+            printContainer: true,
+            operaSupport: false
+        });
+    }
+</script>
+</html>

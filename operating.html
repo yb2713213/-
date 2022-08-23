@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html ondragstart="return false;" onselectstart="return false">
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+    <title></title>
+    <script src="js/jquery-3.1.1.js"></script>
+    <script src="js/echarts.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/pagination.css"/>
+    <!-- <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=1wiy2RTTReu863wNXQu6p2GmVRR1FAST"></script> -->
+    <!--<script type="text/javascript" src="../net_js/Global.js" charset="utf-8"></script>-->
+    <script>
+        var ran=Math.random();
+        document.write('<link rel="stylesheet" href="css/common.css?ran='+ran+'" ><\/link>');
+        document.write('<link rel="stylesheet" href="css/operating.css?ran='+ran+'" ><\/link>');
+        document.write('<script src="js/orders.js?ran='+ran+'" charset="utf-8"><\/script>');
+        document.write('<script src="js/md5.js?ran='+ran+'" charset="utf-8"><\/script>');
+    </script>
+    <!--<script type="text/javascript" src="../net_js/tieon_ccc_lib_2019_v25.js" charset="utf-8"></script>-->
+    <style>
+        html{
+           height:545px;
+       }
+       ul,li{
+           list-style: none;
+       }
+       ul{
+           margin:0;
+       }
+       section{
+        height:545px;
+        background:#000000;
+       }
+       /* body{opacity: 0; transition: opacity 0.2s}body.active{opacity: 1} */
+    </style>
+</head>
+<body>
+<section>
+    <ul class="">
+        <li class="menus">
+            <a about="consumption" class="active"><img src="imgs/config14.png" alt="imgs/config14.png"/><br/>能源能耗 </a>
+            <a about="userItem"><img src="imgs/config5.png" alt="imgs/config55.png"/><br/>用户分项</a>
+            <a about="modalUse"><img src="imgs/config16.png" alt="imgs/config15.png"/><br/>回路用电</a>
+        </li>
+        <li>
+            <ul>
+                <li class="content-mid">
+                    <!--用户分项-->
+                    <div class="stations userItem" >
+                        <ul class="total">
+                            <li>
+                                <div class="my_date">
+                                    <ul>
+                                        <li><img src="imgs/left.png" class="minus1" ><input class="cho_date1"  value="" type="datetime" disabled><img src="imgs/right.png" class="plus1" ></li>
+                                        <li>
+                                            <div class="choose_date" >
+                                                <a type="1" class="active">日</a>
+                                                <a type="3">月</a>
+                                                <a type="4">年</a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li>
+                                <p>总供电（kWh）：<b class="red">+1.88% <img src="" alt=""/></b></p>
+                                <p><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><span>.</span><span>0</span></p>
+                            </li>
+                            <li>
+                                <p>碳排放（t）：<b class="green">-1.88% <img src="" alt=""/></b></p>
+                                <p><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><span>.</span><span>0</span></p>
+                            </li>
+                        </ul>
+                        <div class="totlLine" id="totlLineEnergy">
+    
+                        </div>
+                        <div class="" >
+                            <u></u><b></b><u></u>
+                        </div>
+                        <div class="dataview">
+                            <ul class="pie">
+                                <li id="pie5"></li>
+                                <li class="energyName">
+                                    <div>
+                                        <ul>
+                                            <li>
+                                                <div>
+                                                    <p class="energyTotol">总能耗：<b>0</b><u>kWh</u><s class="red">↑100%</s></p>
+                                                
+                                                </div>
+                                            </li>
+                                            <li class="energyTotolFPG">
+                                                <div><p>峰<span></span><b>0</b><u></u><s></s></p> </div>
+                                                <div><p>平<span></span><b>0</b><u></u><s></s></p> </div>
+                                                <div><p>谷<span></span><b>0</b><u></u><s></s></p></div>
+                                            </li>
+                                        </ul>
+    
+                                    </div>
+                                    <div>
+                                        <ul>
+                                            <li>
+                                                <div style="margin-top:0">
+                                                    <p class="energyItemName"><span>分项能耗：</span><b style="color:#02aee6">0</b><u style="color:#02aee6">kWh</u><s class="red">↑100%</s></p>
+                                                </div>
+                                            </li>
+                                            <li class="energyItemFPG">
+                                                <div><p>峰<span></span><b>0</b><u></u><s></s></p></div>
+                                                <div><p>平<span></span><b>0</b><u></u><s></s></p></div>
+                                                <div><p>谷<span></span><b>0</b><u></u><s></s></p></div>
+                                            </li>
+                                        </ul>
+    
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <!--用电预测-->
+                        <div class="prediction">
+                            <!--<div class="title">-->
+                                <!--&lt;!&ndash;<u></u>&ndash;&gt;-->
+                                <!--&lt;!&ndash;<span><b>用电预测</b></span>&ndash;&gt;-->
+                                <!--&lt;!&ndash;<u></u>&ndash;&gt;-->
+                            <!--</div>-->
+                            <div id="elePrediction">
+    
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--能源能耗-->
+                    <div class="distribution  consumption" >
+
+                        <ul class="total">
+                            <li>
+                                <div class="my_date">
+                                    <ul>
+                                        <li><img src="imgs/left.png" class="minus1" ><input class="cho_date1"  value="" type="datetime" disabled><img src="imgs/right.png" class="plus1" ></li>
+                                        <li>
+                                            <div class="choose_date" >
+                                                <a type="1" class="active">日</a>
+                                                <a type="3">月</a>
+                                                <a type="4">年</a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li>
+                                <p>总供电（kWh）：<b class="red">+0 </b>
+                                </p>
+                                <p><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><span>.</span><span>0</span></p>
+                            </li>
+                            <li>
+                                <p>碳排放（t）：<b class="green">-1.88% </b>
+                                </p>
+                                <p><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><span>.</span><span>0</span></p>
+                            </li>
+                        </ul>
+                        <div class="totlLine" id="totlLinePower">
+    
+                        </div>
+                        <div class="" >
+                            <u></u><b></b><u></u>
+                        </div>
+                        <div class="dataview">
+                            <ul class="pie">
+                                <li id="pie6"></li>
+                                <li class="energyName">
+                                    <div>
+                                        <ul>
+                                            <li>
+                                                <div>
+                                                    <p class="powerTotol"><span>总供电： </span><b>0</b><u>kWh</u><s class="red"></s></p>
+                                                </div>
+                                            </li>
+                                            <li class="powerTotolFPG">
+                                                <div><p>峰<span></span><b>0</b><u></u><s></s></p> </div>
+                                                <div><p>平<span></span><b>0</b><u></u><s></s></p> </div>
+                                                <div><p>谷<span></span><b>0</b><u></u><s></s></p></div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <ul>
+                                            <li>
+                                                <div style="margin-top:0">
+                                                    <p class="powerItemName"><span>分项供电：</span><b style="color:#02aee6">0</b><u style="color:#02aee6">kWh</u><s class="red">↑5%</s></p>
+                                                    <!-- <p class="powerItem"></p> -->
+                                                </div>
+                                            </li>
+                                            <li class="powerItemFPG">
+                                                <div><p>峰<span></span><b>0</b><u></u><s></s></p></div>
+                                                <div><p>平<span></span><b>0</b><u></u><s></s></p></div>
+                                                <div><p>谷<span></span><b>0</b><u></u><s></s></p></div>
+                                            </li>
+                                        </ul>
+    
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <!--用电预测-->
+                        <div class="prediction">
+                            <!--<div class="title">-->
+                                <!--&lt;!&ndash;<u></u>&ndash;&gt;-->
+                                <!--&lt;!&ndash;<span><b>用电预测</b></span>&ndash;&gt;-->
+                                <!--&lt;!&ndash;<u></u>&ndash;&gt;-->
+                            <!--</div>-->
+                            <div id="powerPrediction">
+    
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modalUse">
+                        <ul>
+                            <li>
+                                 <!--排行-->
+                                <div class="ranking">
+                                    <p class="muns">
+                                        <span></span><b>负荷排行</b>
+                                    </p>
+                                    <ul>
+                                        <li>
+                                            <div><span>No.1</span><b>第一个模块名字</b><u>64%</u></div>
+                                            <progress value='64' max='100'></progress>
+                                        </li>
+                                        <li>
+                                            <div><span>No.2</span><b>第22222222个模块名字</b><u>62%</u></div>
+                                            <progress value='62' max='100'></progress>
+                                        </li>
+                                        <li>
+                                            <div><span>No.2</span><b>第22222222个模块名字</b><u>60%</u></div>
+                                            <progress value='60' max='100'></progress>
+                                        </li>
+                                        <li>
+                                            <div><span>No.2</span><b>第22222222个模块名字</b><u>52%</u></div>
+                                            <progress value='52' max='100'></progress>
+                                        </li>
+                                        <li>
+                                            <div><span>No.2</span><b>第22222222个模块名字</b><u>30%</u></div>
+                                            <progress value='30' max='100'></progress>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li>
+                                <div>
+                                    <div class="my_date">
+                                        <ul>
+                                            <li><img src="imgs/left.png" class="minus1" ><input class="cho_date1"  value="" type="datetime" disabled><img src="imgs/right.png" class="plus1" ></li>
+                                            <li>
+                                                <div class="choose_date" >
+                                                    <a type="1" class="active">日</a>
+                                                    <a type="3">月</a>
+                                                    <a type="4">年</a>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p class="muns">
+                                        <span></span><b>回路用电</b>
+                                        <div id="allDevCicle"></div>
+                                        <div class="modalTotal">
+                                            <p>回路总用电</p>
+                                            <p><b>111.22</b><span>Kwh</span></p>
+                                            <p><span class="green">↓18%</span>     </p>
+                                        </div>
+                                    </p>
+                                </div>
+                                <div>
+                                    <p class="muns modalBack">
+                                        <span></span><b>电网供电本期上期用电比</b>
+                                    </p>
+                                    <div id="modalLines">
+
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+              
+            </ul>
+        </li>
+       
+    </ul>
+</section>
+</body>
+<script>
+
+
+</script>
+<!--<script src="js/jquery.pagination.js"></script>-->
+<script src="js/jquery.nicescroll.js"></script>
+
+<script>
+    var ran=Math.random();
+    // document.write('<script src="js/common.js?ran='+ran+'" charset="utf-8"><\/script>');
+    document.write('<script src="js/operating.js?ran='+ran+'" charset="utf-8"><\/script>');
+    // $('body').addClass('active')
+</script>
+<script>
+
+
+
+
+</script>
+</html>

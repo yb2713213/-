@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html >
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+    <title></title>
+    <script src="js/jquery-3.1.1.js"></script>
+    <script src="js/echarts.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.min.css" media="screen">
+    <link rel="stylesheet" href="css/pagination.css"/>
+    <!-- <link rel="stylesheet" type="text/css" media="print" href="css/print.css" /> -->
+    <!-- <script type="text/javascript" src="js/jquery.PrintArea.min.js" charset="utf-8"></script> -->
+    <!--<script type="text/javascript" src="../net_js/Global.js" charset="utf-8"></script>-->
+    <script>
+        var ran=Math.random();
+        document.write('<link rel="stylesheet" href="css/common.css?ran='+ran+'" ><\/link>');
+        document.write('<link rel="stylesheet" href="css/alarms.css?ran='+ran+'" ><\/link>');
+        // document.write('<script src="../net_js/Global.js?ran='+ran+'" charset="utf-8"><\/script>');
+    </script>
+    <!--<script type="text/javascript" src="../net_js/tieon_ccc_lib_2019_v25.js" charset="utf-8"></script>-->
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            list-style: none;
+        }
+        html{
+            /* min-height:1000px; */
+        }
+        body{
+            margin:0;
+            width:100%;
+            /* min-height:1000px; */
+        }
+    </style>
+</head>
+<body>
+<header>
+    <!-- <select name="" id="items">
+        <option value="101">全部告警</option>
+        <option value="103">普通告警</option>
+        <option value="102">严重告警</option>
+        <option value="104">紧急告警</option>
+    </select> -->
+    <ul class="alarms">
+        <li class="active" type="1" data-status="1">当前告警<u></u></li>
+        <li type="1" data-status="0">历史告警<u></u></li>
+        <li type="2" data-status="2">通信告警<u></u></li>
+    </ul>   
+    <!-- <div id="export"><button class="btn btn-success">确认</button><button class="btn btn-success" data-type="xls">导出</button></div> -->
+    <div class="my_date">
+        <ul>
+            <li><img src="imgs/left.png" class="minus" id="minus1"><input class="cho_date" id="cho_date1" value="" type="datetime" disabled><img src="imgs/right.png" class="plus" id="plus1"></li>
+            <li>
+                <div class="choose_date" id="choose_date1">
+                    <a type="1" class="active">日</a>
+                    <a type="3">月</a>
+                    <a type="4">年</a>
+                </div>
+            </li>
+        </ul>
+
+    </div>
+    
+
+</header>
+<section>
+    <p><b about="0" class="active">全部告警</b><b about="1">重要告警</b><b about="2">严重告警</b><b about="3">一般告警</b></p>
+    <div>
+        <table id="alarmTable">
+            <thead>
+            <tr>
+                <th>序号</th>
+                <th>报警内容</th>
+                <th>
+                    <label class="checkOptBox">
+                    <select  id="filterDev">
+                        <option value="0">所有类型</option>
+                        <option value="1">低压进线</option>
+                        <option value="2">低压出线</option>
+                        <option value="3">低压母联</option>
+                        <option value="4">低压电容</option>
+                        <option value="5">低压IPC03</option>
+                        <option value="6">低压反向能耗进线</option>
+                        <option value="7">变压器</option>
+                        <option value="8">远程核容充电模块</option>
+                        <option value="9">远程核容有源逆变</option>
+                        <option value="10">远程核容PLC控制器</option>
+                        <option value="11">远程核容双向DCDC</option>
+                        <option value="12">交流输入</option>
+                        <option value="13">DCDC充电模块</option>
+                        <option value="14">蓄电池组</option>
+                        <option value="15">馈线绝缘监测仪</option>
+                        <option value="16">直流母线</option>
+                        <option value="17">母线绝缘监测仪</option>
+                        <option value="18">ACDC通信模块</option>
+                        <option value="19">ACDC充电模块</option>
+                        <option value="20">通信母线</option>
+                        <option value="21">馈线监测仪</option>
+                        <option value="22">UPS电源</option>
+                        <option value="23">馈线支路</option>
+                        <option value="24">逆变电源</option>
+                        <option value="25">DCDC通信模块</option>
+                        <option value="26">RCD集中接地点</option>
+                        <option value="27">RCD馈线支路</option>
+                        <option value="28">RCD长电缆</option>
+                        <option value="29">RCD设备</option>
+                        <option value="30">二路输入开关</option>
+                    </select></label>
+                </th>
+                <th>报警等级</th>
+                <th>开始时间</th>
+                <th>结束时间</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+
+        </table>
+        <div class="M-box3" style="margin-top:10px;box-sizing: border-box;height:40px;"></div>
+    </div>
+    <div>
+        <table id="TxTable">
+            <thead>
+            <tr>
+                <th>序号</th>
+                <th>报警内容</th>
+                <th>开始时间</th>
+                <th>结束时间</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+
+        </table>
+        <div class="M-box3" style="margin-top:10px;box-sizing: border-box;height:40px;"></div>
+    </div>
+    <ul class="checkOpts">
+
+    </ul>
+</section>
+<script src="js/md5.js"></script>
+<!-- <script src="js/tieon_ccc_lib_2020_v30.js"></script> -->
+<script src="js/orders.js"></script>
+<script src="js/jquery.pagination.js"></script>
+<!-- <script src="js/bootstrap.min.js"></script> -->
+<!-- <script src="js/Blob.js"></script> -->
+<!-- <script src="js/jquery.nicescroll.js"></script> -->
+<!-- <script src="js/FileSaver.js"></script> -->
+<!-- <script src="js/tableExport.js"></script> -->
+<script>
+    var ran=Math.random();
+    document.write('<script src="js/common.js?ran='+ran+'" charset="utf-8"><\/script>');
+    document.write('<script src="js/alarms.js?ran='+ran+'" charset="utf-8"><\/script>');
+</script>
+</body>
+</html>
