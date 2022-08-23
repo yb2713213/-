@@ -1,0 +1,428 @@
+body {
+  background: #282A39;
+}
+
+table {
+  border-collapse: separate;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+  background-color: rgba(94, 93, 93, 0.8);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.my_date {
+  width: 40%;
+  display: inline-block;
+  height: 45px;
+  float: right;
+  line-height: 45px;
+  box-sizing: border-box;
+  margin-top: 5px;
+}
+
+.my_date > ul {
+  width: 100%;
+  min-height: 50px;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+.my_date > ul > li {
+  float: left;
+  width: 40%;
+  line-height: 45px;
+  height: 45px;
+  text-align: center;
+}
+
+.my_date > ul > li > img {
+  vertical-align: top;
+  margin-top: 7px;
+  cursor: pointer;
+  width: 30px;
+}
+
+.my_date > ul > li:first-child {
+  width: 60%;
+  line-height: 30px;
+}
+
+.my_date > ul .cho_date {
+  display: inline-block;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 7px;
+  width: 50%;
+  height: 21px;
+  border: 2px solid #355AE7;
+  border-radius: 5px;
+  text-align: Center;
+  font-size: 1.1em;
+  color: white;
+  background: none;
+  font-weight: bold;
+}
+
+.my_date > ul .choose_date {
+  width: 95%;
+  float: right;
+  font-size: 1.1em;
+}
+
+.my_date > ul .choose_date > a {
+  text-decoration: none;
+  padding: 6px 12px;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.my_date > ul .choose_date .active {
+  background-color: #355AE7;
+  color: white;
+}
+
+header {
+  height: 50px;
+  line-height: 50px;
+  padding: 0 10px;
+}
+
+header > ul {
+  display: inline-block;
+  box-sizing: border-box;
+  padding: 10px 0;
+  overflow: hidden;
+  height: 50px;
+}
+
+header > ul > li {
+  display: inline-block;
+  padding: 0 10px;
+  width: 100px;
+  border-radius: 5px;
+  height: 34px;
+  text-align: center;
+  line-height: 34px;
+  background: #19172a;
+  color: white;
+  box-sizing: border-box;
+  font-weight: bold;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+  letter-spacing: 2px;
+  font-size: 1.2em;
+}
+
+header > ul > li > u {
+  display: inline-block;
+  top: 29px;
+  left: 0;
+  height: 4px;
+  width: 0;
+  background: #355ae7;
+  position: absolute;
+}
+
+header > ul > li:nth-child(n+2) {
+  margin-left: 7px;
+}
+
+header > ul > li.active {
+  background: #434760;
+}
+
+header > ul > li.active > u {
+  width: 100%;
+  transition: 0.5s;
+}
+
+header > div:nth-child(2) {
+  float: right;
+}
+
+header > div:nth-child(2) > button.btn-success {
+  background: #00A0E9;
+  margin-right: 10px;
+  margin-bottom: 3px;
+}
+
+section {
+  width: calc(100% - 10px);
+  margin: 0 auto;
+  padding: 0 5px;
+  box-sizing: border-box;
+}
+
+section > p {
+  height: 35px;
+  line-height: 35px;
+  margin-bottom: 10px;
+  margin-top: 5px;
+}
+
+section > p > b {
+  text-decoration: none;
+  padding: 8px 10px;
+  border-radius: 5px;
+  color: white;
+  line-height: 30px;
+  letter-spacing: 2px;
+  cursor: pointer;
+  margin-left: 5px;
+  font-size: 1.1em;
+}
+
+section > p > b:nth-child(1) {
+  border: 2px solid #4158e5;
+  margin-left: 0;
+}
+
+section > p > b:nth-child(2) {
+  border: 2px solid #e02a2a;
+}
+
+section > p > b:nth-child(3) {
+  border: 2px solid #ef8f1d;
+}
+
+section > p > b:nth-child(4) {
+  border: 2px solid #24a72f;
+}
+
+section > p > b:nth-child(1).active {
+  background: #4158e5;
+}
+
+section > p > b:nth-child(2).active {
+  background: #e02a2a;
+}
+
+section > p > b:nth-child(3).active {
+  background: #ef8f1d;
+}
+
+section > p > b:nth-child(4).active {
+  background: #24a72f;
+}
+
+section > div {
+  height: 445px;
+  box-sizing: border-box;
+}
+
+section > div > table {
+  width: 100%;
+  text-align: center;
+  font-size: 0.9em;
+  color: white;
+}
+
+section > div > table tr {
+  line-height: 21px;
+}
+
+section > div > table thead {
+  box-sizing: border-box;
+  background: #545559;
+}
+
+section > div > table tbody tr {
+  height: 35px;
+  line-height: 21px;
+}
+
+section > div > table tbody > tr:nth-child(even) {
+  background: rgba(100, 100, 100, 0.2);
+}
+
+section > div > table th {
+  height: 36px;
+  line-height: 36px;
+  font-weight: bold;
+  font-size: 1.1em;
+  border: 1px solid #817f7f;
+  width: 11%;
+}
+
+section > div > table th select {
+  margin-bottom: 0;
+  background: #282A39;
+  width: 100px;
+  color: white;
+}
+
+section > div > table td {
+  color: white;
+  width: 11%;
+  border: 1px solid #817f7f;
+}
+
+section > div > table td.red {
+  color: red;
+}
+
+section > div > table td.orange {
+  color: #fb7839;
+}
+
+section > div > table td.yellow {
+  color: #e7a800;
+}
+
+section > div > table th:first-child, section > div > table td:first-child {
+  width: 5%;
+}
+
+section > div > table th:first-child > input, section > div > table td:first-child > input {
+  width: 20px;
+  height: 20px;
+}
+
+section > div > table th:nth-child(4), section > div > table td:nth-child(4), section > div > table th:nth-child(3), section > div > table td:nth-child(3) {
+  width: 6%;
+}
+
+section > div > table th:nth-child(2), section > div > table td:nth-child(2) {
+  width: 40%;
+}
+
+section > div > table td:nth-child(2) {
+  text-align: left;
+  padding-left: 10px;
+  box-sizing: border-box;
+}
+
+section > div > table td:nth-child(2), section > div > table td:nth-child(3) {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+section > div:nth-child(3) {
+  display: none;
+}
+
+section > div:nth-child(3) > table {
+  width: 100%;
+  text-align: center;
+  font-size: 0.9em;
+  color: white;
+}
+
+section > div:nth-child(3) > table tr {
+  height: 40px;
+  line-height: 21px;
+}
+
+section > div:nth-child(3) > table thead {
+  box-sizing: border-box;
+  background: #545559;
+}
+
+section > div:nth-child(3) > table tbody > tr {
+  height: 35px;
+  line-height: 21px;
+}
+
+section > div:nth-child(3) > table tbody > tr:nth-child(even) {
+  background: rgba(100, 100, 100, 0.2);
+}
+
+section > div:nth-child(3) > table th {
+  height: 40px;
+  line-height: 40px;
+  font-weight: bold;
+  font-size: 1.1em;
+  width: 11%;
+}
+
+section > div:nth-child(3) > table td {
+  color: white;
+  width: 11%;
+}
+
+section > div:nth-child(3) > table td.red {
+  color: red;
+}
+
+section > div:nth-child(3) > table td.orange {
+  color: #fb7839;
+}
+
+section > div:nth-child(3) > table td.yellow {
+  color: #e7a800;
+}
+
+section > div:nth-child(3) > table th:first-child, section > div:nth-child(3) > table td:first-child {
+  width: 5%;
+}
+
+section > div:nth-child(3) > table th:first-child > input, section > div:nth-child(3) > table td:first-child > input {
+  width: 20px;
+  height: 20px;
+}
+
+section > div:nth-child(3) > table th:nth-child(4), section > div:nth-child(3) > table td:nth-child(4), section > div:nth-child(3) > table th:nth-child(3), section > div:nth-child(3) > table td:nth-child(3) {
+  width: 11%;
+}
+
+section > div:nth-child(3) > table th:nth-child(2), section > div:nth-child(3) > table td:nth-child(2) {
+  width: 40%;
+}
+
+section > div:nth-child(3) > table td:nth-child(2) {
+  text-align: left;
+  padding-left: 10px;
+  box-sizing: border-box;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+section .checkOpts {
+  width: 270px;
+  max-height: 150px;
+  position: absolute;
+  display: none;
+  z-index: 50;
+  top: 30px;
+  left: 0px;
+  background: #1F2224;
+  color: white;
+  overflow-y: auto;
+  border: 1px solid #bfbfbf;
+  box-sizing: border-box;
+}
+
+section .checkOpts > li {
+  height: 28px;
+  line-height: 28px;
+  padding-left: 5px;
+  text-align: left;
+}
+
+section .checkOpts > li:hover, section .checkOpts > li.active {
+  background: #245dff;
+}
+
+section .checkOptBox {
+  display: inline-block;
+  position: relative;
+  margin-bottom: 0;
+}

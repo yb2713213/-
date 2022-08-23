@@ -1,0 +1,355 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+}
+
+section {
+  background-image: linear-gradient(#183b62, #071322);
+  width: 100%;
+}
+
+section .title {
+  z-index: 999999;
+  height: 25px;
+  position: relative;
+  top: -20px;
+  text-align: center;
+}
+
+section .title > .ChangePos {
+  z-index: 450000;
+  display: none;
+  position: absolute;
+  top: 32px;
+  left: calc(50% - 59px);
+  width: 132px;
+  min-height: 1px;
+  background: rgba(8, 23, 44, 0.3);
+}
+
+section .title > .ChangePos > li {
+  height: 25px;
+  border-bottom: 1px dashed #9d9d9d;
+  color: #9d9d9d;
+  text-align: center;
+  font-size: 0.8em;
+  line-height: 25px;
+  cursor: pointer;
+}
+
+section .title > .ChangePos > li:hover {
+  color: white;
+  border-bottom: 1px dashed white;
+}
+
+section .title > span {
+  cursor: pointer;
+  font-size: 0.8em;
+  color: white;
+  font-weight: bold;
+  display: inline-block;
+  height: 22px;
+  line-height: 22px;
+  margin-top: 5px;
+  padding: 2px 30px;
+  border-top: 1px solid #00A0E9;
+  border-bottom: 1px solid #00A0E9;
+  background: rgba(39, 94, 133, 0.9);
+  margin-left: 10px;
+}
+
+section .title > span > img {
+  margin: 0 10px;
+}
+
+section .title > u:nth-child(3) {
+  text-decoration: none;
+  width: 0px;
+  border-bottom: 14px solid transparent;
+  border-top: 14px solid transparent;
+  border-left-width: 10px;
+  border-left-style: solid;
+  border-left-color: #00A0E9;
+  position: absolute;
+  margin-top: 5px;
+  top: 0px;
+}
+
+section .title > u:nth-child(1) {
+  text-decoration: none;
+  width: 0px;
+  border-bottom: 14px solid transparent;
+  border-top: 14px solid transparent;
+  border-right: 10px solid #00A0E9;
+  position: absolute;
+  top: 0px;
+  margin-top: 5px;
+}
+
+section .my_date {
+  width: 70%;
+  display: inline-block;
+  min-height: 40px;
+  box-sizing: border-box;
+  margin-top: 10px;
+}
+
+section .my_date > ul {
+  width: 100%;
+  min-height: 40px;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+section .my_date > ul > li {
+  float: left;
+  width: 35%;
+  line-height: 40px;
+  height: 40px;
+  text-align: center;
+}
+
+section .my_date > ul > li > img {
+  vertical-align: top;
+  margin-top: 7px;
+  cursor: pointer;
+  width: 30px;
+}
+
+section .my_date > ul > li:first-child {
+  width: 65%;
+  line-height: 30px;
+}
+
+section .my_date > ul .cho_date {
+  display: inline-block;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 6px;
+  width: 50%;
+  height: 20px;
+  border: 1px solid #00bfff;
+  border-radius: 5px;
+  text-align: Center;
+  font-size: 1em;
+  color: white;
+  background: none;
+}
+
+section .my_date > ul .choose_date {
+  width: 95%;
+  float: right;
+  font-size: 1.1em;
+}
+
+section .my_date > ul .choose_date > a {
+  text-decoration: none;
+  padding: 6px 8px;
+  color: white;
+  cursor: pointer;
+}
+
+section .my_date > ul .choose_date .active {
+  background-color: deepskyblue;
+  color: white;
+}
+
+section > ul {
+  overflow: hidden;
+}
+
+section > ul > li {
+  float: left;
+  width: calc(100% - 10px);
+  height: 545px;
+  padding: 0 5px;
+}
+
+section > ul > li > div {
+  padding: 0 5px;
+  height: 540px;
+}
+
+section > ul > li > div > ul {
+  overflow: hidden;
+}
+
+section > ul > li > div > ul > li {
+  float: left;
+  width: 50%;
+  height: 60px;
+  line-height: 60px;
+}
+
+section > ul > li > div > ul > li:nth-child(1) > ul {
+  box-sizing: border-box;
+  padding: 10px 0;
+  overflow: hidden;
+  height: 60px;
+}
+
+section > ul > li > div > ul > li:nth-child(1) > ul > li {
+  display: inline-block;
+  padding: 0 10px;
+  width: 100px;
+  border-radius: 5px;
+  height: 37px;
+  text-align: center;
+  line-height: 37px;
+  background: #19172a;
+  color: white;
+  box-sizing: border-box;
+  font-weight: bold;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+  letter-spacing: 2px;
+}
+
+section > ul > li > div > ul > li:nth-child(1) > ul > li > u {
+  display: inline-block;
+  top: 33px;
+  left: 0;
+  height: 4px;
+  width: 0;
+  background: #355ae7;
+  position: absolute;
+}
+
+section > ul > li > div > ul > li:nth-child(1) > ul > li:nth-child(2) {
+  margin-left: 10px;
+}
+
+section > ul > li > div > ul > li:nth-child(1) > ul > li.active {
+  background: #434760;
+}
+
+section > ul > li > div > ul > li:nth-child(1) > ul > li.active > u {
+  width: 100%;
+  transition: 0.5s;
+}
+
+section > ul > li > div > ul > li:nth-child(2) {
+  text-align: center;
+}
+
+section > ul > li > div > ul > li:nth-child(2) > div {
+  margin-left: 10%;
+}
+
+section > ul > li #operateRecord, section > ul > li #deviceRecord, section > ul > li #userRecord {
+  width: 100%;
+  height: 430px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+}
+
+section > ul > li #operateRecord .M-box3, section > ul > li #deviceRecord .M-box3, section > ul > li #userRecord .M-box3 {
+  width: 98%;
+  margin: 0 auto;
+  margin-top: 10px;
+}
+
+section > ul > li #operateRecord > table, section > ul > li #deviceRecord > table, section > ul > li #userRecord > table {
+  width: 100%;
+  margin: 0 auto;
+  text-align: Center;
+  border-collapse: collapse;
+  border: 1px solid #817f7f;
+}
+
+section > ul > li #operateRecord > table thead, section > ul > li #deviceRecord > table thead, section > ul > li #userRecord > table thead {
+  color: white;
+  font-size: 1.2em;
+  box-sizing: border-box;
+  background: #545559;
+}
+
+section > ul > li #operateRecord > table thead th, section > ul > li #deviceRecord > table thead th, section > ul > li #userRecord > table thead th {
+  height: 35px;
+  line-height: 35px;
+}
+
+section > ul > li #operateRecord > table tbody > tr:nth-child(odd), section > ul > li #deviceRecord > table tbody > tr:nth-child(odd), section > ul > li #userRecord > table tbody > tr:nth-child(odd) {
+  background: rgba(100, 100, 100, 0.2);
+}
+
+section > ul > li #operateRecord > table tbody > tr:nth-child(even), section > ul > li #deviceRecord > table tbody > tr:nth-child(even), section > ul > li #userRecord > table tbody > tr:nth-child(even) {
+  color: white;
+}
+
+section > ul > li #operateRecord > table tr, section > ul > li #deviceRecord > table tr, section > ul > li #userRecord > table tr {
+  height: 36px;
+  line-height: 18px;
+  color: white;
+}
+
+section > ul > li #operateRecord > table tr td, section > ul > li #deviceRecord > table tr td, section > ul > li #userRecord > table tr td {
+  padding: 0 4px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+section > ul > li #operateRecord > table tr td, section > ul > li #operateRecord > table tr th, section > ul > li #deviceRecord > table tr td, section > ul > li #deviceRecord > table tr th, section > ul > li #userRecord > table tr td, section > ul > li #userRecord > table tr th {
+  width: 14%;
+  text-align: Center;
+  word-break: break-all;
+  font-size: 13px;
+  border: 1px solid #817f7f;
+}
+
+section > ul > li #deviceRecord, section > ul > li #userRecord {
+  display: none;
+}
+
+section > ul > li #deviceRecord > table td:nth-child(1), section > ul > li #deviceRecord > table th:nth-child(1), section > ul > li #userRecord > table td:nth-child(1), section > ul > li #userRecord > table th:nth-child(1), section > ul > li #operateRecord > table td:nth-child(1), section > ul > li #operateRecord > table th:nth-child(1), section > ul > li #operateRecord > table td:nth-child(6), section > ul > li #operateRecord > table th:nth-child(6) {
+  width: 5%;
+}
+
+section > ul > li #operateRecord > table td:nth-child(2), section > ul > li #operateRecord > table th:nth-child(2) {
+  width: 16%;
+}
+
+section > ul > li #deviceRecord > table td:nth-child(2), section > ul > li #deviceRecord > table th:nth-child(2), section > ul > li #userRecord > table td:nth-child(2), section > ul > li #userRecord > table th:nth-child(2) {
+  width: 16%;
+}
+
+section > ul > li #deviceRecord > table td:nth-child(4), section > ul > li #deviceRecord > table th:nth-child(4), section > ul > li #userRecord > table td:nth-child(4), section > ul > li #userRecord > table th:nth-child(4) {
+  width: 42%;
+  text-align: center;
+  padding-left: 5px;
+  box-sizing: border-box;
+}
+
+section > ul > li #deviceRecord > table td:nth-child(4), section > ul > li #operateRecord > table td:nth-child(5) {
+  text-align: left;
+}
+
+section > ul > li #operateRecord > table td:nth-child(2), section > ul > li #operateRecord > table th:nth-child(2) {
+  width: 16%;
+}
+
+section > ul > li #operateRecord > table td:nth-child(3), section > ul > li #operateRecord > table th:nth-child(3) {
+  width: 10%;
+}
+
+section > ul > li #operateRecord > table td:nth-child(4), section > ul > li #operateRecord > table th:nth-child(4) {
+  width: 14%;
+}
+
+section > ul > li #operateRecord > table td:nth-child(5), section > ul > li #operateRecord > table th:nth-child(5) {
+  width: 51%;
+  padding-left: 5px;
+  box-sizing: border-box;
+}
+
+section > ul > li #operateRecord > table td:nth-child(5) {
+  text-align: left;
+}
