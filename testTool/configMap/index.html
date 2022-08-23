@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+    <title>易维安-电气图配置工具</title>
+    <link href="css/config400v.css" rel="stylesheet" type="text/css"/>
+</head>
+
+<body>
+<div class="header">
+    <div class="h-left"><img src="img/2.0logo.png" alt=""/></div>
+    <div class="h-right"><span class="times" style="margin-right: 50px">2019-08-08 12:22:30</span><span class="closePage">[关闭]</span></div>
+</div>
+<ul class="bloc"></ul>
+<div id="mainDiv">
+    <div id="tools">
+<!--        <div class="stns"><span>选择站点</span><img src="img/hamberg.png" alt=""/></div>-->
+        <p class="myStn" title="泰昂深圳办点">泰昂深圳办点</p>
+        <!--        <button>导出</button>-->
+        <span style="vertical-align: middle">颜色变换：</span>
+        <select class="currColor">
+            <option value="5">白色</option>
+            <option value="3">黄色</option>
+            <option value="7">紫色</option>
+            <option value="9">青色</option>
+            <option value="6">蓝色</option>
+            <option value="1">红色</option>
+            <option value="2">绿色</option>
+<!--            <option value="4">黑色</option>-->
+            <option value="8">灰色</option>
+        </select>
+        <button class="setArea" style="margin-left:10px;">设置区域</button>
+        宽：<input type="text" id="widt" value="1680"><span style="display: inline-block;margin-right: 20px">px</span>
+        高：<input type="text" id="heig" value="960"><span>px</span>
+        <input type="file" id="configBG" accept="image/png,image/jpeg" style="display: none" />
+        <input style="width:15px;height:15px;position:Relative;top:2px;margin-left: 20px" value="0" checked name="radio" id="isShowModName"
+               type="radio">显示设备名称
+        <input style="width:15px;height:15px;position:Relative;top:2px;" value="0" checked name="radio2" id="isShowDataName"
+               type="radio">显示数据名称
+        <div class="floatRight">
+            <button class="btn-success active" id="save">保存</button>
+            <button class="refresh">刷新</button>
+            <button id="reloadMods">重载设备</button>
+            <label for="importData"><input style="display: none" type="file" id="importData" accept=".json">导入</label>
+            <button id="outportData">导出</button>
+        </div>
+    </div>
+    <ul class="container">
+        <li class="content-left">
+<!--            <p class="myStn">深圳宝安站</p>-->
+            <div style="padding: 5px 0;background-color: #2b569a;display: none"><select name="" id="showMods">
+                <option value="1">全部模块</option>
+                <option value="2">已配置模块</option>
+                <option value="3">未配置模块</option>
+            </select></div>
+            <div class="leftIcon"></div>
+            <div class="rightIcon"></div>
+            <div class="leftNav">
+                <div class="activeBtn">设备</div>
+                <div>元件库</div>
+            </div>
+            <ul class="myDev scroll-bar">
+
+            </ul>
+            <ul class="myLibrary scroll-bar">
+                <li class="libList1">
+                    <p class="smallTitle">线、文本<i></i></p>
+                    <ul class="sonUl scroll-bar">
+                    </ul>
+                </li>
+                <li class="libList3">
+                    <p class="smallTitle">各类开关<i></i></p>
+                    <ul class="sonUl scroll-bar">
+                    </ul>
+                </li>
+                <li class="libList2">
+                    <p class="smallTitle">电子元器件<i></i></p>
+                    <ul class="sonUl scroll-bar" style="display:block">
+                    </ul>
+                </li>
+            </ul>
+            <label class="currColor2Box">
+                <span style="vertical-align: middle">元件颜色：</span>
+                <select class="currColor2">
+                    <option value="5">白色</option>
+                    <option value="3">黄色</option>
+                    <option value="7">紫色</option>
+                    <option value="9">青色</option>
+                    <option value="6">蓝色</option>
+                    <option value="1">红色</option>
+                    <option value="2">绿色</option>
+                    <!--            <option value="4">黑色</option>-->
+                    <option value="8">灰色</option>
+                </select>
+            </label>
+        </li>
+        <li class="content-right">
+            <!--菜单栏-->
+            <div id="divmenu" style="display: none"></div>
+            <!--电气图-->
+            <div id="canv" onmouseup="menuDiv_msup()"
+                 style="overflow: auto;position:fixed;background-color:black;background-image:url('img/bg.png');top: 103px; bottom: 0;left: 230px;right: 0;">
+                <div id="contentDiv" class=""
+                     style="width:1680px;height:960px; position: absolute;left:0px;top:0px;border-right: 5px dashed #383838;border: 5px dashed #383838;margin:10px;overflow: hidden;">
+                </div>
+            </div>
+
+
+            <!--鼠标按下去状态为1，按着移动时判断状态为1时设置偏移；松开鼠标上一级DIV捕获到UP事件，状态转为0；鼠标移出当前DIV范围后是捕获不到UP事件的-->
+            <div id="editCtrlDiv" onmouseup="menuDiv_msup()" class="" onmousedown="editCtrlDiv_msdown(this)"
+                 >
+                <p style="background:rgba(19,78,140,1);height:35px;line-height:35px;padding-left:18px;color:white;border-top-left-radius:4px;border-top-right-radius:4px;text-align:left;">
+                    编辑栏 <span class="closeX">X</span></p>
+                <div id="tmvImgDiv"></div>
+                <div class="ediStyle">
+                    <div id="divsiteid">
+                        <!--图片坐标,x坐标-->
+                        <p class="minTitle">图片</p>
+                        <label id="label_x">x:</label>
+                        <a id="minus_x_l" onmousedown='click_time("X","value_x",number_minus)'>-</a>
+                        <input onkeyup="value=value.replace(/[^\d]/g,'')"
+                               onblur="value=value.replace(/[^\d]/g,'');number_input('X',this)" placeholder="请输入数字"
+                               id="value_x" value=0>
+                        <a id="plus_x_r" onmousedown="click_time('X','value_x',number_plus)">+</a>
+                        <!--y坐标-->
+                        <label id="label_y">y:</label>
+                        <a id="minus_y_l" onmousedown='click_time("Y","value_y",number_minus)'>-</a>
+                        <input onkeyup="value=value.replace(/[^\d]/g,'')"
+                               onblur="value=value.replace(/[^\d]/g,'');number_input('Y',this)" placeholder="请输入数字"
+                               id="value_y" value=0>
+                        <a id="plus_y_r" onmousedown="click_time('Y','value_y',number_plus)">+</a>
+                        <!--width坐标-->
+                        <label id="label_w">w:</label>
+                        <a id="minus_w_l" onmousedown='click_time("W","value_w",number_minus)'>-</a>
+                        <input onkeyup="value=value.replace(/[^\d]/g,'')"
+                               onblur="value=value.replace(/[^\d]/g,'');number_input('W',this)" placeholder="请输入数字"
+                               id="value_w" value=0>
+                        <a id="plus_w_r" onmousedown="click_time('W','value_w',number_plus)">+</a>
+                        <!--height坐标-->
+                        <label id="label_h">h:</label>
+                        <a id="minus_h_l" onmousedown='click_time("H","value_h",number_minus)'>-</a>
+                        <input onkeyup="value=value.replace(/[^\d]/g,'')"
+                               onblur="value=value.replace(/[^\d]/g,'');number_input('H',this)" placeholder="请输入数字"
+                               id="value_h" value=0>
+                        <a id="plus_h_r" onmousedown="click_time('H','value_h',number_plus)">+</a>
+                        <!--控件旋转-->
+                        <label>旋转:</label>
+                        <a id="imgRotateL" onmousedown='click_time("R","value_r",number_minus)'>-</a>
+                        <input onkeyup="value=value.replace(/[^\-?\d]/g,'')"
+                               onblur="value=value.replace(/[^\-?\d]/g,'');number_input('R',this)" placeholder="请输入数字"
+                               id="value_r" value=0>
+                        <a id="imgRotateR" onmousedown="click_time('R','value_r',number_plus)">+</a>
+                        <i class="rotate90"></i>
+                        <!--直线颜色-->
+                        <label class="lineColor" style="display: none;margin-left: 18px;">颜色:</label>
+                        <select style="vertical-align: top;display:none;width: 62px" id="img_color" onchange="onchange_selectImgColor(this)">
+                            <option value="5">白色</option>
+                            <option value="3">黄色</option>
+                            <option value="7">紫色</option>
+                            <option value="9">青色</option>
+                            <option value="6">蓝色</option>
+                            <option value="1">红色</option>
+                            <option value="2">绿色</option>
+                            <option value="4">黑色</option>
+                            <option value="8">灰色</option>
+                        </select>
+                    </div>
+                    <!--                    <label id="lb_name">名称</label>-->
+                    <div id="divnamesiteid">
+                        <p class="minTitle">名称</p>
+                        <!--名称坐标,x坐标-->
+                        <label id="lb_name_x">x:</label>
+                        <a id="ms_name_x_l" onmousedown='click_time("X","name_value_x",name_minus)'>-</a>
+                        <input onkeyup="value=value.replace(/[^\-?\d]/g,'')"
+                               onblur="value=value.replace(/[^\-?\d]/g,'');name_input('X',this)" placeholder="请输入数字"
+                               id="name_value_x" value=0>
+                        <a id="ms_name_x_r" onmousedown="click_time('X','name_value_x',name_plus)">+</a>
+                        <!--y坐标-->
+                        <label id="lb_name_y">y:</label>
+                        <a id="ms_name_y_l" onmousedown='click_time("Y","name_value_y",name_minus)'>-</a>
+                        <input onkeyup="value=value.replace(/[^\-?\d]/g,'')"
+                               onblur="value=value.replace(/[^\-?\d]/g,'');name_input('Y',this)" placeholder="请输入数字"
+                               id="name_value_y" value=0>
+                        <a id="ms_name_y_r" onmousedown="click_time('Y','name_value_y',name_plus)">+</a>
+                        <!--width坐标-->
+                        <label id="lb_name_w">w:</label>
+                        <a id="ms_name_w_l" onmousedown='click_time("W","name_value_w",name_minus)'>-</a>
+                        <input onkeyup="value=value.replace(/[^\d]/g,'')"
+                               onblur="value=value.replace(/[^\d]/g,'');name_input('W',this)" placeholder="请输入数字"
+                               id="name_value_w" value=0>
+                        <a id="ms_name_w_r" onmousedown="click_time('W','name_value_w',name_plus)">+</a>
+                        <!--控件缩放-->
+                        <label id="lb_name_s">缩放:</label>
+                        <a id="ms_name_s_l" onmousedown='click_time("S","name_value_s",name_scale_minus)'>-</a>
+                        <input onkeyup="value=value.replace(/^(\-)*(\d+)\.(\d).*$/,'$1$2.$3')"
+                               onblur="value=value.replace(/^(\-)*(\d+)\.(\d).*$/,'$1$2.$3');name_input('S',this)"
+                               placeholder="请输入数字" id="name_value_s" value=0>
+                        <a id="ms_name_s_r" onmousedown="click_time('S','name_value_s',name_scale_plus)">+</a>
+                        <!--名字颜色-->
+                        <label>颜色:</label>
+                        <select id="select_namecolor" onchange="onchange_selectNameColor(this)">
+                            <option value="5">白色</option>
+                            <option value="3">黄色</option>
+                            <option value="7">紫色</option>
+                            <option value="9">青色</option>
+                            <option value="6">蓝色</option>
+                            <option value="1">红色</option>
+                            <option value="2">绿色</option>
+                            <option value="4">黑色</option>
+                            <option value="8">灰色</option>
+                        </select><!---->
+                    </div>
+                    <div id="alertL">
+                        <p class="minTitle">告警</p>
+                        <!--名称坐标,x坐标-->
+                        <label id="lb_alert_x">x:</label>
+                        <a id="ms_alert_x_l" onmousedown='click_time("X","alert_value_x",alert_minus)'>-</a>
+                        <input onkeyup="value=value.replace(/[^\-?\d]/g,'')"
+                               onblur="value=value.replace(/[^\-?\d]/g,'');alert_input('X',this)" placeholder="请输入数字"
+                               id="alert_value_x" value=0>
+                        <a id="ms_alert_x_r" onmousedown="click_time('X','alert_value_x',alert_plus)">+</a>
+                        <!--y坐标-->
+                        <label id="lb_alert_y">y:</label>
+                        <a id="ms_alert_y_l" onmousedown='click_time("Y","alert_value_y",alert_minus)'>-</a>
+                        <input onkeyup="value=value.replace(/[^\-?\d]/g,'')"
+                               onblur="value=value.replace(/[^\-?\d]/g,'');alert_input('Y',this)" placeholder="请输入数字"
+                               id="alert_value_y" value=0>
+                        <a id="ms_alert_y_r" onmousedown="click_time('Y','alert_value_y',alert_plus)">+</a>
+                    </div>
+                    <div class="boxYCBtn">
+                        <span class="display_name boxBtn" id="ipt_name">显示名称</span>
+                        <span class="display_arrow boxBtn" id="ipt_direction">显示箭头</span>
+                        <span class="display_alertLight boxBtn" id="ipt_alert">显示告警</span>
+                    </div>
+                    <div class="boxYCText">
+                        <div id="lb_value" class="yc_text_nar ">
+                            <span yc-text="1">文本一</span>
+                            <span yc-text="2" class="activeBtn">文本二</span>
+                            <span yc-text="3">文本三</span>
+                            <span yc-text="4">文本四</span>
+                        </div>
+                        <div id="divvaluesiteid">
+                            <!--名称坐标,x坐标-->
+                            <label id="lb_value_x" style="width: 36px;">x:</label>
+                            <a id="ms_value_x_l" onmousedown='click_time("X","value_value_x",value_minus)'>-</a>
+                            <input onkeyup="value=value.replace(/[^\-?\d]/g,'')"
+                                   onblur="value=value.replace(/[^\-?\d]/g,'');value_input('X',this)"
+                                   placeholder="请输入数字"
+                                   id="value_value_x" value=0>
+                            <a id="ms_value_x_r" onmousedown="click_time('X','value_value_x',value_plus)">+</a>
+                            <!--y坐标-->
+                            <label id="lb_value_y">y:</label>
+                            <a id="ms_value_y_l" onmousedown='click_time("Y","value_value_y",value_minus)'>-</a>
+                            <input onkeyup="value=value.replace(/[^\-?\d]/g,'')"
+                                   onblur="value=value.replace(/[^\-?\d]/g,'');value_input('Y',this)"
+                                   placeholder="请输入数字"
+                                   id="value_value_y" value=0>
+                            <a id="ms_value_y_r" onmousedown="click_time('Y','value_value_y',value_plus)">+</a>
+                            <!--width坐标-->
+                            <label id="lb_value_w" style="width: 36px;">w:</label>
+                            <a id="ms_value_w_l" onmousedown='click_time("W","value_value_w",value_minus)'>-</a>
+                            <input onkeyup="value=value.replace(/[^\d]/g,'')"
+                                   onblur="value=value.replace(/[^\d]/g,'');value_input('W',this)" placeholder="请输入数字"
+                                   id="value_value_w" value=0>
+                            <a id="ms_value_w_r" onmousedown="click_time('W','value_value_w',value_plus)">+</a>
+                            <!--控件缩放-->
+                            <label id="lb_value_h">缩放:</label>
+                            <a id="ms_value_s_l" onmousedown='click_time("S","value_value_s",value_scale_minus)'>-</a>
+                            <input onkeyup="value=value.replace(/^(\-)*(\d+)\.(\d).*$/,'$1$2.$3')"
+                                   onblur="value=value.replace(/^(\-)*(\d+)\.(\d).*$/,'$1$2.$3');value_input('S',this)"
+                                   placeholder="请输入数字" id="value_value_s" value=0>
+                            <a id="ms_value_s_r" onmousedown="click_time('S','value_value_s',value_scale_plus)">+</a>
+                            <!--遥测显示方位-->
+                            <label style="width: 36px;">对齐:</label><select id="select_ycdir"
+                                                                           onchange="onchange_selectYcSite(this)">
+                            <option value="1">左对齐</option>
+                            <option value="2">居中</option>
+                            <option value="3">右对齐</option>
+                        </select><!---->
+                        </div>
+                        <span class="delete boxBtn">删除</span>
+                        <div class="boxYCBtn">
+                            <span class="yc_text_add boxBtn">添加</span>
+                            <span class="yc_text_display boxBtn" id="ipt_rc">显示</span>
+                        </div>
+                        <p class="notText">暂无遥测文本</p>
+                    </div>
+                    <textarea placeholder="请输入……" id="textInput" value=""></textarea>
+                </div>
+                <div class="equipment">
+                    <div>
+                        <p class="title">已关联设备:</p>
+                        <div class="associated">
+                            <p class="associated1" style="display: none"><i>1. </i><span>无</span></p>
+                        </div>
+
+                    </div>
+                    <div>
+                        <p class="title">操作</p>
+                        <div class="sysbtn" style="width: 100%;height: 181px">
+                            <input type="button" value="关联设备" id="aboutedMod">
+                            <input type="button" value="取消关联" id="clearMod">
+                            <input type="button" onclick="copyImg()" value="复制设备">
+                            <input type="button" onclick="btn_delDev()" value="删除设备"><br>
+                        </div>
+<!--                        <div class="blueFont">其他</div>-->
+                    </div>
+                    <div class="copyNum">
+                        <p class="title" style="margin-bottom: 18px;">复制偏移量</p>
+                        <div style="text-align: center">
+                            <lable>x:</lable><input style="width: 50px;margin-right: 20px;" value="10" onkeyup="value=value.replace(/[^\-?\d]/g,'')" type="text" id="offsetX">
+                            <lable>y:</lable><input style="width: 50px;" value="10" onkeyup="value=value.replace(/[^\-?\d]/g,'')" type="text" id="offsetY">
+                        </div>
+                    </div>
+                    <div class="switchNumBox">
+                        <p>开关编号</p>
+                        <div class="box1">
+                            <div>
+                                <span>左</span>
+                                <input id="switchATSL" onkeyup="value=value.replace(/[^\-?\d]/g,'')" onblur="value=value.replace(/[^\d]/g,'');" value=11>
+                            </div>
+                            <div>
+                                <span>右</span>
+                                <input id="switchATSR" onkeyup="value=value.replace(/[^\-?\d]/g,'')" onblur="value=value.replace(/[^\-?\d]/g,'');" value=12>
+                            </div>
+                        </div>
+                        <div class="box2">
+                            <input id="switchNum" onkeyup="value=value.replace(/[^\-?\d]/g,'')" onblur="value=value.replace(/[^\-?\d]/g,'');" value=11>
+                        </div>
+                    </div>
+                </div>
+                <footer>
+                    <div class="activeBtn">样式</div>
+                    <div>设备</div>
+                </footer>
+            </div>
+            <div class="confirm" id="saves">
+                <p>保存提示</p>
+
+                <p>注意：保存当前编辑的配置信息会覆盖平台原有配置信息。</p>
+
+                <p>
+                    <button class="btn btn-danger">确定</button>
+                    <button class="btn btn-info">取消</button>
+                </p>
+            </div>
+            <div class="confirm" id="saving">
+                <p>保存提示</p>
+                <p style="margin-top: 36px">服务器连接中断！</p>
+            </div>
+            <div class="confirm" id="savConfirm">
+                <p>保存提示</p>
+                <p>保存成功！</p>
+                <p>
+                    <button class="btn btn-danger">关闭</button>
+                </p>
+            </div>
+            <div class="confirm" id="refresh">
+                <p>刷新提示</p>
+                <p>注意：从平台重新加载项目配置信息，会覆盖当前已编辑的配置信息。</p>
+                <p>
+                    <button class="btn btn-danger">确定</button>
+                    <button class="btn btn-info">取消</button>
+                </p>
+            </div>
+            <div class="confirm " id="reloaddev">
+                <p>重载设备提示</p>
+                <p>重载设备成功！</p>
+                <p>
+                    <button class="btn btn-danger">确定</button>
+                    <button class="btn btn-info">取消</button>
+                </p>
+            </div>
+            <div class="confirm selectText">
+                <p>添加 <span>X</span></p>
+                <p>请在下面文本中选择：</p>
+                <main>
+                    <div class="disabled" yc-text="1">文本一</div>
+                    <div yc-text="2">文本二</div>
+                    <div yc-text="3">文本三</div>
+                    <div yc-text="4">文本四</div>
+                </main>
+                <!--<p>
+                    <button class="btn btn-info">取消</button>
+                </p>-->
+            </div>
+            <div class="confirm other" onmouseup="menuDiv_msup()" class="" onmousedown="editCtrlDiv_msdown(this)">
+                <p>其他 <span>X</span></p>
+                <main>
+                   <div>
+                       <p class="title">复制偏移量</p>
+                       <div style="text-align: center">
+                           <lable>x:</lable>
+                           <input style="width: 50px;margin-right: 20px;" value="10" onkeyup="value=value.replace(/[^\-?\d]/g,'')" type="text" id="offsetX">
+                           <lable>y:</lable>
+                           <input style="width: 50px;" value="10" onkeyup="value=value.replace(/[^\-?\d]/g,'')" type="text" id="offsetY">
+                       </div>
+                   </div>
+                   <!-- <div>
+                        <p class="title">删除背景</p>
+                        <div style="text-align: center">
+                            <span class="clearAll">删除背景</span>
+                        </div>
+                    </div>-->
+                </main>
+                <!--<p>
+                    <button class="btn btn-danger">确定</button>
+                </p>-->
+            </div>
+
+        </li>
+    </ul>
+
+</div>
+<script src="../../js/jquery-3.1.1.js"></script>
+<script>
+    var ran = Math.random();
+    document.write('<script src="../../js/orders.js?ran=' + ran + '" charset="utf-8"><\/script>');
+    document.write('<script src="../../js/md5.js?ran=' + ran + '" charset="utf-8"><\/script>');
+    document.write('<script src="../../js/tieon_ccc_lib_2020_v30.js?ran=' + ran + '" charset="utf-8"><\/script>');
+    document.write('<script src="js/config400v.js?ran=' + ran + '" charset="utf-8"><\/script>');
+</script>
+<script>
+    $("body").on("click", ".stns>img", function () {
+        $(".bloc").toggle();
+    });
+
+    //点击弹出框
+    function boxShow() {
+        document.getElementById("devices").style.display = "block";
+    }
+
+    //点击关闭弹出框
+    function boxHide() {
+        document.getElementById("devices").style.display = "none";
+    }
+
+    //点击确认关联
+    function determine() {
+
+    }
+
+    //点击更改背景颜色
+    function ChangeBg() {
+        var val = document.getElementsByClassName("bg")[0].value;
+        console.log(val);
+        document.getElementById("canv").style.backgroundColor = val;
+    }
+
+</script>
+</body>
+</html>
